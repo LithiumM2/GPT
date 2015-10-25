@@ -73,3 +73,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.tlog
+TrainingMesh/Debug/vc120.pdb
+*.log
+TrainingMesh/Debug/vc120.idb
+*.pdb
+Debug/TrainingMesh.ilk
+TrainingMesh.opensdf
+*.sdf
