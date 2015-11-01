@@ -1,6 +1,7 @@
 #pragma once
 #include "Quaternion.h"
 #include "Vec3.h"
+#include "Transform\Transform.h"
 #include <vector>
 #include <iostream>
 
@@ -50,29 +51,12 @@ public:
 	std::vector<Vec3<unsigned int>> getFacesTextures() const;
 	std::vector<Vec3<unsigned int>> getFacesNormales() const;
 
-	/*
-	* translation du mesh par vecteur 
-	* v : coordonnees de la translation
+	/* Application d'une transformation au mesh
+	* t : transformation
 	*/
-	void translate(const Vec3<float> &v);
-	/*
-	* mise a l'echelle du mesh par vecteur
-	* v : coordonnees de la mise a l'echelle
-	*/
-	void scale(const Vec3<float> &v);
-	/*
-	* mise a l'echelle du mesh par scalaire
-	* s : scalaire de la mise a l'echelle
-	*/
-	void scale(const float &s);
-	/*
-	* rotation du Mesh par quaternion
-	* q : quaternion de la rotation
-	*/
-	void rotate(const Quaternion& q);
-	/* 
-	* fusion du mesh courant avec un autre mesh
-	* m : mesh a fusionner avec l'objet courant
+	void transform(Transform t);
+	/* Merge du mesh courant avec un autre
+	* m : mesh a fusionner
 	*/
 	void merge(const Mesh & m);
 	~Mesh();

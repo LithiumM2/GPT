@@ -45,62 +45,18 @@ std::vector<Vec3<unsigned int>> Mesh::getFacesNormales() const
 	return facesNormales;
 }
 
-
-/*
-* translation du mesh par vecteur
-* v : coordonnees de la translation
+/* Application d'une transformation au mesh
+* t : transformation
 */
-void Mesh::translate(const Vec3<float> &v) {
+void Mesh::transform(Transform t)
+{
 	for (unsigned int i = 0; i < points.size(); ++i) {
-		points[i] += v;
-	}
+				points[i] = t.m * points[i];
+			}
 }
 
-/*
-* mise a l'echelle du mesh par vecteur
-* v : coordonnees de la mise a l'echelle
-*/
-void Mesh::scale(const Vec3<float> &v) {
-	for (unsigned int i = 0; i < points.size(); ++i) {
-		points[i] *= v;
-	}
-}
-
-/*
-* mise a l'echelle du mesh par scalaire
-* s : scalaire de la mise a l'echelle
-*/
-void Mesh::scale(const float &s) {
-	for (unsigned int i = 0; i < points.size(); ++i) {
-		points[i] *= s;
-	}
-}
-
-/*
-* rotation du Mesh par quaternion
-* q : quaternion de la rotation
-*/
-void Mesh::rotate(const Quaternion &q) {
-	// Extract the vector part of the quaternion
-	Vec3<float> u(q.x, q.y, q.z);
-
-	// Extract the scalar part of the quaternion
-	float s = q.w;
-
-	// Do the math lol
-	for (unsigned int i = 0; i < points.size(); ++i) {
-		Vec3<float> v = points[i];
-		points[i] =
-			2.0f * Vec3<float>::dotProduct(u, v) * u
-			+ (s * s - Vec3<float>::dotProduct(u, u)) * v
-			+ 2.0f * s * Vec3<float>::crossProduct(u, v);
-	}
-
-}
-
-/*
-* fusion du mesh courant avec un autre mesh
-* m : mesh a fusionner avec l'objet courant
+/* Merge du mesh courant avec un autre
+* m : mesh a fusionner
 */
 void Mesh::merge(const Mesh & m)
 {

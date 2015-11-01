@@ -2,6 +2,7 @@
 #include "Vec3.h"
 #include "Mesh.h"
 #include "MeshWriter.h"
+#include "Transform\Transform.h"
 
 /*
 TODO : 
@@ -14,7 +15,10 @@ int main(int argc, char ** argv)
 //	Mesh m(Primitives::box(Vec3<float>(3.f, 3.f, 3.f)));
 	Mesh m(Primitives::cylinder(10.f, 3.f, 30));
 	Mesh m2(Primitives::cylinder(10.f, 3.f, 30));
-	m2.rotate(Quaternion(Constantes::PI, 0.f, 0.f, 1.f));
+	m2.transform(Transform::rotateX(Constantes::PI * 0.5f) * Transform::translate(Vec3<float>(10.f)));
+//	m2.transform();
+
+//	m2.rotate(Quaternion(Constantes::PI, 0.f, 0.f, 1.f));
 	m.merge(m2);
 	//Mesh m(Primitives::circle(Vec3<float>(0.f), 3.f, 20));
 //	Mesh m(Primitives::box(Vec3<float>(3.f, 3.f, 3.f)));
