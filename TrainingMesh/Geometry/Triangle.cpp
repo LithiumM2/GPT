@@ -33,7 +33,12 @@ float Triangle::perimeter() const{
 	
 void Triangle::shrink(float t){
 
-	Mat4x4 matrice = Transform::scale(t,t,t).m;
+	Vec3<float> pivot(0.f);
+	for(int i=0;i<3;i++)
+		pivot+=Points[i];
+	pivot*=1.f/3.f;
+
+	Mat4x4 matrice = Transform::Shrink(t,pivot).m;
 
 	for(int i=0;i<3;i++)
 	Points[i] = matrice*Points[i];
