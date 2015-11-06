@@ -1,7 +1,6 @@
 #pragma once
-#include "Quaternion.h"
-#include "Vec3.h"
-#include "Transform\Transform.h"
+#include "..\Vec3.h"
+#include "..\Transform\Transform.h"
 #include <vector>
 #include <iostream>
 

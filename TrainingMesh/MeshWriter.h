@@ -2,7 +2,7 @@
 #include<string>
 #include <iostream>
 #include<fstream>
-#include "Mesh.h"
+#include "Mesh/Mesh.h"
 #include "Vec3.h"
 
 /*

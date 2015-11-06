@@ -1,6 +1,6 @@
-#include "Mesh.h"
-#include "Vec3.h"
-#include "Constantes.h"
+#include "../Mesh/Mesh.h"
+#include "../Vec3.h"
+#include "../Constantes.h"
 
 /*
 * Namespace contenant la creation des differentes primitives en Mesh (Factory)
