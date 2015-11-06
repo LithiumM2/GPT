@@ -75,3 +75,9 @@ inline const Vec3<T> operator + (const Vec3<T> & v1, const Vec3<T> & v2) { retur
 
 template <typename T>
 inline const Vec3<T> operator - (const Vec3<T> & v1, const Vec3<T> & v2) { return Vec3<T>(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z); }
+
+template <typename T>
+inline float distanceSquared(const Vec3<T> & v1, const Vec3<T> & v2) { return (v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y) + (v2.z - v1.z) * (v2.z - v1.z); }
+
+template <typename T>
+inline float distance(const Vec3<T> & v1, const Vec3<T> & v2) { return sqrt(distanceSquared(v1, v2)); }
