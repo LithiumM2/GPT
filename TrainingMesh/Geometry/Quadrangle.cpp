@@ -35,7 +35,7 @@ float Quadrangle::perimeter() const
 	return distance(p1, p2) + distance(p2, p3) + distance(p3, p4) + distance(p4, p1);
 }
 
-void Quadrangle::shrink(float size)
+void Quadrangle::shrink(float t)
 {
 
 }

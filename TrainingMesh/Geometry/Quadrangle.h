@@ -11,7 +11,7 @@ public:
 	Quadrangle(const Quadrangle& q);
 	float area() const;
 	float perimeter() const;
-	void shrink(float size);
+	void shrink(float t);
 	~Quadrangle();
 };
 

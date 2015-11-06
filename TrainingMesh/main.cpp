@@ -4,6 +4,7 @@
 #include "MeshWriter.h"
 #include "Transform\Transform.h"
 #include "Geometry\Quadrangle.h"
+#include "Geometry\Triangle.h"
 
 int main(int argc, char ** argv)
 {
@@ -20,8 +21,15 @@ int main(int argc, char ** argv)
 //	Mesh m(Primitives::box(Vec3<float>(3.f, 3.f, 3.f)));
 	MeshWriter::exportObj(m, "test3.obj"); */
 
-	Quadrangle q(Vec3<float>(0.f), Vec3<float>(10.f, 0.f, 0.f), Vec3<float>(10.f, 10.f, 0.f), Vec3<float>(0.f, 10.f, 0.f));
-	std::cout << "Quadrangle : perimeter : " << q.perimeter() << " area : " << q.area() << std::endl;
+	/*Quadrangle q(Vec3<float>(0.f), Vec3<float>(10.f, 0.f, 0.f), Vec3<float>(10.f, 10.f, 0.f), Vec3<float>(0.f, 10.f, 0.f));
+	std::cout << "Quadrangle : perimeter : " << q.perimeter() << " area : " << q.area() << std::endl;*/
+
+	Vec3<float> _Points[3]= {Vec3<float>(0.f),Vec3<float>(10.f,0.f,0.f),Vec3<float>(10.f,10.f,0.f)};
+
+	Triangle t(_Points);
+
+	std::cout<<"Aire : "<<t.area()<<" et Premietre : "<<t.perimeter()<<"\n";
+
 	system("pause");
 	return 0;
 }
