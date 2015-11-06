@@ -2,6 +2,7 @@
 #include "../Vec3.h"
 #include "Geometry.h"
 #include <algorithm>
+#include "../Transform/Transform.h"
 
 class Triangle: public Geometry
 {

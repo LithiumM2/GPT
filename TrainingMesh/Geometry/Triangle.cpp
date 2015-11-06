@@ -33,6 +33,11 @@ float Triangle::perimeter() const{
 	
 void Triangle::shrink(float t){
 
+	Mat4x4 matrice = Transform::scale(t,t,t).m;
+
+	for(int i=0;i<3;i++)
+	Points[i] = matrice*Points[i];
+	
 }
 
 Triangle::~Triangle(void)

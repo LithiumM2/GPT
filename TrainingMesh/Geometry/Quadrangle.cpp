@@ -37,7 +37,12 @@ float Quadrangle::perimeter() const
 
 void Quadrangle::shrink(float t)
 {
+	Mat4x4 matrice = Transform::scale(t,t,t).m;
 
+	p1 = matrice*p1;
+	p2 = matrice*p2;
+	p3 = matrice*p3;
+	p4 = matrice*p4;
 }
 
 Quadrangle::~Quadrangle()
