@@ -71,9 +71,11 @@
     <ClCompile Include="Geometry\Quadrangle.cpp" />
     <ClCompile Include="Grammar\Symbol.cpp" />
     <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp" />
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -85,9 +87,11 @@
     <ClInclude Include="Geometry\Quadrangle.h" />
     <ClInclude Include="Grammar\Symbol.h" />
     <ClInclude Include="Grammar\Map\QuadrangleSymbol.h" />
+    <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h" />
     <ClInclude Include="Transform\Mat4x4.h" />
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
+    <ClInclude Include="Mesh\GeometryMesh\TriangleMesh.h" />
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

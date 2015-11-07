@@ -6,8 +6,7 @@
 
 class Triangle: public Geometry
 {
-private:
-	
+protected:
 	Vec3<float> Points[3];
 
 public:

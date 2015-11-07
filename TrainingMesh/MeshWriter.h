@@ -1,7 +1,8 @@
 #pragma once
-#include<string>
+
+#include <string>
 #include <iostream>
-#include<fstream>
+#include <fstream>
 #include "Mesh/Mesh.h"
 #include "Vec3.h"
 
@@ -20,9 +21,9 @@ namespace MeshWriter
 		std::vector<Vec3<float>> points = obj.getPoints();
 		std::vector<Vec3<unsigned int>> faces = obj.getFaces();
 		std::vector<Vec3<float>> textures = obj.getTextures();
-		std::vector<Vec3<float>> normales = obj.getNormales();
+		std::vector<Vec3<float>> normales = obj.getFacesNormales();
 		std::vector<Vec3<unsigned int>> facesTextures = obj.getFacesTextures();
-		std::vector<Vec3<unsigned int>> facesNormales = obj.getFacesNormales();
+		std::vector<Vec3<unsigned int>> facesNormales = obj.getFacesNormalesIndex();
 
 
 		std::ofstream file(filename);
