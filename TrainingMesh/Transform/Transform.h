@@ -47,6 +47,13 @@ public:
 	* return : Transformation de rotation d'angle radian autour de l'axe z
 	*/
 	static Transform rotateZ(float angle);
+
+	/* Scale par rapport a un point Pivot
+	* factor : distance de scale (en%)
+	* pivot : point pivot
+	*/
+	static Transform Shrink(float factor,Vec3<float> pivot);
+
 	~Transform();
 };
 

@@ -84,6 +84,11 @@ Transform Transform::rotateZ(float angle)
 		0.f, 0.f, 0.f, 1.f));
 }
 
+Transform Transform::Shrink(float factor, Vec3<float> pivot){
+	
+	return translate(pivot)*scale(factor,factor,factor)*translate(-pivot);
+}
+
 Transform::~Transform()
 {
 }

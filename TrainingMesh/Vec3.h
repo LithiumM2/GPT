@@ -53,6 +53,11 @@ public:
 
 	inline Vec3<T> normalized ( ) { return *this * ( 1 / sqrt ( x * x + y * y + z * z ) ); }
 
+	inline Vec3 operator-()
+	{
+		return Vec3<T>(-x,-y,-z);
+	}
+
 	// Produit Vectoriel
 	static inline Vec3<T> crossProduct(const Vec3<T> & v1, const Vec3<T> & v2) { return Vec3<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x *v2.y - v1.y * v2.x); }
 

@@ -45,10 +45,17 @@
     <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp">
+=======
+    <ClCompile Include="Geometry\Hexagone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Pentagone.cpp">
+>>>>>>> origin/master
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,10 +99,17 @@
     <ClInclude Include="Grammar\Map\QuadrangleSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Mesh\GeometryMesh\TriangleMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h">
+=======
+    <ClInclude Include="Geometry\Hexagone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Pentagone.h">
+>>>>>>> origin/master
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -66,12 +66,17 @@
   <ItemGroup>
     <ClCompile Include="Geometry\Geometry.cpp" />
     <ClCompile Include="Geometry\Triangle.cpp" />
+    <ClCompile Include="Geometry\Hexagone.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
     <ClCompile Include="Geometry\Quadrangle.cpp" />
     <ClCompile Include="Grammar\Symbol.cpp" />
     <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp" />
+=======
+    <ClCompile Include="Geometry\Pentagone.cpp" />
+>>>>>>> origin/master
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
@@ -81,13 +86,18 @@
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Geometry\Geometry.h" />
     <ClInclude Include="Geometry\Triangle.h" />
+    <ClInclude Include="Geometry\Hexagone.h" />
     <ClInclude Include="Mesh\Mesh.h" />
     <ClInclude Include="MeshWriter.h" />
     <ClInclude Include="Mesh\Primitives.h" />
     <ClInclude Include="Geometry\Quadrangle.h" />
     <ClInclude Include="Grammar\Symbol.h" />
     <ClInclude Include="Grammar\Map\QuadrangleSymbol.h" />
+<<<<<<< HEAD
     <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h" />
+=======
+    <ClInclude Include="Geometry\Pentagone.h" />
+>>>>>>> origin/master
     <ClInclude Include="Transform\Mat4x4.h" />
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />

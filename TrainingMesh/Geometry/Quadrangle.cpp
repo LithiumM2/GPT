@@ -37,7 +37,9 @@ float Quadrangle::perimeter() const
 
 void Quadrangle::shrink(float t)
 {
-	Mat4x4 matrice = Transform::scale(t,t,t).m;
+	Vec3<float> pivot = (p1+p2+p3+p4)*0.25f;
+
+	Mat4x4 matrice = Transform::Shrink(t,pivot).m;
 
 	p1 = matrice*p1;
 	p2 = matrice*p2;
