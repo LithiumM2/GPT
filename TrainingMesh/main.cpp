@@ -5,6 +5,7 @@
 #include "Transform\Transform.h"
 #include "Geometry\Quadrangle.h"
 #include "Geometry\Triangle.h"
+#include "Geometry\Hexagone.h"
 
 int main(int argc, char ** argv)
 {
@@ -21,17 +22,19 @@ int main(int argc, char ** argv)
 //	Mesh m(Primitives::box(Vec3<float>(3.f, 3.f, 3.f)));
 	MeshWriter::exportObj(m, "test3.obj"); */
 
-	Quadrangle q(Vec3<float>(0.f), Vec3<float>(10.f, 0.f, 0.f), Vec3<float>(10.f, 10.f, 0.f), Vec3<float>(0.f, 10.f, 0.f));
 
+	/************************Example Quadrangle *****************************/
+	//Quadrangle q(Vec3<float>(0.f), Vec3<float>(10.f, 0.f, 0.f), Vec3<float>(10.f, 10.f, 0.f), Vec3<float>(0.f, 10.f, 0.f));
+
+	/************************Example Triangle *****************************/
 	//Vec3<float> _Points[3]= {Vec3<float>(0.f),Vec3<float>(10.f,0.f,0.f),Vec3<float>(10.f,10.f,0.f)};
+	//Triangle q(_Points);
 
-	//Triangle t(_Points);
+	/************************Example Hexagone *****************************/
+	Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
+	Hexagone q(_Points);
 
-	std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<"avant Shrink : "<<"p1 :"<<q.p1.x<<"\n"<<std::endl;;
-
-	q.shrink(0.5);
-
-	std::cout<<"Aprés Shrink : "<<"p1 :"<<q.p1.x<<std::endl;
+	std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	system("pause");
 	return 0;

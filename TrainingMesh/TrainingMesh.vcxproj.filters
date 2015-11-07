@@ -45,6 +45,9 @@
     <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry\Hexagone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec3.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Grammar\Map\QuadrangleSymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Hexagone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

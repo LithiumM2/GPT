@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="Geometry\Geometry.cpp" />
     <ClCompile Include="Geometry\Triangle.cpp" />
+    <ClCompile Include="Geometry\Hexagone.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
     <ClCompile Include="Geometry\Quadrangle.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Geometry\Geometry.h" />
     <ClInclude Include="Geometry\Triangle.h" />
+    <ClInclude Include="Geometry\Hexagone.h" />
     <ClInclude Include="Mesh\Mesh.h" />
     <ClInclude Include="MeshWriter.h" />
     <ClInclude Include="Mesh\Primitives.h" />
