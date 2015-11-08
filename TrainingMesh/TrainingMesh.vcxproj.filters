@@ -1,116 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Geometry\Geometry.cpp" />
+    <ClCompile Include="Geometry\Triangle.cpp" />
+    <ClCompile Include="Geometry\Hexagone.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="Geometry\Quadrangle.cpp" />
+    <ClCompile Include="Grammar\Symbol.cpp" />
+    <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp" />
+    <ClCompile Include="Geometry\Pentagone.cpp" />
+    <ClCompile Include="Transform\Mat4x4.cpp" />
+    <ClCompile Include="Transform\Transform.cpp" />
+    <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\PentagoneMesh.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\HexagoneMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform\Mat4x4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry\Geometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry\Quadrangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry\Triangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grammar\Symbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grammar\Map\TriangleSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp">
-=======
-    <ClCompile Include="Geometry\Hexagone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry\Pentagone.cpp">
->>>>>>> origin/master
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Vec3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Constantes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform\Mat4x4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh\Primitives.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshWriter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Geometry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Quadrangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Triangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grammar\Symbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grammar\Map\TriangleSymbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grammar\Map\QuadrangleSymbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Mesh\GeometryMesh\TriangleMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h">
-=======
-    <ClInclude Include="Geometry\Hexagone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Pentagone.h">
->>>>>>> origin/master
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Constantes.h" />
+    <ClInclude Include="Geometry\Geometry.h" />
+    <ClInclude Include="Geometry\Triangle.h" />
+    <ClInclude Include="Geometry\Hexagone.h" />
+    <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="MeshWriter.h" />
+    <ClInclude Include="Mesh\Primitives.h" />
+    <ClInclude Include="Geometry\Quadrangle.h" />
+    <ClInclude Include="Grammar\Symbol.h" />
+    <ClInclude Include="Grammar\Map\QuadrangleSymbol.h" />
+    <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h" />
+    <ClInclude Include="Geometry\Pentagone.h" />
+    <ClInclude Include="Transform\Mat4x4.h" />
+    <ClInclude Include="Transform\Transform.h" />
+    <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
+    <ClInclude Include="Mesh\GeometryMesh\TriangleMesh.h" />
+    <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Mesh\GeometryMesh\PentagoneMesh.h" />
+    <ClInclude Include="Mesh\GeometryMesh\HexagoneMesh.h" />
   </ItemGroup>
 </Project>

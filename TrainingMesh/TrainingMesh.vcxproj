@@ -67,6 +67,7 @@
     <ClCompile Include="Geometry\Geometry.cpp" />
     <ClCompile Include="Geometry\Triangle.cpp" />
     <ClCompile Include="Geometry\Hexagone.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\HexagoneMesh.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
     <ClCompile Include="Geometry\Quadrangle.cpp" />
@@ -74,6 +75,7 @@
     <ClCompile Include="Grammar\Map\QuadrangleSymbol.cpp" />
     <ClCompile Include="Mesh\GeometryMesh\QuadrangleMesh.cpp" />
     <ClCompile Include="Geometry\Pentagone.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\PentagoneMesh.cpp" />
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
@@ -84,6 +86,7 @@
     <ClInclude Include="Geometry\Geometry.h" />
     <ClInclude Include="Geometry\Triangle.h" />
     <ClInclude Include="Geometry\Hexagone.h" />
+    <ClInclude Include="Mesh\GeometryMesh\HexagoneMesh.h" />
     <ClInclude Include="Mesh\Mesh.h" />
     <ClInclude Include="MeshWriter.h" />
     <ClInclude Include="Mesh\Primitives.h" />
@@ -92,6 +95,7 @@
     <ClInclude Include="Grammar\Map\QuadrangleSymbol.h" />
     <ClInclude Include="Mesh\GeometryMesh\QuadrangleMesh.h" />
     <ClInclude Include="Geometry\Pentagone.h" />
+    <ClInclude Include="Mesh\GeometryMesh\PentagoneMesh.h" />
     <ClInclude Include="Transform\Mat4x4.h" />
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />

@@ -6,6 +6,8 @@
 #include "Geometry\Quadrangle.h"
 #include "Geometry\Triangle.h"
 #include "Geometry\Hexagone.h"
+#include "Mesh\GeometryMesh\PentagoneMesh.h"
+#include "Mesh\GeometryMesh\HexagoneMesh.h"
 
 int main(int argc, char ** argv)
 {
@@ -31,10 +33,22 @@ int main(int argc, char ** argv)
 	//Triangle q(_Points);
 
 	/************************Example Hexagone *****************************/
-	Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
+	/*Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
 	Hexagone q(_Points);
 
-	std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
+	std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;*/
+
+	/************************ Example Pentagone Mesh *****************************/
+	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ) };
+	PentagoneMesh pm = PentagoneMesh ( points );
+	Mesh m ( pm );
+	MeshWriter::exportObj ( m, "test_pentagone.obj" );*/
+
+	/************************ Example Hexagone Mesh *****************************/
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
+	HexagoneMesh hm = HexagoneMesh ( points );
+	Mesh m ( hm );
+	MeshWriter::exportObj ( m, "test_hexagone.obj" );
 
 	system("pause");
 	return 0;
