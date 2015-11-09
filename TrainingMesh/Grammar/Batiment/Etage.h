@@ -5,8 +5,8 @@
 class Etage {
 protected:
 	Quadrangle q;
-	double h;
+	float h;
 public:
-	Etage(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
+	Etage(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 	void G(Mesh&) const;
 };

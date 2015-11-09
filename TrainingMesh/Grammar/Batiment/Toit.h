@@ -5,8 +5,8 @@
 class Toit {
 protected:
 	Quadrangle q;
-	double h;
+	float h;
 public:
-	Toit(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
+	Toit(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 	void G(Mesh&) const;
 };
