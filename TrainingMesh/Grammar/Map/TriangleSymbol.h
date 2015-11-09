@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\Symbol.h"
+#include "..\Map\QuadrangleSymbol.h"
 #include "..\..\Mesh\GeometryMesh\TriangleMesh.h"
 
 class TriangleSymbol :
