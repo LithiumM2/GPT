@@ -80,10 +80,10 @@ public:
 	*/
 	void merge ( const Mesh & m );
 
-	// TAG ERIC
+
 	static Mesh Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
-	static Mesh Cylinder(const Vec3<float>&, const double&,const double&);
-	// END TAG
+	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);
+	static Mesh Circle(const Vec3<float>& o, const float&, const unsigned int&);
 
 	~Mesh();
 };
