@@ -71,6 +71,10 @@ void Mesh::calculateNormals ( ) {
 	}
 }
 
+Mesh Mesh::Triangle ( Vec3<float> p1, Vec3<float> p2, Vec3<float> p3 ) {
+
+}
+
 Mesh::Mesh(const Mesh & mesh) 
 	: points(mesh.points), faces(mesh.faces), textures(mesh.textures), facesTextures(mesh.facesNormalesIndex), facesNormalesIndex(mesh.facesNormalesIndex), facesNormales(mesh.facesNormales), pivot(mesh.pivot){};
 

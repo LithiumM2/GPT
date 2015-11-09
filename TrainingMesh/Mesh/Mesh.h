@@ -77,4 +77,8 @@ public:
 	*/
 	void merge ( const Mesh & m );
 	~Mesh ( );
+
+	static Mesh Triangle ( Vec3<float> p1, Vec3<float> p2, Vec3<float> p3 );
+	static Mesh Quadrangle ( );
+	//static Mesh Box ( );
 };

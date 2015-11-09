@@ -55,10 +55,10 @@ int main(int argc, char ** argv)
 	/************************ Example TriangleSymbol Generate *****************************/
 	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
 	TriangleMesh tm = TriangleMesh ( points );
-	TriangleSymbol ts = TriangleSymbol ( );
-	ts.Generate ( tm, 3 );
+	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
+	ts.Generate ( tm, 1 );
 	
-	MeshWriter::exportObj ( tm, "test_triangle_symbole.obj" );
+	MeshWriter::exportObj ( tm, "test_triangle_symbole2.obj" );
 
 	system("pause");
 	return 0;
