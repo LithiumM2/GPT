@@ -68,7 +68,7 @@ int main(int argc, char ** argv)
 	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
 	Mesh m2;
 	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
-	ts.Generate ( m2, 1 );
+	ts.Generate ( m2, 2 );
 
 	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );
 
