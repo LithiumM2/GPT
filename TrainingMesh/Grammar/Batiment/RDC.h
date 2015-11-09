@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Geometry/Quadrangle.h"
-#include "../../Mesh/Mesh.h"
+#include "Etage.h"
+#include "Toit.h"
 
 
 class RDC {
