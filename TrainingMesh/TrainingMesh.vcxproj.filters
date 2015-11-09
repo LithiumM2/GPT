@@ -15,6 +15,8 @@
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
     <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\PentagoneMesh.cpp" />
+    <ClCompile Include="Mesh\GeometryMesh\HexagoneMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -34,5 +36,7 @@
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
     <ClInclude Include="Mesh\GeometryMesh\TriangleMesh.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Mesh\GeometryMesh\PentagoneMesh.h" />
+    <ClInclude Include="Mesh\GeometryMesh\HexagoneMesh.h" />
   </ItemGroup>
 </Project>

@@ -23,6 +23,16 @@ Mesh::Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> f
 	calculateNormals ( );
 }
 
+Vec3<float> Mesh::getPivot ( ) {
+	pivot = Vec3<float> ( 0.f );
+	for ( unsigned int i = 0; i < points.size ( ); ++i ) {
+		pivot += points[i];
+	}
+	pivot = pivot / ( float ) points.size ( );
+
+	return pivot;
+}
+
 void Mesh::calculateNormals ( ) {
 	// Calcule des normales par face
 	std::cout << "Calculate face normals...\n";
