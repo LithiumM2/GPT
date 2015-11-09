@@ -8,6 +8,6 @@ public:
 	Symbol ( );
 	~Symbol ( );
 
-	virtual void Generate ( Mesh &mesh, int level ) const = 0;
+	virtual void Generate ( Mesh &mesh, int compteur ) const = 0;
 };
 

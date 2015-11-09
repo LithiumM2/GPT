@@ -17,6 +17,9 @@
     <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp" />
     <ClCompile Include="Mesh\GeometryMesh\PentagoneMesh.cpp" />
     <ClCompile Include="Mesh\GeometryMesh\HexagoneMesh.cpp" />
+    <ClCompile Include="Grammar\Batiment\RDC.cpp" />
+    <ClCompile Include="Grammar\Batiment\Etage.cpp" />
+    <ClCompile Include="Grammar\Batiment\Toit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -38,5 +41,8 @@
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Mesh\GeometryMesh\PentagoneMesh.h" />
     <ClInclude Include="Mesh\GeometryMesh\HexagoneMesh.h" />
+    <ClInclude Include="Grammar\Batiment\RDC.h" />
+    <ClInclude Include="Grammar\Batiment\Etage.h" />
+    <ClInclude Include="Grammar\Batiment\Toit.h" />
   </ItemGroup>
 </Project>
