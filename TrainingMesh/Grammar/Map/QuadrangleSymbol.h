@@ -1,5 +1,5 @@
 #pragma once
-
+#include "..\..\Mesh\GeometryMesh\QuadrangleMesh.h"
 #include "..\Symbol.h"
 
 class QuadrangleSymbol :
@@ -8,6 +8,6 @@ public:
 	QuadrangleSymbol ( );
 	~QuadrangleSymbol ( );
 
-	void Generate ( const Mesh &mesh ) const;
+	void Generate(Mesh &mesh, int compteur) const;
 };
 

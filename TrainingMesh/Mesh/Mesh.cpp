@@ -9,7 +9,7 @@ Mesh::Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> f
 	for ( unsigned int i = 0; i < points_.size ( ); ++i ) {
 		pivot += points[i];
 	}
-	pivot / ( float ) points_.size ( );
+	pivot = pivot / ( float ) points_.size ( );
 }
 
 Mesh::Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> faces_, std::vector<Vec3<unsigned int>> facesTextures_, std::vector<Vec3<float>> textures_ )
@@ -18,7 +18,7 @@ Mesh::Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> f
 	for ( unsigned int i = 0; i < points_.size ( ); ++i ) {
 		pivot += points[i];
 	}
-	pivot / ( float ) points_.size ( );
+	pivot = pivot / ( float ) points_.size ( );
 
 	calculateNormals ( );
 }

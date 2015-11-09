@@ -9,6 +9,6 @@ public:
 	TriangleSymbol ( );
 	~TriangleSymbol ( );
 
-	void Generate ( const Mesh &mesh );
+	void Generate(Mesh &mesh, int compteur);
 };
 

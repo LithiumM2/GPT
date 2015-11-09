@@ -44,12 +44,13 @@ protected:
 	*/
 	std::vector<Vec3<float>> verticesNormales;
 
+
+public:
+
 	/*
 	* Centre de gravite du mesh
 	*/
 	Vec3<float> pivot;
-
-public:
 	Mesh ( );
 	Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> faces_, std::vector<Vec3<unsigned int>> facesTextures_, std::vector<Vec3<unsigned int>> facesNormales_, std::vector<Vec3<float>> textures_, std::vector<Vec3<float>> normales_ );
 	Mesh ( std::vector<Vec3<float>> points_, std::vector<Vec3<unsigned int>> faces_, std::vector<Vec3<unsigned int>> facesTextures_, std::vector<Vec3<float>> textures_ );
