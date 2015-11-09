@@ -65,20 +65,13 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
 
 	/************************ Example TriangleSymbol Generate *****************************/
-	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
-	TriangleMesh tm = TriangleMesh ( points );
-<<<<<<< HEAD
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	Mesh m2;
 	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
-	ts.Generate ( tm, 1 );
-	
-	MeshWriter::exportObj ( tm, "test_triangle_symbole2.obj" );
+	ts.Generate ( m2, 1 );
 
-=======
-	TriangleSymbol ts = TriangleSymbol ( );
-	ts.Generate ( tm, 1 );
-	
-	MeshWriter::exportObj ( tm, "test_triangle_symbole.obj" );
-	*/
+	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );
+
 	system("pause");
 	return 0;
 }

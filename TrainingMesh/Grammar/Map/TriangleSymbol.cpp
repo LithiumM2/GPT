@@ -12,12 +12,35 @@ TriangleSymbol::TriangleSymbol ( Vec3<float> a, Vec3<float> b, Vec3<float> c)
 // TODO
 void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 	if ( ( level == 0 ) || ( Triangle ( p[0], p[1], p[2] ).area ( ) ) < 1000.f ) {
-		mesh.merge ( Mesh::Triangle ( p[0], p[1], p[2] ) ); // in Mesh : static Mesh Triangle(....) const 
+		Mesh m = Mesh::Triangle ( p[0], p[1], p[2] );
+		m.transform ( Transform::Shrink ( .9f, m.getPivot ( ) ) );
+		mesh.merge ( m );
 		//Bloc( p[0], p[1], p[2] ).G(mesh);
 	}
 	else {
-		TriangleSymbol ( p[0], p[1], 0.5f * ( p[2] + p[1] ) ).Generate ( mesh, level - 1 );
-		TriangleSymbol ( p[0], 0.5f*( p[2] + p[1] ), p[2] ).Generate ( mesh, level - 1 );
+		int random = rand ( ) % 100;
+
+		if ( random < 50 ) {
+			// Divise le triangle en 2 triangles
+			TriangleSymbol ( p[0], p[1], 0.5f * ( p[2] + p[1] ) ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( p[0], 0.5f*( p[2] + p[1] ), p[2] ).Generate ( mesh, level - 1 );
+		}
+		else {
+			// Divise le triangle en 3 triangles
+			Vec3<float> center = p[0];
+			Vec3<float> min = p[0];
+			Vec3<float> max = p[0];
+			for ( int i = 1; i < 3; ++i ) {
+				center += p[i];
+				min = Vec3<float> ( std::fminf ( min.x, p[i].x ), std::fminf ( min.y, p[i].y ), std::fminf ( min.z, p[i].z ) );
+				max = Vec3<float> ( std::fmaxf ( max.x, p[i].x ), std::fmaxf ( max.y, p[i].y ), std::fmaxf ( max.z, p[i].z ) );
+			}
+			center *= 1.f / 3.f;
+			
+			TriangleSymbol ( { center, p[0], p[1] } ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( { center, p[1], p[2] } ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( { center, p[2], p[0] } ).Generate ( mesh, level - 1 );
+		}
 	}
 }
 
