@@ -1,13 +1,15 @@
-#include "Mesh/Primitives.h"
 #include "Vec3.h"
-#include "Mesh/Mesh.h"
 #include "MeshWriter.h"
 #include "Transform\Transform.h"
 #include "Geometry\Quadrangle.h"
 #include "Geometry\Triangle.h"
 #include "Geometry\Hexagone.h"
+#include "Mesh\Mesh.h"
+#include "Mesh\Primitives.h"
+#include "Mesh\GeometryMesh\TriangleMesh.h"
 #include "Mesh\GeometryMesh\PentagoneMesh.h"
 #include "Mesh\GeometryMesh\HexagoneMesh.h"
+#include "Grammar\Map\TriangleSymbol.h"
 
 int main(int argc, char ** argv)
 {
@@ -45,10 +47,18 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_pentagone.obj" );*/
 
 	/************************ Example Hexagone Mesh *****************************/
-	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
+	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
 	HexagoneMesh hm = HexagoneMesh ( points );
 	Mesh m ( hm );
-	MeshWriter::exportObj ( m, "test_hexagone.obj" );
+	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
+
+	/************************ Example TriangleSymbol Generate *****************************/
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	TriangleMesh tm = TriangleMesh ( points );
+	TriangleSymbol ts = TriangleSymbol ( );
+	ts.Generate ( tm, 3 );
+	
+	MeshWriter::exportObj ( tm, "test_triangle_symbole.obj" );
 
 	system("pause");
 	return 0;

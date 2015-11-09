@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\Symbol.h"
+#include "..\..\Mesh\GeometryMesh\TriangleMesh.h"
 
 class TriangleSymbol :
 	public Symbol {
@@ -9,6 +10,6 @@ public:
 	TriangleSymbol ( );
 	~TriangleSymbol ( );
 
-	void Generate ( const Mesh &mesh );
+	void Generate ( Mesh &mesh, int level ) const;
 };
 

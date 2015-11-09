@@ -62,6 +62,8 @@ public:
 	std::vector<Vec3<unsigned int>> getFacesTextures ( ) const;
 	std::vector<Vec3<unsigned int>> getFacesNormalesIndex ( ) const;
 	std::vector<Vec3<float>> getVerticesNormales ( ) const;
+	
+	Vec3<float> getPivot ( );
 
 	void calculateNormals ( );
 
