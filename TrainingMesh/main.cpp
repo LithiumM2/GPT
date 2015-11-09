@@ -45,6 +45,8 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_pentagone.obj" );*/
 
 	/************************ Example Hexagone Mesh *****************************/
+	const unsigned int sizePoints = 6 ;
+
 	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
 	HexagoneMesh hm = HexagoneMesh ( points );
 	Mesh m ( hm );

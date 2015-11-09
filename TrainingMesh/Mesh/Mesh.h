@@ -1,8 +1,10 @@
 #pragma once
 #include "..\Vec3.h"
 #include "..\Transform\Transform.h"
+#include "..\Geometry\Quadrangle.h"
 #include <vector>
 #include <iostream>
+#include "../Constantes.h"
 
 /*
 * classe representant un Mesh
@@ -74,5 +76,55 @@ public:
 	* m : mesh a fusionner
 	*/
 	void merge ( const Mesh & m );
-	~Mesh ( );
+
+	// TAG ERIC
+	static Mesh Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
+	static Mesh Cylinder(const Vec3<float>&, const double&,const double&);
+	// END TAG
+
+	~Mesh();
 };
+
+/*
+
+
+class ETA {
+protected:
+	Quadrangle q;
+	double h;
+public:
+	ETA(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
+	void G(Mesh&) const;
+};
+
+class TOIT {
+protected:
+	Quadrangle q;
+	double h;
+public:
+	TOIT(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
+	void G(Mesh&) const;
+};
+
+RDC::RDC(const Vec3<float>& a , const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const double& h)
+{
+	q = Quadrangle(a, b, c, d);
+	RDC::h = h;
+}
+
+void RDC::G(Mesh& m) const
+{
+	m.merge(Mesh::Prism(q.p1, q.p1, q.p1, q.p1,h));
+	
+	// La grammaire commence ici
+	int e = rand() % 2;
+	if (e == 0)
+	{
+		ETA(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), h + 0.25).G(m);
+	}
+	else
+	{
+		TOIT(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), 1.0).G(m);
+
+	}
+}*/
