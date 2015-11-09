@@ -15,5 +15,12 @@ void QuadrangleMesh::setPoints ( std::vector<Vec3<float>> points_ ) {
 	faces[0] = Vec3<unsigned int> ( 2, 1, 3 );
 	faces[1] = Vec3<unsigned int> ( 1, 4, 3 );
 
+	pivot = Vec3<float>(0.f);
+	for (unsigned int i = 0; i < points_.size(); ++i) {
+		pivot += points[i];
+	}
+	pivot = pivot / (float)points_.size();
+
+
 	calculateNormals ( );
 }
