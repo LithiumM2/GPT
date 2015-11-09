@@ -6,11 +6,9 @@
 #include "../Transform/Transform.h"
 
 class Quadrangle : public Geometry {
-protected:
-	Vec3<float> p2, p3, p4;
 
 public:
-	Vec3<float> p1;
+	Vec3<float> p1, p2, p3, p4;
 	Quadrangle ( );
 	Quadrangle ( Vec3<float> p1_, Vec3<float> p2_, Vec3<float> p3_, Vec3<float> p4_ );
 	Quadrangle ( const Quadrangle& q );
