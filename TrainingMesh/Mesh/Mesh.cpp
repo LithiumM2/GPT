@@ -71,9 +71,6 @@ void Mesh::calculateNormals ( ) {
 	}
 }
 
-Mesh Mesh::Triangle ( Vec3<float> p1, Vec3<float> p2, Vec3<float> p3 ) {
-
-}
 
 Mesh::Mesh(const Mesh & mesh) 
 	: points(mesh.points), faces(mesh.faces), textures(mesh.textures), facesTextures(mesh.facesNormalesIndex), facesNormalesIndex(mesh.facesNormalesIndex), facesNormales(mesh.facesNormales), pivot(mesh.pivot){};
@@ -157,7 +154,7 @@ void Mesh::merge(const Mesh & m)
 * return : Mesh triangle
 * p0, p1, p2 : sommet du triangle
 */
-static Mesh triangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2)
+Mesh Mesh::Triangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2)
 {
 	std::vector<Vec3<float>> points(3);
 	points[0] = p0;
@@ -174,7 +171,7 @@ static Mesh triangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<fl
 * return : Mesh triangle
 * p0, p1, p2, p3 : sommet du triangle
 */
-static Mesh quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3)
+Mesh Mesh::Quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3)
 {
 	std::vector<Vec3<float>> points(4);
 	points[0] = p0;
@@ -189,24 +186,6 @@ static Mesh quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<
 	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 }
 
-
-
-/*
-* return : Mesh quadrangle
-* p1, p2, p3 : sommet du quadrangle
-*/
-static Mesh triangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2)
-{
-	std::vector<Vec3<float>> points(3);
-	points[0] = p0;
-	points[1] = p1;
-	points[2] = p2;
-
-	std::vector<Vec3<unsigned int>> faces(1);
-	faces[0] = Vec3<unsigned int>(2, 1, 3);
-
-	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
-}
 
 /*
 * return : Mesh cylindre (centre en 0, 0, 0)

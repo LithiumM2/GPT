@@ -42,8 +42,7 @@ int main(int argc, char ** argv)
 	//std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	/************************Example Quadrangle *****************************/
-	QuadrangleMesh m;
-	m.setPoints(std::vector<Vec3<float>>({ Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f) }));
+	Mesh m(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	QuadrangleSymbol qs;
 	qs.Generate(m, 3);
 	MeshWriter::exportObj(m, "testSymbole.obj");

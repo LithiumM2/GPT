@@ -81,8 +81,8 @@ public:
 	void merge ( const Mesh & m );
 
 
-	static Mesh Triangle ( Vec3<float> p1, Vec3<float> p2, Vec3<float> p3 );
-	static Mesh Quadrangle ( );
+	static Mesh Triangle ( const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3 );
+	static Mesh Quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3 );
 	//static Mesh Box ( );
 	static Mesh Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
 	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);
