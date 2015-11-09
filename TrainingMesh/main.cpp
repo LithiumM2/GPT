@@ -5,7 +5,6 @@
 #include "Geometry\Triangle.h"
 #include "Geometry\Hexagone.h"
 #include "Mesh\Mesh.h"
-#include "Mesh\Primitives.h"
 #include "Mesh\GeometryMesh\TriangleMesh.h"
 #include "Mesh\GeometryMesh\PentagoneMesh.h"
 #include "Mesh\GeometryMesh\HexagoneMesh.h"
@@ -69,6 +68,13 @@ int main(int argc, char ** argv)
 	/************************ Example TriangleSymbol Generate *****************************/
 	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
 	TriangleMesh tm = TriangleMesh ( points );
+<<<<<<< HEAD
+	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
+	ts.Generate ( tm, 1 );
+	
+	MeshWriter::exportObj ( tm, "test_triangle_symbole2.obj" );
+
+=======
 	TriangleSymbol ts = TriangleSymbol ( );
 	ts.Generate ( tm, 1 );
 	
