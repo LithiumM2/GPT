@@ -1,12 +1,12 @@
 #include "Etage.h"
 
-Etage::Etage(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&)
-{
+
+Etage::Etage(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&){
 
 }
 
-void Etage::G(Mesh&) const
-{
+
+void Etage::G(Mesh&) const{
 
 }
 

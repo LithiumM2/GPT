@@ -194,105 +194,106 @@ Mesh Mesh::Quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<f
 * nbmeridien : nombre de cote discretises du cylindre
 */
 //static Mesh Cylinder(const Vec3<float>&, const double&, const double&)
-static Mesh cylinder(const Vec3<float>& centre, const float h, const float r, const unsigned int nbmeridien)
-{
-	const float dmeridien = 2.f * Constantes::PI / nbmeridien;
-	const float hsur2 = h * .5f;
-	const unsigned int size = nbmeridien << 1;
-	std::vector<Vec3<float>> points;
-	std::vector<Vec3<unsigned int>> faces;
-	points.resize(size + 2);
-	faces.resize(size << 1);
-	for (unsigned int i = 0; i < nbmeridien; ++i)
-	{
-		const float angle = (float)i * dmeridien;
-		const float rcosi = r * cos(angle);
-		const float rsini = r * sin(angle);
-		const int iPoint = i << 1;
-		//const int iFace = i << 1;
+//Mesh Mesh::Cylinder(const Vec3<float>& centre, const float h, const float r, const unsigned int nbmeridien)
+//{
+//	const float dmeridien = 2.f * Constantes::PI / nbmeridien;
+//	const float hsur2 = h * .5f;
+//	const unsigned int size = nbmeridien << 1;
+//	std::vector<Vec3<float>> points;
+//	std::vector<Vec3<unsigned int>> faces;
+//	points.resize(size + 2);
+//	faces.resize(size << 1);
+//	for (unsigned int i = 0; i < nbmeridien; ++i)
+//	{
+//		const float angle = (float)i * dmeridien;
+//		const float rcosi = r * cos(angle);
+//		const float rsini = r * sin(angle);
+//		const int iPoint = i << 1;
+//		//const int iFace = i << 1;
+//
+//		points[iPoint] = Vec3<float>(rcosi, rsini, hsur2);
+//		points[iPoint + 1] = Vec3<float>(rcosi, rsini, -hsur2);
+//	}
+//	points[size] = Vec3<float>(0.f, 0.f, hsur2); // centre des cercles au plus haut et 
+//	points[size + 1] = Vec3<float>(0.f, 0.f, -hsur2); // au plus bas
+//	for (unsigned int i = 0; i < nbmeridien - 1; ++i)
+//	{
+//		const int iFace = i << 1;
+//		faces[iFace] = Vec3<unsigned int>(iFace + 1, iFace + 2, iFace + 3);
+//		faces[iFace + 1] = Vec3<unsigned int>(iFace + 2, iFace + 4, iFace + 3);
+//	}
+//	// deroulage de la boucle pour eviter un modulo a chaque tour
+//	faces[size - 2] = Vec3<unsigned int>(size - 1, size, 1);
+//	faces[size - 1] = Vec3<unsigned int>(size, 2, 1);
+//
+//	for (unsigned int i = 0; i < nbmeridien - 1; i++)
+//	{
+//		faces[size + i] = Vec3<unsigned int>(size + 1, (i << 1) + 1, ((i + 1) << 1) + 1);
+//	}
+//
+//	// deroulage de la boucle pour eviter un modulo a chaque tour
+//	faces[size + nbmeridien - 1] = Vec3<unsigned int>(size + 1, size - 1, 1);
+//
+//	for (unsigned int i = 0; i < nbmeridien - 1; i++)
+//	{
+//		faces[size + nbmeridien + i] = Vec3<unsigned int>(size + 2, ((i + 1) << 1) + 2, (i << 1) + 2);
+//	}
+//
+//	// deroulage de la boucle pour eviter un modulo a chaque tour
+//	faces[size + (nbmeridien << 1) - 1] = Vec3<unsigned int>(size + 2, 2, size);
+//
+//	Mesh res(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
+//	
+//	//Transformer au centre
+//	//res.transform(Transform::translate());
+//
+//	return res;
+//
+//
+//}
 
-		points[iPoint] = Vec3<float>(rcosi, rsini, hsur2);
-		points[iPoint + 1] = Vec3<float>(rcosi, rsini, -hsur2);
-	}
-	points[size] = Vec3<float>(0.f, 0.f, hsur2); // centre des cercles au plus haut et 
-	points[size + 1] = Vec3<float>(0.f, 0.f, -hsur2); // au plus bas
-	for (unsigned int i = 0; i < nbmeridien - 1; ++i)
-	{
-		const int iFace = i << 1;
-		faces[iFace] = Vec3<unsigned int>(iFace + 1, iFace + 2, iFace + 3);
-		faces[iFace + 1] = Vec3<unsigned int>(iFace + 2, iFace + 4, iFace + 3);
-	}
-	// deroulage de la boucle pour eviter un modulo a chaque tour
-	faces[size - 2] = Vec3<unsigned int>(size - 1, size, 1);
-	faces[size - 1] = Vec3<unsigned int>(size, 2, 1);
-
-	for (unsigned int i = 0; i < nbmeridien - 1; i++)
-	{
-		faces[size + i] = Vec3<unsigned int>(size + 1, (i << 1) + 1, ((i + 1) << 1) + 1);
-	}
-
-	// deroulage de la boucle pour eviter un modulo a chaque tour
-	faces[size + nbmeridien - 1] = Vec3<unsigned int>(size + 1, size - 1, 1);
-
-	for (unsigned int i = 0; i < nbmeridien - 1; i++)
-	{
-		faces[size + nbmeridien + i] = Vec3<unsigned int>(size + 2, ((i + 1) << 1) + 2, (i << 1) + 2);
-	}
-
-	// deroulage de la boucle pour eviter un modulo a chaque tour
-	faces[size + (nbmeridien << 1) - 1] = Vec3<unsigned int>(size + 2, 2, size);
-
-	Mesh res(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
-	
-	//Transformer au centre
-	//res.transform(Transform::translate());
-
-	return res;
-
-
-}
-
-Mesh Mesh::Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&)
+Mesh Mesh::Prism(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& f)
 {
 	return Mesh();
 }
 /*
 //Creation d'un mesh de prisme (Box)
-//static Mesh Prism(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const double& h){
-static Mesh Prism(const Vec3<float>& center, const Vec3<float>& size){  /////center = centre prims ---- size = "rayon" du prisme
+Mesh Mesh::Prism(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const float& h){
+//static Mesh Prism(const Vec3<float>& center, const Vec3<float>& size){  /////center = centre prims ---- size = "rayon" du prisme
 
 	const unsigned int sizePoints = 8;
 	const unsigned int sizeFaces = 12; //12 Triangles
 
-	Vec3<float> Points[sizePoints] = { Vec3<float>(center.x - size.x, center.x + size.y, center.x + size.z),
-		Vec3<float>(center.x - size.x, center.x + size.y, center.x - size.z),
-		Vec3<float>(center.x + size.x, center.x + size.y, center.x - size.z),
-		Vec3<float>(center.x - size.x, center.x - size.y, center.x + size.z),
-		Vec3<float>(center.x - size.x, center.x - size.y, center.x - size.z),
-		Vec3<float>(center.x + size.x, center.x - size.y, center.x - size.z),
-		Vec3<float>(center.x + size.x, center.x - size.y, center.x + size.z)
+	Vec3<float> Points[sizePoints] = { p1+Vec3<float>(0.,0.,h),
+										p1,
+										p2,
+										p2+Vec3<float>(0.,0.,h),
+										p3+Vec3<float>(0.,0.,h),
+										p3,
+										p4,
+										p4+Vec3<float>(0.,0.,h)
 	};
 
 	std::vector<Vec3<float>> points(Points, Points + sizePoints);
 
 
 	Vec3<unsigned int> Faces[12] = { Vec3<unsigned int>(1, 5, 4),
-		Vec3<unsigned int>(5, 8, 4),
+									Vec3<unsigned int>(5, 8, 4),
 
-		Vec3<unsigned int>(2, 1, 3),
-		Vec3<unsigned int>(1, 4, 3),
+									Vec3<unsigned int>(2, 1, 3),
+									Vec3<unsigned int>(1, 4, 3),
 
-		Vec3<unsigned int>(2, 6, 1),
-		Vec3<unsigned int>(6, 5, 1),
+									Vec3<unsigned int>(2, 6, 1),
+									Vec3<unsigned int>(6, 5, 1),
 
-		Vec3<unsigned int>(4, 8, 3),
-		Vec3<unsigned int>(8, 7, 3),
+									Vec3<unsigned int>(4, 8, 3),
+									Vec3<unsigned int>(8, 7, 3),
 
-		Vec3<unsigned int>(3, 7, 2),
-		Vec3<unsigned int>(7, 6, 2),
+									Vec3<unsigned int>(3, 7, 2),
+									Vec3<unsigned int>(7, 6, 2),
 
-		Vec3<unsigned int>(5, 6, 8),
-		Vec3<unsigned int>(6, 7, 8)
+									Vec3<unsigned int>(5, 6, 8),
+									Vec3<unsigned int>(6, 7, 8)
 	};
 
 	std::vector<Vec3<unsigned int>> faces(Faces, Faces + sizeFaces);

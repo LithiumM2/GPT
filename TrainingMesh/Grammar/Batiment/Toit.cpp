@@ -1,8 +1,13 @@
 #include "Toit.h"
-Toit::Toit(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&)
-{
+
+
+Toit::Toit(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&){
+
+
 }
-void Toit::G(Mesh&) const
-{
+
+
+void Toit::G(Mesh&) const{
+
 
 }
