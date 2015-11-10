@@ -42,8 +42,8 @@ int main(int argc, char ** argv)
 	//std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	/************************Example Quadrangle *****************************/
-	Mesh m(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
-	QuadrangleSymbol qs;
+	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 	qs.Generate(m, 3);
 	MeshWriter::exportObj(m, "testSymbole.obj");
 	/*Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
@@ -65,12 +65,12 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
 
 	/************************ Example TriangleSymbol Generate *****************************/
-	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	/* std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
 	Mesh m2;
 	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
 	ts.Generate ( m2, 2 );
 
-	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );
+	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" ); */
 
 	system("pause");
 	return 0;

@@ -252,7 +252,11 @@ static Mesh cylinder(const Vec3<float>& centre, const float h, const float r, co
 
 }
 
-
+Mesh Mesh::Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&)
+{
+	return Mesh();
+}
+/*
 //Creation d'un mesh de prisme (Box)
 //static Mesh Prism(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const double& h){
 static Mesh Prism(const Vec3<float>& center, const Vec3<float>& size){  /////center = centre prims ---- size = "rayon" du prisme
@@ -296,7 +300,7 @@ static Mesh Prism(const Vec3<float>& center, const Vec3<float>& size){  /////cen
 	return  Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 
 }
-
+*/
 /*
 * return : Mesh cercle
 * o : origine du cercle
