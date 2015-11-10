@@ -20,6 +20,7 @@
     <ClCompile Include="Grammar\Batiment\RDC.cpp" />
     <ClCompile Include="Grammar\Batiment\Etage.cpp" />
     <ClCompile Include="Grammar\Batiment\Toit.cpp" />
+    <ClCompile Include="Grammar\Batiment\Batiment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -44,5 +45,6 @@
     <ClInclude Include="Grammar\Batiment\RDC.h" />
     <ClInclude Include="Grammar\Batiment\Etage.h" />
     <ClInclude Include="Grammar\Batiment\Toit.h" />
+    <ClInclude Include="Grammar\Batiment\Batiment.h" />
   </ItemGroup>
 </Project>

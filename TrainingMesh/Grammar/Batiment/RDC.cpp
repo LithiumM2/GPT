@@ -1,10 +1,10 @@
 #include "RDC.h"
 
 
-RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& h)
+RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h)
 {
 	q = Quadrangle(a, b, c, d);
-	RDC::h = h;
+	h = _h;
 }
 
 void RDC::G(Mesh& m) const

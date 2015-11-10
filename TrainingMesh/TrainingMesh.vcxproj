@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Grammar\Batiment\Batiment.cpp" />
     <ClCompile Include="Grammar\Batiment\Etage.cpp" />
     <ClCompile Include="Geometry\Geometry.cpp" />
     <ClCompile Include="Geometry\Triangle.cpp" />
@@ -85,6 +86,7 @@
     <ClCompile Include="Mesh\GeometryMesh\TriangleMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Grammar\Batiment\Batiment.h" />
     <ClInclude Include="Grammar\Batiment\Etage.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Geometry\Geometry.h" />
