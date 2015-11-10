@@ -45,7 +45,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			Vec3<float> p4 = ( p[0] + p[1] ) * .5f;
 			Vec3<float> p5 = ( p[0] + p[2] ) * .5f;
 
-			TriangleSymbol ( { p4, p[0], p5 } ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( { p4, p5, p[0] } ).Generate ( mesh, level - 1 );
 			//QuadrangleSymbol ( { p[1], p4, p5, p[2] } ).Generate ( mesh, level - 1 );
 		}
 	}
