@@ -8,7 +8,7 @@
 
 #include "Grammar\Map\QuadrangleSymbol.h"
 #include "Grammar\Map\TriangleSymbol.h"
-#include "Grammar\Batiment\RDC.h"
+#include "Grammar\BatimentQuadra\RDC.h"
 int main(int argc, char ** argv)
 {
 
@@ -39,10 +39,10 @@ int main(int argc, char ** argv)
 	//std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	/************************Example Quadrangle *****************************/
-	//Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
-	//QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-	//qs.Generate(m, 3);
-	//MeshWriter::exportObj(m, "testSymbole.obj");
+	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
+	qs.Generate(m, 3);
+	MeshWriter::exportObj(m, "testSymbole.obj");
 	/*Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
 	Hexagone q(_Points);
 
