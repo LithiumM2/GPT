@@ -13,10 +13,9 @@
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
-    <ClCompile Include="Grammar\Batiment\RDC.cpp" />
-    <ClCompile Include="Grammar\Batiment\Etage.cpp" />
-    <ClCompile Include="Grammar\Batiment\Toit.cpp" />
-    <ClCompile Include="Grammar\Batiment\Batiment.cpp" />
+    <ClCompile Include="Grammar\BatimentQuadra\Etage.cpp" />
+    <ClCompile Include="Grammar\BatimentQuadra\RDC.cpp" />
+    <ClCompile Include="Grammar\BatimentQuadra\Toit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -33,9 +32,8 @@
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
     <ClInclude Include="Vec3.h" />
-    <ClInclude Include="Grammar\Batiment\RDC.h" />
-    <ClInclude Include="Grammar\Batiment\Etage.h" />
-    <ClInclude Include="Grammar\Batiment\Toit.h" />
-    <ClInclude Include="Grammar\Batiment\Batiment.h" />
+    <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
+    <ClInclude Include="Grammar\BatimentQuadra\RDC.h" />
+    <ClInclude Include="Grammar\BatimentQuadra\Toit.h" />
   </ItemGroup>
 </Project>

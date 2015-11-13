@@ -1,5 +1,6 @@
 #pragma once
 #include "..\Symbol.h"
+#include "../BatimentQuadra/RDC.h"
 
 class QuadrangleSymbol :
 	public Symbol {
