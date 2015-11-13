@@ -2,7 +2,7 @@
 
 #include "..\Symbol.h"
 #include "..\Map\QuadrangleSymbol.h"
-#include "..\..\Mesh\GeometryMesh\TriangleMesh.h"
+#include "..\..\Geometry\Triangle.h"
 
 class TriangleSymbol :
 	public Symbol {

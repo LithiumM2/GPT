@@ -5,10 +5,6 @@
 #include "Geometry\Triangle.h"
 #include "Geometry\Hexagone.h"
 #include "Mesh\Mesh.h"
-#include "Mesh\GeometryMesh\TriangleMesh.h"
-#include "Mesh\GeometryMesh\PentagoneMesh.h"
-#include "Mesh\GeometryMesh\HexagoneMesh.h"
-#include "Mesh\GeometryMesh\QuadrangleMesh.h"
 #include "Grammar\Map\QuadrangleSymbol.h"
 #include "Grammar\Map\TriangleSymbol.h"
 #include "Grammar\Batiment\Batiment.h"
@@ -52,10 +48,9 @@ int main(int argc, char ** argv)
 	std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;*/
 
 	/************************ Example Pentagone Mesh *****************************/
-	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ) };
-	PentagoneMesh pm = PentagoneMesh ( points );
-	Mesh m ( pm );
-	MeshWriter::exportObj ( m, "test_pentagone.obj" );*/
+
+	//Mesh m(Mesh::Pentagone(Vec3<float>(0.f), Vec3<float>(5.f, 5.f, 0.f), Vec3<float>(10.f, 5.f, 0.f), Vec3<float>(15.f, 0.f, 0.f), Vec3<float>(10.f, -5.f, 0.f)));
+	//MeshWriter::exportObj ( m, "test_pentagone.obj" );
 
 	/************************ Example Hexagone Mesh *****************************/
 	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
@@ -72,14 +67,14 @@ int main(int argc, char ** argv)
 
 	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" ); */
 	/************************ Example Batiment à tester *****************************/
-	Mesh m;
-	Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
-	Etage e(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-	RDC r(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-	Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
+	//Mesh m;
+	//Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
+	//Etage e(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
+	//RDC r(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
+	//Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 
-	b.G(m);
-	MeshWriter::exportObj ( m, "test_batiment.obj" );
+	//b.G(m);
+	//MeshWriter::exportObj ( m, "test_batiment.obj" );
 	system("pause");
 	return 0;
 }

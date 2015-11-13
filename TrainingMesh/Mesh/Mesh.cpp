@@ -187,6 +187,45 @@ Mesh Mesh::Quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<f
 }
 
 
+Mesh Mesh::Pentagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4)
+{
+	std::vector<Vec3<float>> points(5);
+	points[0] = p0;
+	points[1] = p1;
+	points[2] = p2;
+	points[3] = p3;
+	points[4] = p4;
+
+	std::vector<Vec3<unsigned int>> faces = std::vector<Vec3<unsigned int>>(3);
+	faces[0] = Vec3<unsigned int>(2, 1, 3);
+	faces[1] = Vec3<unsigned int>(1, 4, 3);
+	faces[2] = Vec3<unsigned int>(1, 5, 4);
+
+	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
+}
+
+
+Mesh Mesh::Hexagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const Vec3<float>& p5)
+{
+	std::vector<Vec3<float>> points(6);
+	points[0] = p0;
+	points[1] = p1;
+	points[2] = p2;
+	points[3] = p3;
+	points[4] = p4;
+	points[5] = p5;
+
+
+	std::vector<Vec3<unsigned int>>faces = std::vector<Vec3<unsigned int>>(4);
+	faces[0] = Vec3<unsigned int>(2, 1, 4);
+	faces[1] = Vec3<unsigned int>(2, 4, 3);
+	faces[2] = Vec3<unsigned int>(1, 5, 4);
+	faces[3] = Vec3<unsigned int>(1, 6, 5);
+
+
+	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
+}
+
 /*
 * return : Mesh cylindre (centre en 0, 0, 0)
 * h : hauteur du cylindre

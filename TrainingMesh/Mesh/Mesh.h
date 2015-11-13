@@ -83,6 +83,8 @@ public:
 
 	static Mesh Triangle ( const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3 );
 	static Mesh Quadrangle(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3 );
+	static Mesh Pentagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4);
+	static Mesh Hexagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const Vec3<float>& p5);
 	//static Mesh Box ( );
 	static Mesh Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);

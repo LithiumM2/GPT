@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Geometry/Quadrangle.h"
 #include "../../Mesh/Mesh.h"
+#include "Toit.h"
 
 class Etage {
 protected:

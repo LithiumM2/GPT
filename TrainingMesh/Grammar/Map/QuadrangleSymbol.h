@@ -1,5 +1,4 @@
 #pragma once
-#include "..\..\Mesh\GeometryMesh\QuadrangleMesh.h"
 #include "..\Symbol.h"
 
 class QuadrangleSymbol :
