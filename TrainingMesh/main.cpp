@@ -79,6 +79,24 @@ int main(int argc, char ** argv)
 	/*Mesh m;
 	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
 	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
+
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	Mesh m1, m2;
+	Triangle t ( Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) );
+	t.shrinkByDist ( 2.3f );
+	Vec3<float> *points2 = t.getPoints ( );
+	TriangleSymbol ts1 = TriangleSymbol ( points[0], points[1], points[2] );
+	TriangleSymbol ts2 = TriangleSymbol ( points2[0], points2[1], points2[2] );
+
+	ts1.Generate ( m1, 0 );
+	ts2.Generate ( m2, 0 );
+
+	m1.transform ( Transform::translate ( Vec3<float> ( 0.f, 0.f, -5.f ) ) );
+
+	m1.merge ( m2 );
+
+	MeshWriter::exportObj ( m1, "test_shrink_dist.obj" );
+
 	system("pause");
 	return 0;
 }

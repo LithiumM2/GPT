@@ -19,6 +19,8 @@ public:
 	float perimeter ( ) const;
 	void shrink ( float t );
 
+	void shrinkByDist ( float distance );
+
 	Vec3<float>* getPoints ( ) { return Points; }
 
 	//Triangle* divideIn2Triangles ( float low, float high );

@@ -12,7 +12,7 @@ TriangleSymbol::TriangleSymbol ( Vec3<float> a, Vec3<float> b, Vec3<float> c)
 void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 	if ( ( level == 0 ) || ( Triangle ( p[0], p[1], p[2] ).area ( ) ) < 1.f ) {
 		Mesh m = Mesh::Triangle ( p[0], p[1], p[2] );
-		m.transform ( Transform::Shrink ( .9f, m.getPivot ( ) ) );
+		//m.transform ( Transform::Shrink ( .9f, m.getPivot ( ) ) );
 		mesh.merge ( m );
 		//Bloc( p[0], p[1], p[2] ).G(mesh);
 	}

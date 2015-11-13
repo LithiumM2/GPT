@@ -42,6 +42,34 @@ void Triangle::shrink(float t){
 	
 }
 
+void Triangle::shrinkByDist ( float distance_ ) {
+	Vec3<float> Q; // Centre du cercle inscris
+	float a,b,c,
+		R, // Rayon du cercle inscris
+		k; // Coef d'homotéthie
+	Vec3<float>
+		A = Points[0],
+		B = Points[1],
+		C = Points[2];
+
+	a = distance ( B, C );
+	b = distance ( C, A );
+	c = distance ( A, B );
+
+	Q =
+		( a / ( a + b + c ) ) * A +
+		( b / ( a + b + c ) ) * B +
+		( c / ( a + b + c ) ) * C;
+
+	R = 2 * area ( ) / perimeter ( );
+
+	k = R / ( R - distance_ );
+
+	Points[0] = A + ( k - 1 ) * ( A - Q );
+	Points[1] = B + ( k - 1 ) * ( B - Q );
+	Points[2] = C + ( k - 1 ) * ( C - Q );
+}
+
 //Triangle* Triangle::divideIn2Triangles ( float low = .5f, float high = .5f ) {
 //	float rand;
 //	float a = distance ( Points[1], Points[2] );
