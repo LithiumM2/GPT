@@ -14,6 +14,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 	{
 		Mesh m1(Mesh::Quadrangle(p0, p1, p2, p3));
 		m1.transform(Transform::Shrink(.9f, m1.getPivot()));
+		RDC(p0, p1, p2, p3, 10.f).G(m1);
 		m.merge(m1);
 	}
 	else
