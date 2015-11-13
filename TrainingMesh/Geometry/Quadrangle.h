@@ -17,6 +17,8 @@ public:
 	float perimeter ( ) const;
 	void shrink ( float t );
 
+	void shrinkByDist ( float distance );
+
 	~Quadrangle ( );
 };
 

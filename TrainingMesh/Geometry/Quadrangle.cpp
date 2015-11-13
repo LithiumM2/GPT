@@ -47,6 +47,15 @@ void Quadrangle::shrink(float t)
 	p4 = matrice*p4;
 }
 
+void Quadrangle::shrinkByDist ( float distance_ ) {
+	Vec3<float> pivot = ( p1 + p2 + p3 + p4 ) * 0.25f;
+
+	p1 = p1 + Vec3<float> ( pivot - p1 ).normalized ( ) * distance_;
+	p2 = p2 + Vec3<float> ( pivot - p2 ).normalized ( ) * distance_;
+	p3 = p3 + Vec3<float> ( pivot - p3 ).normalized ( ) * distance_;
+	p4 = p4 + Vec3<float> ( pivot - p4 ).normalized ( ) * distance_;
+}
+
 Quadrangle::~Quadrangle()
 {
 }

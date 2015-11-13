@@ -80,7 +80,7 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
 
 	/************************ Example shrink triangle *****************************/
-	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
 	Mesh m1, m2;
 	Triangle t ( Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) );
 	t.shrinkByDist ( 2.3f );
@@ -95,13 +95,27 @@ int main(int argc, char ** argv)
 
 	m1.merge ( m2 );
 
-	MeshWriter::exportObj ( m1, "test_shrink_dist.obj" );
+	MeshWriter::exportObj ( m1, "test_shrink_dist.obj" );*/
+
+	/************************ Example shrink quadrangle *****************************/
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) };
+	Mesh m1, m2;
+	Quadrangle q ( Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) );
+	q.shrinkByDist ( 10.f );
+	m1 = Mesh::Quadrangle ( points[0], points[1], points[2], points[3] );
+	m2 = Mesh::Quadrangle ( q.p1, q.p2, q.p3, q.p4 );
+
+	m1.transform ( Transform::translate ( Vec3<float> ( 0.f, 0.f, -5.f ) ) );
+
+	m1.merge ( m2 );
+
+	MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );
 
 	//Mesh m;
 	//RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
 	//MeshWriter::exportObj ( m, "test_batiment.obj" );
 
-	MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
+	//MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
 
 	system("pause");
 	return 0;
