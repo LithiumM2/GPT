@@ -21,8 +21,8 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 
 		if ( random < 33 ) {
 			// Divise le triangle en 2 triangles
-			TriangleSymbol ( p[0], p[1], 0.5f * ( p[2] + p[1] ) ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( p[0], 0.5f * ( p[2] + p[1] ), p[2] ).Generate ( mesh, level - 1 );
+			TriangleSymbol(0.5f * (p[2] + p[1]), p[1], p[0]).Generate(mesh, level - 1);
+			TriangleSymbol(p[2], 0.5f * (p[2] + p[1]), p[0]).Generate(mesh, level - 1);
 		}
 		else if ( random < 66) {
 			// Divise le triangle en 3 triangles
@@ -36,17 +36,17 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			}
 			center *= 1.f / 3.f;
 			
-			TriangleSymbol ( { center, p[0], p[1] } ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( { center, p[1], p[2] } ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( { center, p[2], p[0] } ).Generate ( mesh, level - 1 );
+			TriangleSymbol({ p[1], p[0], center, }).Generate(mesh, level - 1);
+			TriangleSymbol({ p[2], p[1], center }).Generate(mesh, level - 1);
+			TriangleSymbol({ p[0], p[2], center }).Generate(mesh, level - 1);
 		}
 		else {
 			// Divise en 1 triangle et 1 Quadrangle
 			Vec3<float> p4 = ( p[0] + p[1] ) * .5f;
 			Vec3<float> p5 = ( p[0] + p[2] ) * .5f;
 
-			TriangleSymbol ( { p4, p5, p[0] } ).Generate ( mesh, level - 1 );
-			//QuadrangleSymbol ( { p[1], p4, p5, p[2] } ).Generate ( mesh, level - 1 );
+			TriangleSymbol({ p[0], p5, p4 }).Generate(mesh, level - 1);
+			QuadrangleSymbol({ p[2] , p[1], p4, p5, }).Generate(mesh, level - 1);
 		}
 	}
 }
