@@ -75,9 +75,11 @@ int main(int argc, char ** argv)
 	//Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 
 	//b.G(m);
-	Mesh m;
-	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
-	MeshWriter::exportObj ( m, "test_batiment.obj" );
+	//Mesh m;
+	//RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
+	//MeshWriter::exportObj ( m, "test_batiment.obj" );
+
+	MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
 	system("pause");
 	return 0;
 }

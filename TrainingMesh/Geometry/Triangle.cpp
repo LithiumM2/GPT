@@ -35,6 +35,7 @@ void Triangle::shrink(float t){
 		pivot+=Points[i];
 	pivot*=1.f/3.f;
 
+
 	Mat4x4 matrice = Transform::Shrink(t,pivot).m;
 
 	for(int i=0;i<3;i++)
