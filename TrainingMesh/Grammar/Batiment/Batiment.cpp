@@ -10,7 +10,7 @@
 //
 //void Batiment::G(Mesh& m, unsigned int nb_e)
 //{
-//	m.merge(Mesh::Prism(q.p1, q.p2, q.p3, q.p4, h));
+//	m.merge(Mesh::Box(q.p1, q.p2, q.p3, q.p4, h));
 //	RDC::G(m);
 //	while(nb_e>=0)
 //	{

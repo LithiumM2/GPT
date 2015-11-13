@@ -86,7 +86,7 @@ public:
 	static Mesh Pentagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4);
 	static Mesh Hexagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const Vec3<float>& p5);
 	//static Mesh Box ( );
-	static Mesh Prism(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
+	static Mesh Box(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);
 	static Mesh Circle(const Vec3<float>& o, const float&, const unsigned int&);
 
@@ -122,7 +122,7 @@ RDC::RDC(const Vec3<float>& a , const Vec3<float>& b, const Vec3<float>& c, cons
 
 void RDC::G(Mesh& m) const
 {
-	m.merge(Mesh::Prism(q.p1, q.p1, q.p1, q.p1,h));
+	m.merge(Mesh::Box(q.p1, q.p1, q.p1, q.p1,h));
 	
 	// La grammaire commence ici
 	int e = rand() % 2;

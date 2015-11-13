@@ -5,9 +5,10 @@
 #include "Geometry\Triangle.h"
 #include "Geometry\Hexagone.h"
 #include "Mesh\Mesh.h"
+
 #include "Grammar\Map\QuadrangleSymbol.h"
 #include "Grammar\Map\TriangleSymbol.h"
-#include "Grammar\Batiment\Batiment.h"
+#include "Grammar\Batiment\RDC.h"
 int main(int argc, char ** argv)
 {
 
@@ -70,11 +71,13 @@ int main(int argc, char ** argv)
 	//Mesh m;
 	//Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
 	//Etage e(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-	//RDC r(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
+
 	//Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 
 	//b.G(m);
-	//MeshWriter::exportObj ( m, "test_batiment.obj" );
+	Mesh m;
+	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
+	MeshWriter::exportObj ( m, "test_batiment.obj" );
 	system("pause");
 	return 0;
 }

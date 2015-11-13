@@ -9,7 +9,7 @@ Toit::Toit(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, con
 
 
 void Toit::G(Mesh& m) const{
-	m.merge(Mesh::Prism(q.p1, q.p2, q.p3, q.p4, h));
-	Toit(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), 1.f).G(m);
+	m.merge(Mesh::Box(q.p1, q.p2, q.p3, q.p4, h));
+//	Toit(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), 1.f).G(m);
 
 }

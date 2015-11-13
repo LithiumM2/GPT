@@ -9,7 +9,7 @@ RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const
 
 void RDC::G(Mesh& m) const
 {
-	m.merge(Mesh::Prism(q.p1, q.p2, q.p3, q.p4, h));
+	m.merge(Mesh::Box(q.p1, q.p2, q.p3, q.p4, h));
 
 	// La grammaire commence ici
 	int e = rand() % 2;
