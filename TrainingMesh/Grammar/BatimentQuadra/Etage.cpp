@@ -1,9 +1,10 @@
 #include "Etage.h"
 
 
-Etage::Etage(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h){
+Etage::Etage(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h, const float& _pourcentage){
 	q = Quadrangle(a, b, c, d);
 	h = _h;
+	pourcentage = _pourcentage;
 }
 
 
@@ -14,9 +15,9 @@ void Etage::G(Mesh& m) const{
 
 	// La grammaire commence ici
 	int e = rand() %100;
-	if (e < 90)
+	if (e < pourcentage)
 	{
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h).G(m);
+		Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h , pourcentage-2.5).G(m);
 	}
 	else
 	{
