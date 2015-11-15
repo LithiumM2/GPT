@@ -89,7 +89,9 @@ public:
 	static Mesh Box(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);
 	static Mesh Circle(const Vec3<float>& o, const float&, const unsigned int&);
-	static Mesh Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement);
+	static Mesh Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
+	static Mesh RouteL(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
+	static Mesh RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	~Mesh();
 };
 

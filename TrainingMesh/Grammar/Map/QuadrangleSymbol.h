@@ -11,5 +11,6 @@ public:
 	~QuadrangleSymbol ( );
 
 	void Generate(Mesh &mesh, int compteur) const;
+	static QuadrangleSymbol genBorder(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const float&, Mesh&);
 };
 
