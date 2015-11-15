@@ -48,12 +48,22 @@ void Quadrangle::shrink(float t)
 }
 
 void Quadrangle::shrinkByDist ( float distance_ ) {
-	Vec3<float> pivot = ( p1 + p2 + p3 + p4 ) * 0.25f;
+	Triangle t1 = Triangle ( p2, p1, p4 ); // T1;
+	t1.shrinkByDist ( -distance_ );
 
-	p1 = p1 + Vec3<float> ( pivot - p1 ).normalized ( ) * distance_;
-	p2 = p2 + Vec3<float> ( pivot - p2 ).normalized ( ) * distance_;
-	p3 = p3 + Vec3<float> ( pivot - p3 ).normalized ( ) * distance_;
-	p4 = p4 + Vec3<float> ( pivot - p4 ).normalized ( ) * distance_;
+	Triangle t2 = Triangle ( p2, p1, p3 ); // T2;
+	t2.shrinkByDist ( -distance_ );
+
+	Triangle t3 = Triangle ( p2, p4, p3 ); // T3;
+	t3.shrinkByDist ( -distance_ );
+
+	Triangle t4 = Triangle ( p1, p4, p3 ); // T4;
+	t4.shrinkByDist ( -distance_ );
+
+	p1 = t1.getPoints ( )[1];
+	p2 = t2.getPoints ( )[0];
+	p3 = t3.getPoints ( )[2];
+	p4 = t4.getPoints ( )[1];
 }
 
 Quadrangle::~Quadrangle()
