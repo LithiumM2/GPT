@@ -16,11 +16,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		q.shrinkByDist(10.f);
 		
 		Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
-		m.merge(Mesh::Route(p0, p1, q.p2, q.p1, 1.f, 1.F));
-		m.merge(Mesh::Route(p2, p3, q.p4, q.p3, 1.f, 1.f));
-		m.merge(Mesh::Route(p3, p0 , q.p1, q.p4, 1.f, 1.f));
-		m.merge(Mesh::Route(p1, p2, q.p3, q.p2, 1.f, 1.f));
-		//m.merge(Mesh::Route(p2, q.p1, p3, q.p2, 1.f));
+		m.merge(Mesh::RouteL(p0, p1, q.p2, q.p1, 1.f, 1.F));
+		m.merge(Mesh::RouteL(p2, p3, q.p4, q.p3, 1.f, 1.f));
+		m.merge(Mesh::RouteL(p3, p0 , q.p1, q.p4, 1.f, 1.f));
+		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 1.f, 1.f));
 		m.merge(m1);
 		if (rand() % 2)
 		{
@@ -58,5 +57,24 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 	}
 }
 
+/* Genere un quadrangle symbole et un mesh avec une bordure de route
+* p1, p2, p3, p4 : coordonnées du quadrangle de base
+* borderSize : largeur de la bordure
+* sizePavement, hPavement : dimension du trottoir
+* m : mesh auquel on rajoute la bordure
+*/
+QuadrangleSymbol QuadrangleSymbol::genBorder(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>&p3, const Vec3<float>& p4, const float& borderSize, const float& sizePavement, const float& hPavement, Mesh& m)
+{
+	Quadrangle q(p1, p2, p3, p4);
+	Quadrangle q2(q);
+	q.shrinkByDist(borderSize);
+	QuadrangleSymbol qs(q.p1, q.p2, q.p3, q.p4);
+
+	m.merge(Mesh::RouteR(q2.p1, q2.p2, q.p2, q.p1, 1.f, 1.F));
+	m.merge(Mesh::RouteR(q2.p3, q2.p4, q.p4, q.p3, 1.f, 1.f));
+	m.merge(Mesh::RouteR(q2.p4, q2.p1, q.p1, q.p4, 1.f, 1.f));
+	m.merge(Mesh::RouteR(q2.p2, q2.p3, q.p3, q.p2, 1.f, 1.f));
+	return qs;
+}
 QuadrangleSymbol::~QuadrangleSymbol ( ) {
 }
