@@ -318,12 +318,18 @@ Mesh Mesh::Circle(const Vec3<float>& o, const float & r, const unsigned int & si
 * p0, p1, p2, p3 : sommet du quadrangle
 * sizePavement : taille d'un trottoir
 */
-Mesh Mesh::Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement)
+Mesh Mesh::Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement)
 {
-	const float hPavement = 20.f;
-	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
+//	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
+
+	Vec3<float> shiftPavementZ(0.f, 0.f, 0.f);
 	Vec3<float> shiftPavementY(sizePavement, 0.f, 0.f);
 	Mesh res;
+	/* Creuse
+	res.merge(Mesh::Box(p0 - shiftPavementZ, p1 - shiftPavementZ, p1 - shiftPavementZ + (Vec3<float>(p2 - p1).normalized() * sizePavement), p0 - shiftPavementZ + (Vec3<float>(p3 - p0).normalized() * sizePavement), hPavement));
+	res.merge(Mesh::Quadrangle(p0 - shiftPavementZ, p1 - shiftPavementZ, p2 - shiftPavementZ, p3 - shiftPavementZ));
+	res.merge(Mesh::Box(p2 - shiftPavementZ, p3 - shiftPavementZ, p3 - shiftPavementZ + (Vec3<float>(p0 - p3).normalized() * sizePavement), p2 - shiftPavementZ + (Vec3<float>(p1 - p2).normalized() * sizePavement), hPavement)); */
+
 	res.merge(Mesh::Box(p0 - shiftPavementZ, p1 - shiftPavementZ, p1 - shiftPavementZ + (Vec3<float>(p2 - p1).normalized() * sizePavement), p0 - shiftPavementZ + (Vec3<float>(p3 - p0).normalized() * sizePavement), hPavement));
 	res.merge(Mesh::Quadrangle(p0 - shiftPavementZ, p1 - shiftPavementZ, p2 - shiftPavementZ, p3 - shiftPavementZ));
 	res.merge(Mesh::Box(p2 - shiftPavementZ, p3 - shiftPavementZ, p3 - shiftPavementZ + (Vec3<float>(p0 - p3).normalized() * sizePavement), p2 - shiftPavementZ + (Vec3<float>(p1 - p2).normalized() * sizePavement), hPavement));

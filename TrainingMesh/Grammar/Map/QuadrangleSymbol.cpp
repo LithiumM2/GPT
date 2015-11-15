@@ -12,10 +12,21 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
 	if (compteur == 0)
 	{
-		Mesh m1(Mesh::Quadrangle(p0, p1, p2, p3));
-		m1.transform(Transform::Shrink(.9f, m1.getPivot()));
-		RDC(p0, p1, p2, p3, 10.f).G(m1);
+		Quadrangle q = Quadrangle(p0, p1, p2, p3);
+		q.shrinkByDist(10.f);
+		
+		Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
+		m.merge(Mesh::Route(p0, p1, q.p2, q.p1, 1.f, 1.F));
+		m.merge(Mesh::Route(p2, p3, q.p4, q.p3, 1.f, 1.f));
+		m.merge(Mesh::Route(p3, p0 , q.p1, q.p4, 1.f, 1.f));
+		m.merge(Mesh::Route(p1, p2, q.p3, q.p2, 1.f, 1.f));
+		//m.merge(Mesh::Route(p2, q.p1, p3, q.p2, 1.f));
 		m.merge(m1);
+		if (rand() % 2)
+		{
+			RDC(q.p1, q.p2, q.p3, q.p4, 10.f).G(m);
+		//	m.merge(m1);
+		}
 	}
 	else
 	{
