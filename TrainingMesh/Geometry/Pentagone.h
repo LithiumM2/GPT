@@ -11,7 +11,7 @@ protected:
 
 public:
 	Pentagone ( void ) :Geometry ( ) { };
-	Pentagone ( Vec3<float>[] );
+	Pentagone ( Vec3<float>, Vec3<float>, Vec3<float>, Vec3<float>, Vec3<float> );
 	~Pentagone ( void );
 
 	float TriangleAir ( Vec3<float>, Vec3<float>, Vec3<float> ) const;

@@ -6,6 +6,7 @@
 #include "Geometry\Hexagone.h"
 #include "Mesh\Mesh.h"
 
+#include "Grammar\Map\PentagoneSymbol.h"
 #include "Grammar\Map\QuadrangleSymbol.h"
 #include "Grammar\Map\TriangleSymbol.h"
 #include "Grammar\BatimentQuadra\RDC.h"
@@ -61,12 +62,21 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
 
 	/************************ Example TriangleSymbol Generate *****************************/
-	/* std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
+	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10000.f, 0.f, 0.f ), Vec3<float> ( 10000.f, 10000.f, 0.f ) };
 	Mesh m2;
 	TriangleSymbol ts = TriangleSymbol ( points[0], points[1], points[2] );
-	ts.Generate ( m2, 2 );
+	ts.Generate ( m2, 5 );
 
-	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" ); */
+	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );*/
+	/************************ Example PentagoneSymbol Generate *****************************/
+	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 1500.f, 0.f ), Vec3<float> ( 1000.f, 1000.f, 0.f ), Vec3<float> ( 1000.f, 0.f, 0.f ), Vec3<float> ( 500.f, -600.f, 0.f ) };
+	Mesh m2;
+	PentagoneSymbol ps = PentagoneSymbol ( points[0], points[1], points[2], points[3], points[4] );
+	ps.Generate ( m2, 3 );
+
+	//m2 = Mesh::Pentagone ( points[0], points[1], points[2], points[3], points[4] );
+
+	MeshWriter::exportObj ( m2, "test_pentagone_symbol.obj" );
 	/************************ Example Batiment à tester *****************************/
 	//Mesh m;
 	//Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
@@ -98,18 +108,18 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m1, "test_shrink_dist.obj" );*/
 
 	/************************ Example shrink quadrangle *****************************/
-	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) };
-	Mesh m1, m2;
-	Quadrangle q ( points[0], points[1], points[2], points[3] );
-	q.shrinkByDist ( 50.f );
-	m1 = Mesh::Quadrangle ( points[0], points[1], points[2], points[3] );
-	m2 = Mesh::Quadrangle ( q.p1, q.p2, q.p3, q.p4 );
+	//std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) };
+	//Mesh m1, m2;
+	//Quadrangle q ( points[0], points[1], points[2], points[3] );
+	//q.shrinkByDist ( 50.f );
+	//m1 = Mesh::Quadrangle ( points[0], points[1], points[2], points[3] );
+	//m2 = Mesh::Quadrangle ( q.p1, q.p2, q.p3, q.p4 );
 
-	m1.transform ( Transform::translate ( Vec3<float> ( 0.f, 0.f, -5.f ) ) );
+	//m1.transform ( Transform::translate ( Vec3<float> ( 0.f, 0.f, -5.f ) ) );
 
-	m1.merge ( m2 );
+	//m1.merge ( m2 );
 
-	MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );
+	//MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );
 
 	//Mesh m;
 	//RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);

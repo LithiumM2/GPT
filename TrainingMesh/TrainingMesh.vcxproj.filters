@@ -16,6 +16,7 @@
     <ClCompile Include="Grammar\BatimentQuadra\Etage.cpp" />
     <ClCompile Include="Grammar\BatimentQuadra\RDC.cpp" />
     <ClCompile Include="Grammar\BatimentQuadra\Toit.cpp" />
+    <ClCompile Include="Grammar\Map\PentagoneSymbol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -35,5 +36,6 @@
     <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
     <ClInclude Include="Grammar\BatimentQuadra\RDC.h" />
     <ClInclude Include="Grammar\BatimentQuadra\Toit.h" />
+    <ClInclude Include="Grammar\Map\PentagoneSymbol.h" />
   </ItemGroup>
 </Project>

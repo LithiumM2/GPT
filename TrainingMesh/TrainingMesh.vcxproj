@@ -76,6 +76,7 @@
     <ClCompile Include="Geometry\Pentagone.cpp" />
     <ClCompile Include="Grammar\BatimentQuadra\RDC.cpp" />
     <ClCompile Include="Grammar\BatimentQuadra\Toit.cpp" />
+    <ClCompile Include="Grammar\Map\PentagoneSymbol.cpp" />
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Geometry\Pentagone.h" />
     <ClInclude Include="Grammar\BatimentQuadra\RDC.h" />
     <ClInclude Include="Grammar\BatimentQuadra\Toit.h" />
+    <ClInclude Include="Grammar\Map\PentagoneSymbol.h" />
     <ClInclude Include="Transform\Mat4x4.h" />
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
