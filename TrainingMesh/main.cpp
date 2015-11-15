@@ -39,10 +39,10 @@ int main(int argc, char ** argv)
 	//std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	/************************Example Quadrangle *****************************/
-	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+	/*Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 	qs.Generate(m, 3);
-	MeshWriter::exportObj(m, "testSymbole.obj");
+	MeshWriter::exportObj(m, "testSymbole.obj");*/
 	/*Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
 	Hexagone q(_Points);
 
@@ -100,8 +100,8 @@ int main(int argc, char ** argv)
 	/************************ Example shrink quadrangle *****************************/
 	std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) };
 	Mesh m1, m2;
-	Quadrangle q ( Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 150.f, 0.f ), Vec3<float> ( 100.f, 100.f, 0.f ), Vec3<float> ( 100.f, 0.f, 0.f ) );
-	q.shrinkByDist ( 10.f );
+	Quadrangle q ( points[0], points[1], points[2], points[3] );
+	q.shrinkByDist ( 50.f );
 	m1 = Mesh::Quadrangle ( points[0], points[1], points[2], points[3] );
 	m2 = Mesh::Quadrangle ( q.p1, q.p2, q.p3, q.p4 );
 

@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Geometry.h"
 #include <algorithm>
 #include "../Vec3.h"
 #include "../Transform/Transform.h"
+#include "Geometry.h"
+#include "Triangle.h"
+
+
 
 class Quadrangle : public Geometry {
 
