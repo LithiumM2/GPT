@@ -11,7 +11,7 @@ Toit::Toit(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, con
 void Toit::G(Mesh& m) const{
 
 	Quadrangle q2 = q;
-	q2.shrinkByDist(50.f);
+	q2.shrinkByDist(100.f);
 	Mesh m2(Mesh::Box(q2.p1, q2.p2, q2.p3, q2.p4, h));
 	//m2.transform(Transform::Shrink(0.5f, m2.getPivot()));
 	m.merge(m2);
