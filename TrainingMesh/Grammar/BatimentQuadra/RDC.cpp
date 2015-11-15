@@ -9,10 +9,7 @@ RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const
 
 void RDC::G(Mesh& m) const
 {
-	Quadrangle q2 = q;
-	q2.shrinkByDist(2.f);
-	Mesh m2(Mesh::Box(q2.p1, q2.p2, q2.p3, q2.p4, h));
-	//m2.transform(Transform::Shrink(0.9f, m2.getPivot()));
+	Mesh m2(Mesh::Box(q.p1, q.p2, q.p3, q.p4, h));
 	m.merge(m2);
 
 
