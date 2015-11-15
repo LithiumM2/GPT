@@ -19,7 +19,6 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		//*******************Test Centre Ville***************/
 
 		float dif = 0.f;
-			;
 		if (distance(mid,p0)<100){
 			dif=100.f;
 		}

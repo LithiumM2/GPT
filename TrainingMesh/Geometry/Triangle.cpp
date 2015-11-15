@@ -66,9 +66,9 @@ void Triangle::shrinkByDist ( float distance_ ) {
 
 	k = R / ( R - distance_ );
 
-	Points[0] = A + ( k - 1 ) * ( A - Q );
-	Points[1] = B + ( k - 1 ) * ( B - Q );
-	Points[2] = C + ( k - 1 ) * ( C - Q );
+	Points[0] = A + ( k - 1 ) * ( Q - A );
+	Points[1] = B + ( k - 1 ) * ( Q - B );
+	Points[2] = C + ( k - 1 ) * ( Q - C );
 }
 
 //Triangle* Triangle::divideIn2Triangles ( float low = .5f, float high = .5f ) {

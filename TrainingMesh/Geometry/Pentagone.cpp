@@ -1,10 +1,12 @@
 #include "Pentagone.h"
 
 
-Pentagone::Pentagone(Vec3<float> _Points[5]){
-	
-	for(int i=0;i<6;i++)
-		Points[i] = _Points[i];
+Pentagone::Pentagone ( Vec3<float> a, Vec3<float> b, Vec3<float> c, Vec3<float> d, Vec3<float> e ) {
+	Points[0] = a;
+	Points[1] = b;
+	Points[2] = c;
+	Points[3] = d;
+	Points[4] = e;
 }
 
 float Pentagone::TriangleAir(Vec3<float> p1,Vec3<float> p2,Vec3<float> p3) const{
