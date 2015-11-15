@@ -1,10 +1,11 @@
 #include "RDC.h"
 
 
-RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h)
+RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h,const float& _dif)
 {
 	q = Quadrangle(a, b, c, d);
 	h = _h;
+	dif = _dif;
 }
 
 void RDC::G(Mesh& m) const
@@ -15,9 +16,9 @@ void RDC::G(Mesh& m) const
 
 	// La grammaire commence ici
 	int e = rand()%100;
-	if (e < 90)
+	if (e < dif)
 	{
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, 90).G(m);
+		Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, dif).G(m);
 	}
 	else
 	{

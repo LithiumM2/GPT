@@ -4,17 +4,41 @@ QuadrangleSymbol::QuadrangleSymbol ( ) {
 }
 
 
-QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1_, const Vec3<float>& p2_, const Vec3<float>& p3_) : p0(p0_), p1(p1_), p2(p2_), p3(p3_)
+QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1_, const Vec3<float>& p2_, const Vec3<float>& p3_, const Vec3<float>& _mid) : p0(p0_), p1(p1_), p2(p2_), p3(p3_), mid(_mid)
 {
 
 }
+
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
 	if (compteur == 0)
 	{
 		Quadrangle q = Quadrangle(p0, p1, p2, p3);
 		q.shrinkByDist(10.f);
-		
+
+		//*******************Test Centre Ville***************/
+
+		float dif = 0.f;
+			;
+		if (distance(mid,p0)<100){
+			dif=100.f;
+		}
+		else if (distance(mid, p0)<200){
+			dif=70.f;
+		}
+		else if (distance(mid, p0)<350){
+			dif = 50.f;
+		}
+		else{
+			dif = 0.f;
+		}
+
+		//printf("%f \n", dif);
+
+
+
+		/************************************************/
+
 		Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
 		m.merge(Mesh::Route(p0, p1, q.p2, q.p1, 1.f, 1.F));
 		m.merge(Mesh::Route(p2, p3, q.p4, q.p3, 1.f, 1.f));
@@ -22,9 +46,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		m.merge(Mesh::Route(p1, p2, q.p3, q.p2, 1.f, 1.f));
 		//m.merge(Mesh::Route(p2, q.p1, p3, q.p2, 1.f));
 		m.merge(m1);
-		if (rand() % 2)
+		int e = rand() % 100;
+		if (e<75)
 		{
-			RDC(q.p1, q.p2, q.p3, q.p4, 10.f).G(m);
+			RDC(q.p1, q.p2, q.p3, q.p4, 5.f,dif).G(m);
 		//	m.merge(m1);
 		}
 	}
@@ -43,8 +68,8 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			Vec3<float> center2 = (p2 + p3) * fact;
 			center1 = ((p1 - p0) * shiftCenter1) + center1;
 			center2 = ((p3 - p2) * shiftCenter2) + center2;
-			QuadrangleSymbol(center1, p1, p2, center2).Generate(m, compteur - 1);
-			QuadrangleSymbol(p0, center1, center2, p3).Generate(m, compteur - 1);
+			QuadrangleSymbol(center1, p1, p2, center2,mid).Generate(m, compteur - 1);
+			QuadrangleSymbol(p0, center1, center2, p3, mid).Generate(m, compteur - 1);
 		}
 		else
 		{
@@ -52,8 +77,8 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			Vec3<float> center2 = (p3 + p0) * fact;
 			center1 = ((p2 - p1) * shiftCenter1) + center1;
 			center2 = ((p3 - p0) * shiftCenter2) + center2;
-			QuadrangleSymbol(center1, p2, p3, center2).Generate(m, compteur - 1);
-			QuadrangleSymbol(p1, center1, center2, p0).Generate(m, compteur - 1);
+			QuadrangleSymbol(center1, p2, p3, center2, mid).Generate(m, compteur - 1);
+			QuadrangleSymbol(p1, center1, center2, p0, mid).Generate(m, compteur - 1);
 		}
 	}
 }

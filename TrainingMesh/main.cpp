@@ -40,8 +40,8 @@ int main(int argc, char ** argv)
 
 	/************************Example Quadrangle *****************************/
 	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
-	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-	qs.Generate(m, 3);
+	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f),Vec3<float>(250.f,250.f,0.f));
+	qs.Generate(m,10);
 	MeshWriter::exportObj(m, "testSymbole.obj");
 	/*Vec3<float> _Points[6]= {Vec3<float>(0.f),Vec3<float>(5.f,5.f,0.f),Vec3<float>(10.f,5.f,0.f),Vec3<float>(15.f,0.f,0.f),Vec3<float>(10.f,-5.f,0.f),Vec3<float>(5.f,-5.f,0.f)};
 	Hexagone q(_Points);
