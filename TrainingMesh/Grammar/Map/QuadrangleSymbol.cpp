@@ -16,10 +16,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		q.shrinkByDist(10.f);
 		
 		Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
-		m.merge(Mesh::RouteL(p0, p1, q.p2, q.p1, 1.f, 1.F));
-		m.merge(Mesh::RouteL(p2, p3, q.p4, q.p3, 1.f, 1.f));
-		m.merge(Mesh::RouteL(p3, p0 , q.p1, q.p4, 1.f, 1.f));
-		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 1.f, 1.f));
+		m.merge(Mesh::RouteL(p0, p1, q.p2, q.p1, 3.f, 1.F));
+		m.merge(Mesh::RouteL(p2, p3, q.p4, q.p3, 3.f, 1.f));
+		m.merge(Mesh::RouteL(p3, p0 , q.p1, q.p4, 3.f, 1.f));
+		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 3.f, 1.f));
 		m.merge(m1);
 		if (rand() % 2)
 		{
@@ -70,10 +70,10 @@ QuadrangleSymbol QuadrangleSymbol::genBorder(const Vec3<float>& p1, const Vec3<f
 	q.shrinkByDist(borderSize);
 	QuadrangleSymbol qs(q.p1, q.p2, q.p3, q.p4);
 
-	m.merge(Mesh::RouteR(q2.p1, q2.p2, q.p2, q.p1, 1.f, 1.F));
-	m.merge(Mesh::RouteR(q2.p3, q2.p4, q.p4, q.p3, 1.f, 1.f));
-	m.merge(Mesh::RouteR(q2.p4, q2.p1, q.p1, q.p4, 1.f, 1.f));
-	m.merge(Mesh::RouteR(q2.p2, q2.p3, q.p3, q.p2, 1.f, 1.f));
+	m.merge(Mesh::RouteR(q2.p1, q2.p2, q.p2, q.p1, sizePavement, hPavement));
+	m.merge(Mesh::RouteR(q2.p3, q2.p4, q.p4, q.p3, sizePavement, hPavement));
+	m.merge(Mesh::RouteR(q2.p4, q2.p1, q.p1, q.p4, sizePavement, hPavement));
+	m.merge(Mesh::RouteR(q2.p2, q2.p3, q.p3, q.p2, sizePavement, hPavement));
 	return qs;
 }
 QuadrangleSymbol::~QuadrangleSymbol ( ) {

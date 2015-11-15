@@ -321,9 +321,8 @@ Mesh Mesh::Circle(const Vec3<float>& o, const float & r, const unsigned int & si
 */
 Mesh Mesh::Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement)
 {
-//	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 
-	Vec3<float> shiftPavementZ(0.f, 0.f, 0.f);
+	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 	Vec3<float> shiftPavementY(sizePavement, 0.f, 0.f);
 	Mesh res;
 	res.merge(Mesh::Box(p0 - shiftPavementZ, p1 - shiftPavementZ, p1 - shiftPavementZ + (Vec3<float>(p2 - p1).normalized() * sizePavement), p0 - shiftPavementZ + (Vec3<float>(p3 - p0).normalized() * sizePavement), hPavement));
@@ -341,7 +340,7 @@ Mesh Mesh::RouteL(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float
 {
 	//	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 
-	Vec3<float> shiftPavementZ(0.f, 0.f, 0.f);
+	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 	Vec3<float> shiftPavementY(sizePavement, 0.f, 0.f);
 	Mesh res;
 	//res.merge(Mesh::Box(p0 - shiftPavementZ, p1 - shiftPavementZ, p1 - shiftPavementZ + (Vec3<float>(p2 - p1).normalized() * sizePavement), p0 - shiftPavementZ + (Vec3<float>(p3 - p0).normalized() * sizePavement), hPavement));
@@ -358,9 +357,8 @@ Mesh Mesh::RouteL(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float
 */
 Mesh Mesh::RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement)
 {
-	//	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 
-	Vec3<float> shiftPavementZ(0.f, 0.f, 0.f);
+	Vec3<float> shiftPavementZ(0.f, 0.f, hPavement);
 	Vec3<float> shiftPavementY(sizePavement, 0.f, 0.f);
 	Mesh res;
 	res.merge(Mesh::Box(p0 - shiftPavementZ, p1 - shiftPavementZ, p1 - shiftPavementZ + (Vec3<float>(p2 - p1).normalized() * sizePavement), p0 - shiftPavementZ + (Vec3<float>(p3 - p0).normalized() * sizePavement), hPavement));
