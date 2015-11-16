@@ -5,12 +5,12 @@
 class QuadrangleSymbol :
 	public Symbol {
 public:
-	Vec3<float> p0, p1, p2, p3,mid;
-	QuadrangleSymbol(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&);
+	Vec3<float> p0, p1, p2, p3,mid ,loin;
+	QuadrangleSymbol(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&);
 	QuadrangleSymbol();
 	~QuadrangleSymbol ( );
 
 	void Generate(Mesh &mesh, int compteur) const;
-	static QuadrangleSymbol genBorder(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const float&, Mesh&, const Vec3<float>&);
+	static QuadrangleSymbol genBorder(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const float&, Mesh&, const Vec3<float>& ,const Vec3<float>&);
 };
 

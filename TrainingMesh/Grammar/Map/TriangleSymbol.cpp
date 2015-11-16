@@ -101,7 +101,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 
 
 			TriangleSymbol({ p[0], p5, p4 }).Generate(mesh, level - 1);
-			QuadrangleSymbol({ p[2] , p[1], p4, p5, Vec3<float>(0.f)}).Generate(mesh, level - 1); //Changer le Vecteur pour le MID
+			QuadrangleSymbol({ p[2], p[1], p4, p5, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, level - 1); //Changer le Vecteur pour le MID
 			//TriangleSymbol ( { p[0], p5, p4 } ).Generate ( mesh, level - 1 );
 			////QuadrangleSymbol ( { p[2], p[1], p4, p5, } ).Generate ( mesh, level - 1 );
 		}
