@@ -1,12 +1,13 @@
 #include "TriangleSymbol.h"
 
 
-TriangleSymbol::TriangleSymbol ( const Vec3<float> &a, const Vec3<float> &b, const Vec3<float> &c, const Vec3<float> & mid_ )
+TriangleSymbol::TriangleSymbol ( const Vec3<float> &a, const Vec3<float> &b, const Vec3<float> &c, const Vec3<float> & mid_, const Vec3<float> & loin_ )
 { 
 	p1 = a;
 	p2 = b;
 	p3 = c;
 	mid = mid_;
+	loin = loin_;
 }
 
 void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
@@ -50,8 +51,8 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			}
 
 			
-			TriangleSymbol ( t1[1], t1[0], t1[2], mid ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( t2[1], t2[0], t2[2], mid ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( t1[1], t1[0], t1[2], mid, loin ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( t2[1], t2[0], t2[2], mid, loin ).Generate ( mesh, level - 1 );
 
 			//TriangleSymbol ( 0.5f * ( p[2] + p[1] ), p[1], p[0] ).Generate ( mesh, level - 1 );
 			//TriangleSymbol ( p[2], 0.5f * ( p[2] + p[1] ), p[0] ).Generate ( mesh, level - 1 );
@@ -65,9 +66,9 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			pivot = pivot / 3.f;
 
 			
-			TriangleSymbol ( p2, p1, pivot, mid ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( p3, p2, pivot, mid ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( p1, p3, pivot, mid ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( p2, p1, pivot, mid, loin ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( p3, p2, pivot, mid, loin ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( p1, p3, pivot, mid, loin ).Generate ( mesh, level - 1 );
 		}
 		else if ( random < 60 && Triangle ( p2, p1, p3 ).area ( ) > 5000.f ) {
 			// Divise en 1 triangle et 1 Quadrangle
@@ -86,20 +87,20 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				p4 = ( p2 + p3 ) * rand;
 				p5 = ( p1 + p2 ) * rand;
 
-				TriangleSymbol ( p2, p5, p4, mid ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p1, p3, p4, p5, mid ).Generate ( mesh, level - 1 );
+				TriangleSymbol ( p2, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
+				QuadrangleSymbol ( p1, p3, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
 			} else if ( b >= a && c >= a ) {
 				p4 = ( p1 + p2 ) * rand;
 				p5 = ( p1 + p3 ) * rand;
 
-				TriangleSymbol ( p1, p5, p4, mid ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p3, p5, p4, p2, mid ).Generate ( mesh, level - 1 );
+				TriangleSymbol ( p1, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
+				QuadrangleSymbol ( p3, p5, p4, p2, mid, loin ).Generate ( mesh, level - 1 );
 			} else if ( c >= b && a >= b ) {
 				p4 = ( p1 + p3 ) * rand;
 				p5 = ( p2 + p3 ) * rand;
 
-				TriangleSymbol ( p3, p5, p4, mid ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p2, p1, p4, p5, mid ).Generate ( mesh, level - 1 );
+				TriangleSymbol ( p3, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
+				QuadrangleSymbol ( p2, p1, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
 			}		
 		}
 		else {
@@ -109,7 +110,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 }
 
 
-TriangleSymbol TriangleSymbol::genBorder ( const Vec3<float>& p1_, const Vec3<float>& p2_, const Vec3<float>& p3_, const float& borderSize, const float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>& _mid ) {
+TriangleSymbol TriangleSymbol::genBorder ( const Vec3<float>& p1_, const Vec3<float>& p2_, const Vec3<float>& p3_, const float& borderSize, const float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>& _mid, const Vec3<float> & _loin ) {
 	Triangle t ( p2_, p1_, p3_ );
 	Triangle t2 ( t );
 
@@ -125,7 +126,7 @@ TriangleSymbol TriangleSymbol::genBorder ( const Vec3<float>& p1_, const Vec3<fl
 		p22 = t2.getPoints ( )[1],
 		p23 = t2.getPoints ( )[2];
 
-	TriangleSymbol ts ( p12, p11, p13, _mid );
+	TriangleSymbol ts ( p12, p11, p13, _mid, _loin );
 
 	m.merge ( Mesh::RouteR ( p21, p22, p12, p11, sizePavement, hPavement ) );
 	m.merge ( Mesh::RouteR ( p23, p21, p11, p13, sizePavement, hPavement ) );

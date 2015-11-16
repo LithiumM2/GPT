@@ -45,6 +45,13 @@ int main(int argc, char ** argv)
 	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	//qs.Generate(m, 10);
 	//MeshWriter::exportObj(m, "testSymbole.obj");
+	/*
+	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
+
+	//m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
+	qs.Generate(m, 10);
+	MeshWriter::exportObj(m, "testSymbole.obj"); */
 	/*Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 	qs.Generate(m, 3);
@@ -69,7 +76,7 @@ int main(int argc, char ** argv)
 	/************************ Example TriangleSymbol Generate *****************************/
 	std::vector<Vec3<float>> points = { Vec3<float> ( -200.f, -200.f, 0.f ), Vec3<float> ( 200, -200.f, 0.f ), Vec3<float> ( 0, 200, 0.f ) };
 	Mesh m2;
-	TriangleSymbol ts = TriangleSymbol::genBorder ( points[0], points[1], points[2], 10.f, 3.f, 1.f, m2, Vec3<float> ( 0.f ) );
+	TriangleSymbol ts = TriangleSymbol::genBorder ( points[0], points[1], points[2], 10.f, 3.f, 1.f, m2, Vec3<float> ( 0.f ), Vec3<float> ( 250.f, 250.f, 0.f ) );
 	ts.Generate ( m2, 10 );
 
 	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );
@@ -132,6 +139,14 @@ int main(int argc, char ** argv)
 	//MeshWriter::exportObj ( m, "test_batiment.obj" );
 
 	//MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
+
+
+	// ****************** test decoupe en quartier ***********
+	Mesh m;
+	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
+//	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(50.f, 50.f, 0.f));
+	qs.Generate(m, 1);
+	MeshWriter::exportObj(m, "testQuartier.obj");
 
 	system("pause");
 	return 0;

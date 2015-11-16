@@ -10,16 +10,16 @@ Etage::Etage(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, c
 
 void Etage::G(Mesh& m) const{
 
-	float _h = h/4;
+	float _h = h/6.f;
 	/*****************Inter Etage************************/
 	Quadrangle q2 = q;
-	q2.shrinkByDist(5.f);
+	q2.shrinkByDist(2.f);
 	Mesh m2(Mesh::Box(q2.p1, q2.p2, q2.p3, q2.p4, _h));
 	m.merge(m2);
 	/****************************************************/
 
 	q2 = Quadrangle(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h));
-	q2.shrinkByDist(2.f);
+	q2.shrinkByDist(1.f);
 	Mesh m3(Mesh::Box(q2.p1, q2.p2, q2.p3, q2.p4, h));
 	m.merge(m3);
 
