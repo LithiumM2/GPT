@@ -11,9 +11,11 @@ QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1
 
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
-	if (compteur == 0)
+	Quadrangle q = Quadrangle(p0, p1, p2, p3);
+
+	if (q.area() < 1000.F)
 	{
-		Quadrangle q = Quadrangle(p0, p1, p2, p3);
+		
 		q.shrinkByDist(10.f);
 
 		//*******************Test Centre Ville***************/
@@ -47,9 +49,19 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		int e = rand() % 100;
 		if (e<75)
 		{
-			RDC(q.p1, q.p2, q.p3, q.p4, 5.f,dif).G(m);
+			RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif).G(m);
 		//	m.merge(m1);
 		}
+	}
+	else if (q.area() > 50000) // Decoupe en "quartier basique"
+	{
+		q.shrinkByDist(1000.f);
+		QuadrangleSymbol(p0, p1, q.p2, q.p1, mid).Generate(m, compteur - 1);
+		QuadrangleSymbol(p2, p3, q.p4, q.p3, mid).Generate(m, compteur - 1);
+		QuadrangleSymbol(p1, p2, q.p3, q.p2, mid).Generate(m, compteur - 1);
+		QuadrangleSymbol(p3, p0, q.p1, q.p4, mid).Generate(m, compteur - 1);
+		QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid).Generate(m, compteur - 1);
+
 	}
 	else
 	{
