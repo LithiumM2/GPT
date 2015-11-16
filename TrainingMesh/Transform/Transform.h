@@ -54,6 +54,25 @@ public:
 	*/
 	static Transform Shrink(float factor,Vec3<float> pivot);
 
+
+	/* Rotation axe X par rapport a un point Pivot
+	* factor : angle de rotation 
+	* pivot : point pivot
+	*/
+	static Transform RotatelocalX(float angle, Vec3<float> pivot);
+
+	/* Rotation axe Y par rapport a un point Pivot
+	* factor : angle de rotation
+	* pivot : point pivot
+	*/
+	static Transform RotatelocalY(float angle, Vec3<float> pivot);
+
+	/* Rotation axe Z par rapport a un point Pivot
+	* factor : angle de rotation
+	* pivot : point pivot
+	*/
+	static Transform RotatelocalZ(float angle, Vec3<float> pivot);
+
 	~Transform();
 };
 

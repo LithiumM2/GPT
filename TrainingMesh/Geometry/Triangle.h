@@ -20,9 +20,7 @@ public:
 	void shrink ( float t );
 
 	void shrinkByDist ( float distance );
+	void shrinkByDistForQuad ( float distance_ );
 
 	Vec3<float>* getPoints ( ) { return Points; }
-
-	//Triangle* divideIn2Triangles ( float low, float high );
-
 };
