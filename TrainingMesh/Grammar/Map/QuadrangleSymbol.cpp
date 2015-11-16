@@ -29,7 +29,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		int e = rand() % 100;
 		if (e<75)
 		{
-			RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif).G(m);
+			RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif,0).G(m);
 		//	m.merge(m1);
 		}
 	}

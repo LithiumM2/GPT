@@ -9,7 +9,8 @@ class RDC {
 protected:
 	Quadrangle q;
 	float h,dif;
+	int type;
 public:
-	RDC(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&,const float&);
+	RDC(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const float&);
 	void G(Mesh&) const;
 };

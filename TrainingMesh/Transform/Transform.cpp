@@ -89,6 +89,34 @@ Transform Transform::Shrink(float factor, Vec3<float> pivot){
 	return translate(pivot)*scale(factor,factor,factor)*translate(-pivot);
 }
 
+
+/* Rotation axe X par rapport a un point Pivot
+* factor : angle de rotation
+* pivot : point pivot
+*/
+Transform Transform::RotatelocalX(float angle, Vec3<float> pivot){
+
+	return translate(pivot)*rotateX(angle)*translate(-pivot);
+}
+
+/* Rotation axe Y par rapport a un point Pivot
+* factor : angle de rotation
+* pivot : point pivot
+*/
+Transform Transform::RotatelocalY(float angle, Vec3<float> pivot){
+
+	return translate(pivot)*rotateY(angle)*translate(-pivot);
+}
+
+/* Rotation axe Z par rapport a un point Pivot
+* factor : angle de rotation
+* pivot : point pivot
+*/
+Transform Transform::RotatelocalZ(float angle, Vec3<float> pivot){
+
+	return translate(pivot)*rotateZ(angle)*translate(-pivot);
+}
+
 Transform::~Transform()
 {
 }
