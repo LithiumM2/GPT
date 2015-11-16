@@ -11,10 +11,10 @@ class PentagoneSymbol :
 	public Symbol {
 
 protected:
-	Vec3<float> p[5];
+	Vec3<float> p[5], mid;
 
 public:
-	PentagoneSymbol ( Vec3<float>, Vec3<float>, Vec3<float>, Vec3<float>, Vec3<float> );
+	PentagoneSymbol ( const Vec3<float> &, const Vec3<float> &, const Vec3<float> &, const Vec3<float> &, const Vec3<float> &, const Vec3<float> & );
 	
 	void Generate ( Mesh &mesh, int compteur ) const;
 };

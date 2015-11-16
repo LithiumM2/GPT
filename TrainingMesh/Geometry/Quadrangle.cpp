@@ -49,16 +49,16 @@ void Quadrangle::shrink(float t)
 
 void Quadrangle::shrinkByDist ( float distance_ ) {
 	Triangle t1 = Triangle ( p2, p1, p4 ); // T1;
-	t1.shrinkByDist ( -distance_ );
+	t1.shrinkByDistForQuad ( -distance_ );
 
 	Triangle t2 = Triangle ( p2, p1, p3 ); // T2;
-	t2.shrinkByDist ( -distance_ );
+	t2.shrinkByDistForQuad ( -distance_ );
 
 	Triangle t3 = Triangle ( p2, p4, p3 ); // T3;
-	t3.shrinkByDist ( -distance_ );
+	t3.shrinkByDistForQuad ( -distance_ );
 
 	Triangle t4 = Triangle ( p1, p4, p3 ); // T4;
-	t4.shrinkByDist ( -distance_ );
+	t4.shrinkByDistForQuad ( -distance_ );
 
 	p1 = t1.getPoints ( )[1];
 	p2 = t2.getPoints ( )[0];
