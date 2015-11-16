@@ -35,14 +35,18 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		//	m.merge(m1);
 		}
 	}
-	else if (q.area() > 50000) // Decoupe en "quartier basique"
+	else if (rand() % 3 < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
 	{
-		q.shrinkByDist(1000.f);
+
+		q.shrinkByDist(990.f);
+		m.merge(Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4));
+		q.shrinkByDist(10.f);
 		QuadrangleSymbol(p0, p1, q.p2, q.p1, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p2, p3, q.p4, q.p3, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p1, p2, q.p3, q.p2, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p3, p0, q.p1, q.p4, mid, loin).Generate(m, compteur - 1);
-		QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1);
+		//QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1); // centre du quad
+		
 
 	}
 	else
