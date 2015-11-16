@@ -56,10 +56,15 @@ void Etage::G(Mesh& m) const{
 
 		}
 	}
+
+	//****************************************//
+	//************Building Twist**************//
+	//***************************************//
 	else if (type == 1){
 
 		float _rotate = rotate+ Constantes::PI * 0.025f;
 		float _h = h / 6;
+
 		/*****************Inter Etage************************/
 		Quadrangle q2 = q;
 		q2.shrinkByDist(2.f);
@@ -81,23 +86,6 @@ void Etage::G(Mesh& m) const{
 			_h += h;
 			Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 1, _rotate).G(m);
 		}
-		/*else if(e < 10){
-		_h += h;
-		float distance1 = distance(q.p1,q.p2);
-		float distance2 = distance(q.p1, q.p4);
-
-		if (distance1 < distance2){
-
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5).G(m);
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5).G(m);
-
-		}
-		else{
-
-
-		}
-
-		}*/
 		else
 		{
 			Toit(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h,_rotate).G(m);
