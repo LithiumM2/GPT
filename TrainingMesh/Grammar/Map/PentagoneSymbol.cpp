@@ -29,11 +29,11 @@ void PentagoneSymbol::Generate ( Mesh &mesh, int compteur ) const {
 			}
 			pivot = pivot / 5.f;
 
-			TriangleSymbol ( p[0], pivot, p[1], mid ).Generate ( mesh, compteur - 1 );
+			/*TriangleSymbol ( p[0], pivot, p[1], mid ).Generate ( mesh, compteur - 1 );
 			TriangleSymbol ( p[2], pivot, p[3], mid ).Generate ( mesh, compteur - 1 );
 			TriangleSymbol ( p[3], pivot, p[4], mid ).Generate ( mesh, compteur - 1 );
 			TriangleSymbol ( p[4], pivot, p[0], mid ).Generate ( mesh, compteur - 1 );
-			TriangleSymbol ( p[1], pivot, p[2], mid ).Generate ( mesh, compteur - 1 );
+			TriangleSymbol ( p[1], pivot, p[2], mid ).Generate ( mesh, compteur - 1 );*/
 		}
 		else {
 			// Divise le pentagone en 1 triangle et 1 quadrangle
@@ -51,28 +51,28 @@ void PentagoneSymbol::Generate ( Mesh &mesh, int compteur ) const {
 			float e = Triangle ( E, A, B ).area ( );
 
 			if ( a > b && a > c && a > d && a > e ) {
-				TriangleSymbol ( A, B, C, mid ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( A, C, D, E, mid ).Generate ( mesh, compteur - 1 );
+				/*TriangleSymbol ( A, B, C, mid ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol ( A, C, D, E, mid ).Generate ( mesh, compteur - 1 );*/
 			}
 
 			if ( b > c && b > d && b > e && b > a ) {
-				TriangleSymbol ( B, C, D, mid ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( B, D, E, A, mid ).Generate ( mesh, compteur - 1 );
+				/*TriangleSymbol ( B, C, D, mid ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol ( B, D, E, A, mid ).Generate ( mesh, compteur - 1 );*/
 			}
 
 			if ( c > d && c > e && c > a && c > b ) {
-				TriangleSymbol ( C, D, E, mid ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( C, E, A, B, mid ).Generate ( mesh, compteur - 1 );
+				/*TriangleSymbol ( C, D, E, mid ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol ( C, E, A, B, mid ).Generate ( mesh, compteur - 1 );*/
 			}
 
 			if ( d > e && d > a && d > b && d > c ) {
-				TriangleSymbol ( D, E, A, mid ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( D, A, B, C, mid ).Generate ( mesh, compteur - 1 );
+				/*TriangleSymbol ( D, E, A, mid ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol ( D, A, B, C, mid ).Generate ( mesh, compteur - 1 );*/
 			}
 
 			if ( e > a && e > b && e > c && e > d ) {
-				TriangleSymbol ( E, A, B, mid ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( E, B, C, D, mid ).Generate ( mesh, compteur - 1 );
+				/*TriangleSymbol ( E, A, B, mid ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol ( E, B, C, D, mid ).Generate ( mesh, compteur - 1 );*/
 			}
 		}
 	}
