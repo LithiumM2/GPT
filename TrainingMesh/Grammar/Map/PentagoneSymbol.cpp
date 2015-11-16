@@ -50,27 +50,27 @@ void PentagoneSymbol::Generate ( Mesh &mesh, int compteur ) const {
 
 			if ( a > b && a > c && a > d && a > e ) {
 				TriangleSymbol ( A, B, C ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol ( { A, C, D, E ,Vec3<float>(0.f)} ).Generate ( mesh, compteur - 1 );
+				QuadrangleSymbol({ A, C, D, E, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
 			}
 
 			if ( b > c && b > d && b > e && b > a ) {
 				TriangleSymbol ( B, C, D ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol({ B, D, E, A, Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
+				QuadrangleSymbol({ B, D, E, A, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
 			}
 
 			if ( c > d && c > e && c > a && c > b ) {
 				TriangleSymbol ( C, D, E ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol({ C, E, A, B, Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
+				QuadrangleSymbol({ C, E, A, B, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
 			}
 
 			if ( d > e && d > a && d > b && d > c ) {
 				TriangleSymbol ( D, E, A ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol({ D, A, B, C, Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
+				QuadrangleSymbol({ D, A, B, C, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
 			}
 
 			if ( e > a && e > b && e > c && e > d ) {
 				TriangleSymbol ( E, A, B ).Generate ( mesh, compteur - 1 );
-				QuadrangleSymbol({ E, B, C, D, Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
+				QuadrangleSymbol({ E, B, C, D, Vec3<float>(0.f), Vec3<float>(0.f) }).Generate(mesh, compteur - 1);
 			}
 		}
 	}
