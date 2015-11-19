@@ -25,7 +25,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -84,6 +84,7 @@
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Geometry\Circle.h" />
     <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Geometry\Geometry.h" />
