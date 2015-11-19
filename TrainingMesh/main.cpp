@@ -41,6 +41,12 @@ int main(int argc, char ** argv)
 
 	/************************Example Quadrangle *****************************/
 	//Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+
+	//QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
+	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
+	//qs.Generate(m, 10);
+	//MeshWriter::exportObj(m, "testSymbole.obj");
+
 	//QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m,Vec3<float>(250.f,250.f,0.f));
 	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	//qs.Generate(m, 10);
@@ -52,6 +58,7 @@ int main(int argc, char ** argv)
 	//m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	qs.Generate(m, 10);
 	MeshWriter::exportObj(m, "testSymbole.obj"); */
+
 	/*Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
 	qs.Generate(m, 3);
@@ -68,7 +75,6 @@ int main(int argc, char ** argv)
 
 	/************************ Example Hexagone Mesh *****************************/
 	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 5.f, 5.f, 0.f ), Vec3<float> ( 10.f, 5.f, 0.f ), Vec3<float> ( 15.f, 0.f, 0.f ), Vec3<float> ( 10.f, -5.f, 0.f ), Vec3<float> ( 5.f, -5.f, 0.f ) };
->>>>>>> origin/master
 	HexagoneMesh hm = HexagoneMesh ( points );
 	Mesh m ( hm );
 	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
@@ -133,20 +139,26 @@ int main(int argc, char ** argv)
 
 	MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );*/
 
+
+	Mesh m;
+	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f,100.f,1).G(m);
+	MeshWriter::exportObj ( m, "test_batiment.obj" );
+
 	/************************  *****************************/
 	//Mesh m;
 	//RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
 	//MeshWriter::exportObj ( m, "test_batiment.obj" );
 
+
 	//MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
 
 
 	// ****************** test decoupe en quartier ***********
-//	Mesh m;
-//	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
-////	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(50.f, 50.f, 0.f));
-//	qs.Generate(m, 1);
-//	MeshWriter::exportObj(m, "testQuartier.obj");
+	/*Mesh m;
+	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
+	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(50.f, 50.f, 0.f));
+	qs.Generate(m, 1);
+	MeshWriter::exportObj(m, "testQuartier.obj");*/
 
 	//system("pause");
 	return 0;
