@@ -121,7 +121,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Circle c = incircle ( Triangle ( p2, p1, p3 ) );
 				c.radius -= ( c.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q = randomQuadInCircle ( c );
-				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif ,0).G ( mesh );
 			}
 
 			if ( rng == 1 ) {
@@ -154,12 +154,12 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Circle c0 = incircle ( Triangle ( t1[1], t1[0], t1[2] ) );
 				c0.radius -= ( c0.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q = randomQuadInCircle ( c0 );
-				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif,0 ).G ( mesh );
 
 				Circle c1 = incircle ( Triangle ( t2[1], t2[0], t2[2] ) );
 				c1.radius -= ( c1.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q1 = randomQuadInCircle ( c1 );
-				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif,0 ).G ( mesh );
 			}
 
 			if ( rng == 2 ) {
@@ -172,17 +172,17 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Circle c0 = incircle ( Triangle ( p2, p1, pivot ) );
 				c0.radius -= ( c0.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q = randomQuadInCircle ( c0 );
-				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif,0 ).G ( mesh );
 
 				Circle c1 = incircle ( Triangle ( p3, p2, pivot ) );
 				c1.radius -= ( c1.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q1 = randomQuadInCircle ( c1 );
-				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif,0 ).G ( mesh );
 
 				Circle c2 = incircle ( Triangle ( p1, p3, pivot ) );
 				c2.radius -= ( c2.radius * static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) );
 				Quadrangle q2 = randomQuadInCircle ( c2 );
-				RDC ( q2.p2, q2.p1, q2.p4, q2.p3, 3.0f, dif ).G ( mesh );
+				RDC ( q2.p2, q2.p1, q2.p4, q2.p3, 3.0f, dif,0 ).G ( mesh );
 			}
 		}
 		else {
