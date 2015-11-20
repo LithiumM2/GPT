@@ -1,12 +1,13 @@
 #include "Etage.h"
 
 
-Etage::Etage(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h, const float& _pourcentage,const int& _type,const float& _rotate){
+Etage::Etage(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h, const float& _pourcentage,const int& _type,const float& _rotate,bool _duo){
 	q = Quadrangle(a, b, c, d);
 	h = _h;
 	pourcentage = _pourcentage;
 	type = _type;
 	rotate = _rotate;
+	duo = _duo;
 }
 
 
@@ -30,26 +31,38 @@ void Etage::G(Mesh& m) const{
 		int e = rand() % 100;
 		if (e < pourcentage)
 		{
-			_h += h;
-			Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate).G(m);
+			
+			if (e < 10 && duo!=true){
+				printf("ici \n");
+				_h += h;
+				float distance1 = distance(q.p1, q.p2);
+				float distance2 = distance(q.p1, q.p4);
+
+				if (distance1 < distance2){
+
+					distance1 = distance(q.p2, q.p3);
+
+					printf("%f / %f \n",distance1 ,distance2);
+
+					Vec3<float> p3modif = q.p2 - (Vec3<float>(q.p2 - q.p3).normalized() * (distance1 / 2)) + Vec3<float>(0.0, 0.0, _h);
+					Vec3<float> p4modif = q.p1 - (Vec3<float>(q.p1 - q.p4).normalized() * (distance2 / 2)) + Vec3<float>(0.0, 0.0, _h);
+
+					Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), p3modif,p4modif, h, pourcentage -2.5, 0, rotate, true).G(m);
+					//Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate).G(m);
+					Etage(p4modif, p3modif, q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate, true).G(m);
+				}
+				else{
+
+				}
+			}
+			else{
+
+				_h += h;
+				Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate,duo).G(m);
+			}
+		
+
 		}
-		/*else if(e < 10){
-		_h += h;
-		float distance1 = distance(q.p1,q.p2);
-		float distance2 = distance(q.p1, q.p4);
-
-		if (distance1 < distance2){
-
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5).G(m);
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5).G(m);
-
-		}
-		else{
-
-
-		}
-
-		}*/
 		else
 		{
 			Toit(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, rotate).G(m);
@@ -84,7 +97,7 @@ void Etage::G(Mesh& m) const{
 		if (e < pourcentage)
 		{
 			_h += h;
-			Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 1, _rotate).G(m);
+			Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 1, _rotate,duo).G(m);
 		}
 		else
 		{

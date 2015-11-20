@@ -40,12 +40,12 @@ int main(int argc, char ** argv)
 	//std::cout<<"Aire : "<<q.area()<<" et Premietre : "<<q.perimeter()<<"\n"<<std::endl;
 
 	/************************Example Quadrangle *****************************/
-	//Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
+	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 
-	//QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
-	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
-	//qs.Generate(m, 10);
-	//MeshWriter::exportObj(m, "testSymbole.obj");
+	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
+	//m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
+	qs.Generate(m, 10);
+	MeshWriter::exportObj(m, "testSymbole.obj");
 
 	//QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m,Vec3<float>(250.f,250.f,0.f));
 	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
@@ -80,12 +80,12 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m, "test_hexagone.obj" );*/
 
 	/************************ Example TriangleSymbol Generate *****************************/
-	std::vector<Vec3<float>> points = { Vec3<float> ( -200.f, -200.f, 0.f ), Vec3<float> ( 200, -200.f, 0.f ), Vec3<float> ( 0, 200, 0.f ) };
+	/*std::vector<Vec3<float>> points = { Vec3<float> ( -200.f, -200.f, 0.f ), Vec3<float> ( 200, -200.f, 0.f ), Vec3<float> ( 0, 200, 0.f ) };
 	Mesh m2;
 	TriangleSymbol ts = TriangleSymbol::genBorder ( points[0], points[1], points[2], 10.f, 3.f, 1.f, m2, Vec3<float> ( 0.f ), Vec3<float> ( 250.f, 250.f, 0.f ) );
 	ts.Generate ( m2, 10 );
 
-	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );
+	MeshWriter::exportObj ( m2, "test_triangle_symbole2.obj" );*/
 	/************************ Example PentagoneSymbol Generate *****************************/
 	//std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 0.f, 1500.f, 0.f ), Vec3<float> ( 1000.f, 1000.f, 0.f ), Vec3<float> ( 1000.f, 0.f, 0.f ), Vec3<float> ( 500.f, -600.f, 0.f ) };
 	//Mesh m2;
@@ -95,17 +95,6 @@ int main(int argc, char ** argv)
 	////m2 = Mesh::Pentagone ( points[0], points[1], points[2], points[3], points[4] );
 
 	//MeshWriter::exportObj ( m2, "test_pentagone_symbol.obj" );
-	/************************ Example Batiment à tester *****************************/
-	//Mesh m;
-	//Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
-	//Etage e(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-
-	//Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-
-	//b.G(m);
-	/*Mesh m;
-	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
-	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
 
 	/************************ Example shrink triangle *****************************/
 	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
@@ -140,9 +129,9 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );*/
 
 
-	Mesh m;
-	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f,100.f,1).G(m);
-	MeshWriter::exportObj ( m, "test_batiment.obj" );
+	/*Mesh m;
+	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(150.f, 100.f, 0.f), Vec3<float>(170.f, 0.f, 0.f), 10.f,100.f,0).G(m);
+	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
 
 	/************************  *****************************/
 	//Mesh m;
@@ -160,6 +149,6 @@ int main(int argc, char ** argv)
 	qs.Generate(m, 1);
 	MeshWriter::exportObj(m, "testQuartier.obj");*/
 
-	//system("pause");
+	system("pause");
 	return 0;
 }

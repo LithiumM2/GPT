@@ -31,8 +31,11 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		int e = rand() % 100;
 		if (e<75)
 		{
-			RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif,0).G(m);
-		//	m.merge(m1);
+			e = rand() % 100;
+			if (e<85)
+				RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif,0).G(m);
+			else
+				RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 1).G(m);
 		}
 	}
 	else if (rand() % 3 < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
