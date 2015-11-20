@@ -29,10 +29,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 3.f, 1.f));
 		m.merge(m1);
 		int e = rand() % 100;
-		if (e<75)
+		if (e<90)
 		{
 			e = rand() % 100;
-			if (e<85)
+			if (e<90)
 				RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif,0).G(m);
 			else
 				RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 1).G(m);

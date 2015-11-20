@@ -93,49 +93,7 @@ public:
 	static Mesh Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	static Mesh RouteL(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	static Mesh RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
+	static Mesh Toit(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
+	static Mesh ToitPyramide(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
 	~Mesh();
 };
-
-/*
-
-
-class ETA {
-protected:
-	Quadrangle q;
-	double h;
-public:
-	ETA(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
-	void G(Mesh&) const;
-};
-
-class TOIT {
-protected:
-	Quadrangle q;
-	double h;
-public:
-	TOIT(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const double&);
-	void G(Mesh&) const;
-};
-
-RDC::RDC(const Vec3<float>& a , const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const double& h)
-{
-	q = Quadrangle(a, b, c, d);
-	RDC::h = h;
-}
-
-void RDC::G(Mesh& m) const
-{
-	m.merge(Mesh::Box(q.p1, q.p1, q.p1, q.p1,h));
-	
-	// La grammaire commence ici
-	int e = rand() % 2;
-	if (e == 0)
-	{
-		ETA(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), h + 0.25).G(m);
-	}
-	else
-	{
-		TOIT(q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), q.p1 + Vec3<float>(0.0, 0.0, h), 1.0).G(m);
-
-	}
-}*/
