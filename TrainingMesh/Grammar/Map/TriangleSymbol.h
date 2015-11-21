@@ -1,9 +1,13 @@
 #pragma once
 
+
 #include "..\..\Vec3.h"
 #include "..\Symbol.h"
 #include "..\Map\QuadrangleSymbol.h"
 #include "..\..\Geometry\Triangle.h"
+#include "..\..\Geometry\Circle.h"
+
+# define M_PI           3.14159265358979323846  /* pi */
 
 class TriangleSymbol :
 	public Symbol {
@@ -16,5 +20,8 @@ public:
 	void Generate ( Mesh &mesh, int compteur ) const;
 
 	static TriangleSymbol genBorder ( const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>&p3, const float& borderSize, const float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>& _mid, const Vec3<float> & _loin );
+
+	static Circle incircle ( Triangle t );
+	static Quadrangle randomQuadInCircle ( Circle c );
 };
 

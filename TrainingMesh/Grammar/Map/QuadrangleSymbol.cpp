@@ -29,7 +29,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 3.f, 1.f));
 		m.merge(m1);
 		int e = rand() % 100;
-		if (e<75)
+		if (e<90)
 		{
 			Vec3<float> minQuad = q.getMinPoint();
 			Vec3<float> maxQuad = q.getMaxPoint();

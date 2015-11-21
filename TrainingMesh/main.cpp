@@ -49,6 +49,8 @@ int main(int argc, char ** argv)
 	//qs.Generate(m, 10);
 	//MeshWriter::exportObj(m, "testSymbole.obj");
 
+
+
 	//QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m,Vec3<float>(250.f,250.f,0.f));
 	////m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	//qs.Generate(m, 10);
@@ -97,17 +99,6 @@ int main(int argc, char ** argv)
 	////m2 = Mesh::Pentagone ( points[0], points[1], points[2], points[3], points[4] );
 
 	//MeshWriter::exportObj ( m2, "test_pentagone_symbol.obj" );
-	/************************ Example Batiment à tester *****************************/
-	//Mesh m;
-	//Batiment b(Vec3<float>(0.f), Vec3<float>(0.f, 1500.f, 0.f), Vec3<float>(100.f, 1000.f, 0.f), Vec3<float>(1000.f, 0.f, 0.f));
-	//Etage e(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-
-	//Toit t(Vec3<float>(0.f), Vec3<float>(0.f, 120.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));
-
-	//b.G(m);
-	/*Mesh m;
-	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
-	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
 
 	/************************ Example shrink triangle *****************************/
 	/*std::vector<Vec3<float>> points = { Vec3<float> ( 0.f ), Vec3<float> ( 10.f, 0.f, 0.f ), Vec3<float> ( 10.f, 10.f, 0.f ) };
@@ -151,6 +142,9 @@ int main(int argc, char ** argv)
 	//RDC(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 10.f).G(m);
 	//MeshWriter::exportObj ( m, "test_batiment.obj" );
 
+	/*Mesh m;
+	RDC(Vec3<float>(0.f), Vec3<float>(0.f, 100.f, 0.f), Vec3<float>(150.f, 100.f, 0.f), Vec3<float>(170.f, 0.f, 0.f), 10.f,100.f,0).G(m);
+	MeshWriter::exportObj ( m, "test_batiment.obj" );*/
 
 	//MeshWriter::exportObj(Mesh::Route(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), 20.f), "test_route.obj");
 

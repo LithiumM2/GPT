@@ -39,5 +39,6 @@
     <ClInclude Include="Grammar\BatimentQuadra\Toit.h" />
     <ClInclude Include="Grammar\Map\PentagoneSymbol.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Geometry\Circle.h" />
   </ItemGroup>
 </Project>

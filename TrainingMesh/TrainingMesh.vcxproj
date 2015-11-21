@@ -85,6 +85,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Geometry\Circle.h" />
     <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Geometry\Geometry.h" />

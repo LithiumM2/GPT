@@ -415,6 +415,83 @@ Mesh Mesh::RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float
 	return res;
 }
 
+/*return : Mesh toit triangle
+* h : hauteur du toit
+*/
+Mesh Mesh::Toit(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h)
+{
+	Mesh m;
+	m = Mesh::Quadrangle(p1, p2, p3, p4);
+	Vec3<float> p5((p1 + p2 + p3 + p4) / 4.f);
+	float dist = distance(p1, p2);
+	float dist1 = distance(p2, p3);
+	if (dist < dist1)
+	{
+		Vec3<float> p6((p1 + p2) / 2.f);
+		Vec3<float> p7((p3 + p4) / 2.f);
+		Vec3<float> p8(((p5 + p6) / 2.f) + Vec3<float>(0, 0, h));
+		Vec3<float> p9(((p5 + p7) / 2.f) + Vec3<float>(0, 0, h));
+		Mesh m1;
+		m1 = Mesh::Triangle(p1, p2, p8);
+		Mesh m2;
+		m2 = Mesh::Triangle(p4, p9, p3);
+		m.merge(m1);
+		m.merge(m2);
+		Mesh m3;
+		m3 = Mesh::Quadrangle(p3, p9, p8, p2);
+		m.merge(m3);
+		Mesh m4;
+		m4 = Mesh::Quadrangle(p1, p8, p9, p4);
+		m.merge(m4);
+		return m;
+	}
+	else
+	{
+		Vec3<float> p6((p1 + p4) / 2.f);
+		Vec3<float> p7((p2 + p3) / 2.f);
+		Vec3<float> p8(((p5 + p6) / 2.f) + Vec3<float>(0, 0, h));
+		Vec3<float> p9(((p5 + p7) / 2.f) + Vec3<float>(0, 0, h));
+		Mesh m1;
+		m1 = Mesh::Triangle(p1, p8, p4);
+		Mesh m2;
+		m2 = Mesh::Triangle(p3, p9, p2);
+		m.merge(m1);
+		m.merge(m2);
+		Mesh m3;
+		m3 = Mesh::Quadrangle(p4, p8, p9, p3);
+		m.merge(m3);
+		Mesh m4;
+		m4 = Mesh::Quadrangle(p1, p2, p9, p8);
+		m.merge(m4);
+		return m;
+	}
+
+}
+
+/*return : Mesh toit Pyramide
+* h : hauteur du toit
+*/
+Mesh Mesh::ToitPyramide(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h)
+{
+	Mesh m;
+	m = Mesh::Quadrangle(p1, p2, p3, p4);
+	Vec3<float> p5(((p1 + p2 + p3 + p4) / 4.f) + Vec3<float>(0, 0, h));
+
+	Mesh m1;
+	m1 = Mesh::Triangle(p1, p2, p5);
+	Mesh m2;
+	m2 = Mesh::Triangle(p4, p5, p3);
+	m.merge(m1);
+	m.merge(m2);
+	Mesh m3;
+	m3 = Mesh::Triangle(p3, p5, p2);
+	m.merge(m3);
+	Mesh m4;
+	m4 = Mesh::Triangle(p1, p5, p4);
+	m.merge(m4);
+	return m;
+}
+
 Mesh::~Mesh()
 {
 }
