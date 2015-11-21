@@ -51,6 +51,16 @@ public:
 		return *this;
 	}
 
+	inline bool operator==(Vec3<T> v)
+	{
+		return v.x == x && v.y == y && v.z == z;
+	}
+
+	inline bool operator!=(Vec3<T> v)
+	{
+		return v.x != x && v.y = y && v.z != z;
+	}
+
 	inline Vec3<T> normalized ( ) { return *this * ( 1 / sqrt ( x * x + y * y + z * z ) ); }
 
 	inline Vec3 operator-()
@@ -58,6 +68,15 @@ public:
 		return Vec3<T>(-x,-y,-z);
 	}
 
+	inline Vec3<T> min(Vec3<T> v)
+	{
+		return Vec3<T>(std::min(x, v.x), std::min(y, v.y), std::min(z, v.z));
+	}
+
+	inline Vec3<T> max(Vec3<T> v)
+	{
+		return Vec3<T>(std::max(x, v.x), std::max(y, v.y), std::max(z, v.z));
+	}
 	// Produit Vectoriel
 	static inline Vec3<T> crossProduct(const Vec3<T> & v1, const Vec3<T> & v2) { return Vec3<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x *v2.y - v1.y * v2.x); }
 

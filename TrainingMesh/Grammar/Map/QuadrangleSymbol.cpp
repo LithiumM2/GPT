@@ -13,7 +13,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
 
-	if (q.area() < 1000.F)
+	if (q.area() <  1000.f)
 	{
 		
 		q.shrinkByDist(10.f);
@@ -31,7 +31,35 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		int e = rand() % 100;
 		if (e<75)
 		{
-			RDC(q.p1, q.p2, q.p3, q.p4, 3.f,dif,0).G(m);
+			Vec3<float> minQuad = q.getMinPoint();
+			Vec3<float> maxQuad = q.getMaxPoint();
+			std::list<Quadrangle> rdcs;
+			const float nbTry = 10000,
+				maxArea = q.area() * 0.2f;
+			for (int i = 0; i < nbTry; ++i)
+			{
+				bool addRdc = true;
+				Quadrangle tmp(Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
+					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
+					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
+					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f));
+				tmp.sortPoint();
+				if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal())
+				{
+					for (Quadrangle quad : rdcs)
+					{
+						if (quad.overlap(tmp))
+						{
+							addRdc = false; break;
+						}
+					}
+					if (addRdc) rdcs.push_back(tmp);
+				}
+			} 
+			for (Quadrangle quad : rdcs)
+				RDC(quad.p1, quad.p2, quad.p3, quad.p4, 3.f,dif,0).G(m);
+			//q.sortPoint();
+			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
 		//	m.merge(m1);
 		}
 	}

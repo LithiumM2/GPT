@@ -82,6 +82,7 @@
     <ClCompile Include="Transform\Mat4x4.cpp" />
     <ClCompile Include="Transform\Transform.cpp" />
     <ClCompile Include="Grammar\Map\TriangleSymbol.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Transform\Mat4x4.h" />
     <ClInclude Include="Transform\Transform.h" />
     <ClInclude Include="Grammar\Map\TriangleSymbol.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

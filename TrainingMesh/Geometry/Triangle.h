@@ -22,5 +22,6 @@ public:
 	void shrinkByDist ( float distance );
 	void shrinkByDistForQuad ( float distance_ );
 
+	bool isIn(Vec3<float>);
 	Vec3<float>* getPoints ( ) { return Points; }
 };

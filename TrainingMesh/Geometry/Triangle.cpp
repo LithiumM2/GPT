@@ -103,6 +103,28 @@ void Triangle::shrinkByDistForQuad ( float distance_ ) {
 }
 
 
+bool Triangle::isIn(Vec3<float> p)
+{
+	Vec3<float> v0(Points[1] - Points[0]);
+	Vec3<float> v1(Points[2] - Points[0]);
+	Vec3<float> v2(p - Points[0]);
+
+	// Compute dot products
+	float dot00 = Vec3<float>::dotProduct(v0, v0);
+	float dot01 = Vec3<float>::dotProduct(v0, v1);
+	float dot02 = Vec3<float>::dotProduct(v0, v2);
+	float dot11 = Vec3<float>::dotProduct(v1, v1);
+	float dot12 = Vec3<float>::dotProduct(v1, v2);
+
+	// Compute barycentric coordinates
+	float invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+	float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+	float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+	// Check if point is in triangle
+	return (u >= 0) && (v >= 0) && (u + v < 1);
+}
+
 
 Triangle::~Triangle(void)
 {
