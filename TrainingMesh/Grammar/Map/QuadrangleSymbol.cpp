@@ -81,9 +81,9 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 	}
 	else if (random < 2)
 	{
-		TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, 1);
+		TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, compteur - 1);
 
-		TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, 0);
+		TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, compteur - 1);
 	}
 	else
 	{
