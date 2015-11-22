@@ -12,18 +12,37 @@ TriangleSymbol::TriangleSymbol ( const Vec3<float> &a, const Vec3<float> &b, con
 
 void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 	if ( ( level == 0 ) ) {
-		Triangle t ( p2, p1, p3 );
-		t.shrinkByDist ( 10.f );
-		Mesh m = Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] );
-		m.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
-		m.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
-		m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
-		mesh.merge ( m );
+		// Création d'un zone plate : un parc ?
+		Triangle t ( p1, p2, p3 );
+		
+		if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
+			Triangle t ( p2, p1, p3 );
+			
+			t.shrinkByDist ( 10.f );
+			
+			Mesh m = Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] );
+			m.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
+			mesh.merge ( m );
+		}
+		else {
+			Triangle t ( p1, p2, p3 );
+
+			t.shrinkByDist ( 10.f );
+
+			Mesh m = Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] );
+			m.merge ( Mesh::RouteL ( p1, p2, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p2, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p3, p1, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
+			mesh.merge ( m );
+		}		
 	}
 	else {
 		int random = rand ( ) % 100;
 
-		if ( random < 35 && Triangle ( p2, p1, p3 ).area ( ) > 2500.f ) {
+		random = 40;
+		if ( random < 35 && Triangle ( p1, p2, p3 ).area ( ) > 2500.f ) {
 			// Divise le triangle en 2 triangles
 			float rand;
 			float a = distance ( p2, p3 );
@@ -54,8 +73,15 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			}
 
 			
-			TriangleSymbol ( t1[1], t1[0], t1[2], mid, loin ).Generate ( mesh, level - 1 );
-			TriangleSymbol ( t2[1], t2[0], t2[2], mid, loin ).Generate ( mesh, level - 1 );
+			if ( checkNormal ( Triangle ( t1[0], t1[1], t1[2] ) ) )
+				TriangleSymbol ( t1[1], t1[0], t1[2], mid, loin ).Generate ( mesh, level - 1 );
+			else
+				TriangleSymbol ( t1[0], t1[1], t1[2], mid, loin ).Generate ( mesh, level - 1 );
+
+			if ( checkNormal ( Triangle ( t2[0], t2[1], t2[2] ) ) )
+				TriangleSymbol ( t2[1], t2[0], t2[2], mid, loin ).Generate ( mesh, level - 1 );
+			else
+				TriangleSymbol ( t2[0], t2[1], t2[2], mid, loin ).Generate ( mesh, level - 1 );
 
 			//TriangleSymbol ( 0.5f * ( p[2] + p[1] ), p[1], p[0] ).Generate ( mesh, level - 1 );
 			//TriangleSymbol ( p[2], 0.5f * ( p[2] + p[1] ), p[0] ).Generate ( mesh, level - 1 );
@@ -72,7 +98,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 		//	TriangleSymbol ( pivot, p1, p3, mid, loin ).Generate ( mesh, level - 1 );
 		//	TriangleSymbol ( p2, pivot, p3, mid, loin ).Generate ( mesh, level - 1 );
 		//}
-		else if ( random < 45 && Triangle ( p2, p1, p3 ).area ( ) > 5000.f ) {
+		else if ( random < 45 && Triangle ( p1, p2, p3 ).area ( ) > 5000.f ) {
 			// Divise en 1 triangle et 1 Quadrangle
 			float rand;
 			float a = distance ( p2, p3 );
@@ -89,27 +115,45 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				p4 = ( p2 + p3 ) * rand;
 				p5 = ( p1 + p2 ) * rand;
 
-				TriangleSymbol ( p2, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p1, p3, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+				if ( checkNormal ( Triangle ( p2, p4, p5 ) ) ) {
+					TriangleSymbol ( p4, p2, p5, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p1, p3, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+				}
+				else { 
+					TriangleSymbol ( p2, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p1, p5, p4, p3, mid, loin ).Generate ( mesh, level - 1 );
+				}
 			} else if ( b >= a && c >= a ) {
 				p4 = ( p1 + p2 ) * rand;
 				p5 = ( p1 + p3 ) * rand;
 
-				TriangleSymbol ( p1, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p3, p5, p4, p2, mid, loin ).Generate ( mesh, level - 1 );
+				if ( checkNormal ( Triangle ( p1, p5, p4 ) ) ) {
+					TriangleSymbol ( p5, p1, p4, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p2, p3, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
+				}
+				else {
+					TriangleSymbol ( p1, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p2, p4, p5, p3, mid, loin ).Generate ( mesh, level - 1 );
+				}
 			} else if ( c >= b && a >= b ) {
 				p4 = ( p1 + p3 ) * rand;
-				p5 = ( p2 + p3 ) * rand;
+				p5 = ( p2 + p3 ) * rand;				
 
-				TriangleSymbol ( p3, p5, p4, mid, loin ).Generate ( mesh, level - 1 );
-				QuadrangleSymbol ( p2, p1, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+				if ( checkNormal ( Triangle ( p3, p4, p5 ) ) ) {
+					TriangleSymbol ( p4, p3, p5, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p2, p5, p4, p1, mid, loin ).Generate ( mesh, level - 1 );
+				}
+				else {
+					TriangleSymbol ( p3, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+					QuadrangleSymbol ( p2, p1, p4, p5, mid, loin ).Generate ( mesh, level - 1 );
+				}
 			}		
 		}
-		else if ( Triangle ( p2, p1, p3 ).area ( ) < 5000.0f ) {
+		else if ( Triangle ( p1, p2, p3 ).area ( ) < 10000.0f ) {
 			// Génére des batiments dans le cercle inscri de 1, 2, ou 3 triangles
 			int rng = rand ( ) % 3;
 
-			if ( level % 2 == 0 )
+			if ( checkNormal ( Triangle ( p1, p2, p3 ) ) )
 				mesh.merge ( Mesh::Triangle ( p2, p1, p3 ) );
 			else
 				mesh.merge ( Mesh::Triangle ( p1, p2, p3 ) );
@@ -186,9 +230,16 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			}
 		}
 		else {
-			TriangleSymbol ( p2, p1, p3, mid, loin ).Generate ( mesh, level - 1 );
+			TriangleSymbol ( p1, p2, p3, mid, loin ).Generate ( mesh, level - 1 );
 		}
 	}
+}
+
+bool TriangleSymbol::checkNormal ( Triangle t ) {
+	Vec3<float> p1 = t.getPoints ( )[0];
+	Vec3<float> p2 = t.getPoints ( )[1];
+	Vec3<float> p3 = t.getPoints ( )[2];
+	return Vec3<float>::crossProduct ( p2 - p1, p3 - p1 ).normalized ( ).z > .0f;
 }
 
 Quadrangle TriangleSymbol::randomQuadInCircle ( Circle c ) {
