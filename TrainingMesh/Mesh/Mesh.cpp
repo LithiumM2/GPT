@@ -313,6 +313,27 @@ Mesh Mesh::Circle(const Vec3<float>& o, const float & r, const unsigned int & si
 	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 }
 
+
+Mesh Mesh::Cylinder(const Vec3<float>& o, const double& r, const double& h,const unsigned int& side){
+	
+	Mesh CircleBase = Circle(o,r,side);
+	Mesh CircleTop = Circle(o+Vec3<float>(0,0,h),r,side);
+	
+	std::vector<Vec3<float>> newPointsBase = CircleBase.getPoints();
+	std::vector<Vec3<float>> newPointsTop = CircleTop.getPoints();
+
+	for (unsigned int i = 1; i < side; ++i){
+		Mesh FaceQuad = Quadrangle(newPointsTop[i], newPointsTop[i + 1], newPointsBase[i + 1], newPointsBase[i]);
+		CircleBase.merge(FaceQuad);
+	}
+
+	Mesh FaceQuad = Quadrangle(newPointsBase[1], newPointsBase[side], newPointsTop[side], newPointsTop[1]);
+	CircleBase.merge(FaceQuad);
+
+	CircleBase.merge(CircleTop);
+
+	return CircleBase;
+}
 /*
 * return : Mesh route
 * p0, p1, p2, p3 : sommet du quadrangle

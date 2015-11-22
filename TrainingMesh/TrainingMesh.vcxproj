@@ -68,6 +68,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Grammar\BatimentQuadra\EtageCircle.cpp" />
     <ClCompile Include="Geometry\Circle.cpp" />
     <ClCompile Include="Grammar\BatimentQuadra\Etage.cpp" />
     <ClCompile Include="Geometry\Geometry.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Grammar\BatimentQuadra\EtageCircle.h" />
     <ClInclude Include="Geometry\Circle.h" />
     <ClInclude Include="Grammar\BatimentQuadra\Etage.h" />
     <ClInclude Include="Constantes.h" />

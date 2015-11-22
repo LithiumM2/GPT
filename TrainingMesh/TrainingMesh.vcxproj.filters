@@ -19,6 +19,7 @@
     <ClCompile Include="Grammar\Map\PentagoneSymbol.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Geometry\Circle.cpp" />
+    <ClCompile Include="Grammar\BatimentQuadra\EtageCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
@@ -42,5 +43,6 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Geometry\Circle.h" />
     <ClInclude Include="Param.h" />
+    <ClInclude Include="Grammar\BatimentQuadra\EtageCircle.h" />
   </ItemGroup>
 </Project>
