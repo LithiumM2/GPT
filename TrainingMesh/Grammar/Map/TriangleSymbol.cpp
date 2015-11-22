@@ -192,11 +192,11 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 }
 
 Quadrangle TriangleSymbol::randomQuadInCircle ( Circle c ) {
-	float rng = static_cast < float > ( rand ( ) ) / static_cast < float > ( RAND_MAX ) * ( M_PI / 2.0f );
+	float rng = Utils::randf(0.f, Constantes::PI * 0.5f);
 	float angle1 = rng;
-	float angle2 = ( M_PI / 2.0f ) + rng;
-	float angle3 = ( M_PI ) + rng;
-	float angle4 = ( 3.0f * M_PI / 2.0f ) + rng;
+	float angle2 = ( Constantes::PI * 0.5f ) + rng;
+	float angle3 = ( Constantes::PI ) + rng;
+	float angle4 = (3.0f * Constantes::PI  * 0.5f) + rng;
 
 	Quadrangle q ( 
 		Vec3<float> ( c.center.x - std::cos ( angle1 ) * c.radius, c.center.y + std::sin ( angle1 ) * c.radius, c.center.z ),

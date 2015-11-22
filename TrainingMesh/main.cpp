@@ -12,9 +12,14 @@
 #include "Grammar\BatimentQuadra\RDC.h"
 
 #include "Utils.h"
+#include<chrono>
+#include <iostream>
+#include <fstream>
 int main(int argc, char ** argv)
 {
-
+	std::ofstream mesureFile("mesureFile.txt", std::ios::out | std::ios::trunc);
+	auto start = std::chrono::high_resolution_clock::now();
+	auto end = std::chrono::high_resolution_clock::now();
 //	Mesh m(Primitives::box(Vec3<float>(3.f, 3.f, 3.f)));
 /*	Mesh m(Primitives::cylinder(16.f, 5.f, 8));
 	//m.transform(Transform::rotateX(Constantes::PI * 0.5f));
@@ -56,12 +61,17 @@ int main(int argc, char ** argv)
 	//qs.Generate(m, 10);
 	//MeshWriter::exportObj(m, "testSymbole.obj");
 	
+	start = std::chrono::high_resolution_clock::now();
 	Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	QuadrangleSymbol qs = QuadrangleSymbol::genBorder(Vec3<float>(0.f), Vec3<float>(0.f, 500.f, 0.f), Vec3<float>(500.f, 500.f, 0.f), Vec3<float>(500.f, 0.f, 0.f), 10.f, 3.f, 1.f, m, Vec3<float>(250.f, 250.f, 0.f), Vec3<float>(500.f, 500.f, 0.f));
 
 	//m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	qs.Generate(m, 10);
 	MeshWriter::exportObj(m, "testSymbole.obj"); 
+
+	end = std::chrono::high_resolution_clock::now();
+	mesureFile << "Generation terrain + ecriture obj : " << std::chrono::duration<float, std::milli>(end - start).count() << " ms" << std::endl;
+	mesureFile.close();
 
 	//Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));
 	//QuadrangleSymbol qs(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f));

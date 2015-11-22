@@ -11,6 +11,6 @@ protected:
 	float h,dif;
 	int type;
 public:
-	RDC(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const float&);
+	RDC(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const int&);
 	void G(Mesh&) const;
 };

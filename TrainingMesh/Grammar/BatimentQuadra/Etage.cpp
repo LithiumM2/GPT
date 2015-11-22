@@ -44,9 +44,9 @@ void Etage::G(Mesh& m) const{
 					Vec3<float> p3modif = q.p2 - (Vec3<float>(q.p2 - q.p3).normalized() * (distance1 / 2)) + Vec3<float>(0.0, 0.0, _h);
 					Vec3<float> p4modif = q.p1 - (Vec3<float>(q.p1 - q.p4).normalized() * (distance2 / 2)) + Vec3<float>(0.0, 0.0, _h);
 
-					Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), p3modif,p4modif, h, pourcentage -2.5, 0, rotate, true,etages+1).G(m);
+					Etage(q.p1 + Vec3<float>(0.0f, 0.0f, _h), q.p2 + Vec3<float>(0.0f, 0.0f, _h), p3modif,p4modif, h, pourcentage -2.5f, 0, rotate, true,etages+1).G(m);
 					//Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate).G(m);
-					Etage(p4modif, p3modif, q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate, true, etages + 1).G(m);
+					Etage(p4modif, p3modif, q.p3 + Vec3<float>(0.0f, 0.0f, _h), q.p4 + Vec3<float>(0.0f, 0.0f, _h), h, pourcentage - 2.5f, 0, rotate, true, etages + 1).G(m);
 				}
 				else{
 
@@ -54,15 +54,15 @@ void Etage::G(Mesh& m) const{
 					Vec3<float> p2modif = q.p1 - (Vec3<float>(q.p1 - q.p2).normalized() * (distance1 / 2)) + Vec3<float>(0.0, 0.0, _h);
 					Vec3<float> p3modif = q.p4 - (Vec3<float>(q.p4 - q.p3).normalized() * (distance2 / 2)) + Vec3<float>(0.0, 0.0, _h);
 
-					Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), p2modif, p3modif, q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate, true, etages + 1).G(m);
+					Etage(q.p1 + Vec3<float>(0.0f, 0.0f, _h), p2modif, p3modif, q.p4 + Vec3<float>(0.0f, 0.0f, _h), h, pourcentage - 2.5f, 0, rotate, true, etages + 1).G(m);
 					//Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate).G(m);
-					Etage(p2modif, q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), p3modif, h, pourcentage - 2.5, 0, rotate, true, etages + 1).G(m);
+					Etage(p2modif, q.p2 + Vec3<float>(0.0f, 0.0f, _h), q.p3 + Vec3<float>(0.0f, 0.0f, _h), p3modif, h, pourcentage - 2.5f, 0, rotate, true, etages + 1).G(m);
 				}
 			}
 			else{
 
 				_h += h;
-				Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 0, rotate, duo, etages + 1).G(m);
+				Etage(q.p1 + Vec3<float>(0.0f, 0.0f, _h), q.p2 + Vec3<float>(0.0f, 0.0f, _h), q.p3 + Vec3<float>(0.0f, 0.0f, _h), q.p4 + Vec3<float>(0.0f, 0.0f, _h), h, pourcentage - 2.5f, 0, rotate, duo, etages + 1).G(m);
 			}
 		
 
@@ -102,11 +102,11 @@ void Etage::G(Mesh& m) const{
 		if (e < pourcentage)
 		{
 			_h += h;
-			Etage(q.p1 + Vec3<float>(0.0, 0.0, _h), q.p2 + Vec3<float>(0.0, 0.0, _h), q.p3 + Vec3<float>(0.0, 0.0, _h), q.p4 + Vec3<float>(0.0, 0.0, _h), h, pourcentage - 2.5, 1, _rotate, duo, etages + 1).G(m);
+			Etage(q.p1 + Vec3<float>(0.0f, 0.0f, _h), q.p2 + Vec3<float>(0.0f, 0.0f, _h), q.p3 + Vec3<float>(0.0f, 0.0f, _h), q.p4 + Vec3<float>(0.0f, 0.0f, _h), h, pourcentage - 2.5f, 1, _rotate, duo, etages + 1).G(m);
 		}
 		else
 		{
-			Toit(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, _rotate, etages).G(m);
+			Toit(q.p1 + Vec3<float>(0.0f, 0.0f, h), q.p2 + Vec3<float>(0.0f, 0.0f, h), q.p3 + Vec3<float>(0.0f, 0.0f, h), q.p4 + Vec3<float>(0.0f, 0.0f, h), h, _rotate, etages).G(m);
 
 		}
 	}
@@ -118,8 +118,8 @@ void Etage::addWindows(Mesh& m, const Vec3<float>& p1, const Vec3<float>& p2, co
 	float n = 0.1f; // écart entre deux fenêtres
 	float size = 0.5f; // largeur fenêtre
 
-	Quadrangle q(p1, p2, p2 + Vec3<float>(0.0, 0.0, h), p1 + Vec3<float>(0.0, 0.0, h));
-	q.shrinkByDist(distance(p2, p1) / 2.);
+	Quadrangle q(p1, p2, p2 + Vec3<float>(0.0f, 0.0f, h), p1 + Vec3<float>(0.0f, 0.0f, h));
+	q.shrinkByDist(distance(p2, p1) *0.5f);
 
 	int i = 0;
 	for (float s = q.p1.x; s < q.p2.x - size; s += size)

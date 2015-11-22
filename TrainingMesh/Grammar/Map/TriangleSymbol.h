@@ -6,8 +6,7 @@
 #include "..\Map\QuadrangleSymbol.h"
 #include "..\..\Geometry\Triangle.h"
 #include "..\..\Geometry\Circle.h"
-
-# define M_PI           3.14159265358979323846  /* pi */
+#include "..\..\Utils.h"
 
 class TriangleSymbol :
 	public Symbol {

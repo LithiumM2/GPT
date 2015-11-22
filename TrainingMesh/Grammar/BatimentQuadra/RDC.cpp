@@ -1,7 +1,7 @@
 #include "RDC.h"
 
 
-RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h,const float& _dif,const float& _type)
+RDC::RDC(const Vec3<float>& a, const Vec3<float>& b, const Vec3<float>& c, const Vec3<float>& d, const float& _h,const float& _dif,const int& _type)
 {
 	q = Quadrangle(a, b, c, d);
 	h = _h;

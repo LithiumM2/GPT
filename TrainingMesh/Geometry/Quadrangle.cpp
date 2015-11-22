@@ -196,7 +196,7 @@ void Quadrangle::sortPoint()
 
 bool Quadrangle::hasGoodNormal()
 {
-	return Vec3<float>::crossProduct(p4 - p1, p2 - p1).z > 0.f && Vec3<float>::crossProduct(p1 -p2, p3 - p2).z > 0.f;
+	return Vec3<float>::crossProduct(p4 - p1, p2 - p1).z > 0.f && Vec3<float>::crossProduct(p1 - p2, p3 - p2).z > 0.f  && Vec3<float>::crossProduct(p2 - p3, p4 - p3).z > 0.f && Vec3<float>::crossProduct(p3 - p4, p1 - p4).z > 0.f;
 }
 Quadrangle::~Quadrangle()
 {
