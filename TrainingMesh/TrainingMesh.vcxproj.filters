@@ -41,5 +41,6 @@
     <ClInclude Include="Grammar\Map\PentagoneSymbol.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Geometry\Circle.h" />
+    <ClInclude Include="Param.h" />
   </ItemGroup>
 </Project>

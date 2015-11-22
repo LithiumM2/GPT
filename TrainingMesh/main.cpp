@@ -67,10 +67,16 @@ int main(int argc, char ** argv)
 
 	//m.merge(Mesh::RouteL(Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f), Vec3<float>(110.f, 0.f, 0.f), Vec3<float>(10.f, 150.f, 0.f), 1.f, 1.f));
 	qs.Generate(m, 10);
-	MeshWriter::exportObj(m, "testSymbole.obj"); 
-
 	end = std::chrono::high_resolution_clock::now();
-	mesureFile << "Generation terrain + ecriture obj : " << std::chrono::duration<float, std::milli>(end - start).count() << " ms" << std::endl;
+	mesureFile << "Generation terrain : " << std::chrono::duration<float, std::milli>(end - start).count() << " ms" << std::endl;
+	start = std::chrono::high_resolution_clock::now();
+	MeshWriter::exportObj(m, "testSymbole.obj"); 
+	end = std::chrono::high_resolution_clock::now();
+	mesureFile << "ecriture obj : " << std::chrono::duration<float, std::milli>(end - start).count() << " ms" << std::endl;
+	
+	
+	
+	
 	mesureFile.close();
 
 	//Mesh m;//(Mesh::Quadrangle(Vec3<float>(0.f), Vec3<float>(0.f, 150.f, 0.f), Vec3<float>(100.f, 100.f, 0.f), Vec3<float>(100.f, 0.f, 0.f)));

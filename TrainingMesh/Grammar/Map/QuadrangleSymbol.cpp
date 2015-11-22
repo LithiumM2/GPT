@@ -12,7 +12,7 @@ QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
-
+	int random = rand() % 2;
 	if (q.area() <  1000.f)
 	{
 		
@@ -29,7 +29,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 3.f, 1.f));
 		m.merge(m1);
 		int e = rand() % 100;
-		if (e<90)
+		if (e<70)
 		{
 			Vec3<float> minQuad = q.getMinPoint();
 			Vec3<float> maxQuad = q.getMaxPoint();
@@ -62,8 +62,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
 		//	m.merge(m1);
 		}
+		
 	}
-	else if (rand() % 3 < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
+	
+	else if (random < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
 	{
 
 		q.shrinkByDist(990.f);
@@ -76,6 +78,12 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		//QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1); // centre du quad
 		
 
+	}
+	else if (random < 2)
+	{
+		TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, compteur - 1);
+
+		TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, compteur - 1);
 	}
 	else
 	{
