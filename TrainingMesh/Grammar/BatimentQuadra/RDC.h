@@ -13,4 +13,5 @@ protected:
 public:
 	RDC(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const int&);
 	void G(Mesh&) const;
+	static void addDoor(Mesh&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
 };

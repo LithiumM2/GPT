@@ -281,54 +281,6 @@ Mesh Mesh::Box(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& 
 
 }
 
-/* Creation d'un mesh de prisme (Window)
-* return : Mesh box
-* p0, p1, p2, p3 : base de la box
-* h : hauteur de la box
-*/
-Mesh Mesh::Window(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const Vec3<float>& h){
-
-	const unsigned int sizePoints = 8;
-	const unsigned int sizeFaces = 12; //12 Triangles
-
-	Vec3<float> Points[sizePoints] = { p1 + h,
-		p2 + h,
-		p3 + h,
-		p4 + h,
-		p1,
-		p2,
-		p3,
-		p4
-
-	};
-
-	std::vector<Vec3<float>> points(Points, Points + sizePoints);
-
-	Vec3<unsigned int> Faces[12] = { Vec3<unsigned int>(1, 5, 4),
-		Vec3<unsigned int>(5, 8, 4),
-
-		Vec3<unsigned int>(2, 1, 3),
-		Vec3<unsigned int>(1, 4, 3),
-
-		Vec3<unsigned int>(2, 6, 1),
-		Vec3<unsigned int>(6, 5, 1),
-
-		Vec3<unsigned int>(4, 8, 3),
-		Vec3<unsigned int>(8, 7, 3),
-
-		Vec3<unsigned int>(3, 7, 2),
-		Vec3<unsigned int>(7, 6, 2),
-
-		Vec3<unsigned int>(5, 6, 8),
-		Vec3<unsigned int>(6, 7, 8)
-	};
-
-	std::vector<Vec3<unsigned int>> faces(Faces, Faces + sizeFaces);
-
-	return  Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
-
-}
-
 /*
 * return : Mesh cercle
 * o : origine du cercle
