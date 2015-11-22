@@ -68,23 +68,32 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 	else if (random < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
 	{
 
-		q.shrinkByDist(990.f);
-		m.merge(Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4));
-		q.shrinkByDist(10.f);
+		q.shrinkByDist(1000.f);
+	
 		QuadrangleSymbol(p0, p1, q.p2, q.p1, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p2, p3, q.p4, q.p3, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p1, p2, q.p3, q.p2, mid, loin).Generate(m, compteur - 1);
 		QuadrangleSymbol(p3, p0, q.p1, q.p4, mid, loin).Generate(m, compteur - 1);
+		//m.merge(Mesh::Route(q.p1, q.p2, q.p3, q.p4));
+		Quadrangle q2 = q;
+		q2.shrinkByDist(10.f);
+		//Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
+		m.merge(Mesh::RouteL(q.p1, q.p2, q2.p2, q2.p1, 3.f, 1.F));
+		m.merge(Mesh::RouteL(q.p3, q.p4, q2.p4, q2.p3, 3.f, 1.f));
+		m.merge(Mesh::RouteL(q.p4, q.p1, q2.p1, q2.p4, 3.f, 1.f));
+		m.merge(Mesh::RouteL(q.p2, q.p3, q2.p3, q2.p2, 3.f, 1.f));
+		m.merge(Mesh::Quadrangle(q2.p1, q2.p2, q2.p3, q2.p4));
+		//q.shrinkByDist(10.f);
 		//QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1); // centre du quad
 		
 
 	}
-	else if (random < 2)
-	{
-		TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, compteur - 1);
+	//else if (random < 2)
+	//{
+	//	TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, compteur - 1);
 
-		TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, compteur - 1);
-	}
+	//	TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, compteur - 1);
+	//}
 	else
 	{
 		float AB = distance(p0, p1);
