@@ -32,23 +32,41 @@ void RDC::G(Mesh& m) const
 void RDC::addDoor(Mesh& m, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const float& h)
 {
 	int selected_side = rand() % 4;
-	float s = 1.f; // Shrink hauteur
+	float s = 0.4f; // Shrink hauteur
+	Vec3<float> p1_door, p2_door;
 
-	switch (selected_side)
+	if (selected_side == 0)
 	{
-	case 0:
-		Etage::addWindowsSide(m, p1, p2, h * 0.6f, s, -1, -1.f);
-		break;
-	case 1:
-		Etage::addWindowsSide(m, p2, p3, h * 0.6f, s, -1, -1.f);
-		break;
-	case 2:
-		Etage::addWindowsSide(m, p3, p4, h * 0.6f, s, -1, -1.f);
-		break;
-	case 3:
-		Etage::addWindowsSide(m, p4, p1, h * 0.6f, s, -1, -1.f);
-		break;
-	default:
-		break;
+		p1_door = p1;
+		p2_door = p2;
+		Etage::addWindowsSide(m, p2, p3, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p3, p4, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p4, p1, h, s, 0, -1.f);
 	}
+	else if (selected_side == 1)
+	{
+		p1_door = p2;
+		p2_door = p3;
+		Etage::addWindowsSide(m, p1, p2, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p3, p4, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p4, p1, h, s, 0, -1.f);
+	}
+	else if (selected_side == 2)
+	{
+		p1_door = p3;
+		p2_door = p4;
+		Etage::addWindowsSide(m, p1, p2, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p2, p3, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p4, p1, h, s, 0, -1.f);
+	}
+	else
+	{
+		p1_door = p4;
+		p2_door = p1;
+		Etage::addWindowsSide(m, p1, p2, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p2, p3, h, s, 0, -1.f);
+		Etage::addWindowsSide(m, p3, p4, h, s, 0, -1.f);
+	}
+
+	Etage::addWindowsSide(m, p1_door, p2_door, h * 0.6f, 1.f, -1, -1.f);
 }

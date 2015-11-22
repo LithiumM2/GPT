@@ -162,7 +162,7 @@ void Etage::addWindowsSide(Mesh& m, const Vec3<float>& p1, const Vec3<float>& p2
 	if (etage > 1)
 		n = 0.5f;
 	else
-		n = 1.5f;
+		n = 3.f;
 
 	if (etage == 0 || etage == 1)
 	{

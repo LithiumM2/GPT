@@ -15,6 +15,6 @@ protected:
 public:
 	Etage(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const int&, const float&, const bool&, const int&, const float&);
 	void G(Mesh&) const;
-	static void addWindows(Mesh&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&, const int&, const float&);
-	static void addWindowsSide(Mesh&, const Vec3<float>&, const Vec3<float>&, const float&, const float&, const int&, const float&);
+	static void addWindows(Mesh& m, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const float& h, const int& etage, const float& win_size);
+	static void addWindowsSide(Mesh& m, const Vec3<float>& p1, const Vec3<float>& p2, const float& hauteur, const float& shrink, const int& etage, const float& win_size);
 };
