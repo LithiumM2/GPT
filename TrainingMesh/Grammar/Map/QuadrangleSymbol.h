@@ -1,6 +1,7 @@
 #pragma once
 #include "..\Symbol.h"
 #include "..\..\Utils.h"
+#include "TriangleSymbol.h"
 #include "../BatimentQuadra/RDC.h"
 #include <list>
 
