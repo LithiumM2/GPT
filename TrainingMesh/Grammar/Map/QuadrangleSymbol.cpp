@@ -165,7 +165,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 //				Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f));
 //			tmp.sortPoint();
 //			const float angleDiag = std::acos(Vec3<float>::dotProduct(Vec3<float>(p2 - p0).normalized(), Vec3<float>(p3 - p1).normalized()));
-//			if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal() && std::abs(angleDiag - (Constantes::PI 0.5f)) <= Constantes::PI  0.2f && distance(p2, p0) - distance(p3, p1) < 10.f)
+//			if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal() && std::abs(angleDiag - (Constantes::PI * 0.5f)) <= Constantes::PI * 0.2f && distance(p2, p0) - distance(p3, p1) < 10.f)
 //			{
 //				for (Quadrangle quad : rdcs)
 //				{

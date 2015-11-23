@@ -286,38 +286,70 @@ Mesh Mesh::Box(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& 
 * o : origine du cercle
 * r : rayon du cercle
 * side : nombre de cote discretises du cercle
+* direction : pour connaitre le sens du cercle
 */
 
-Mesh Mesh::Circle(const Vec3<float>& o, const float & r, const unsigned int & side)
+Mesh Mesh::Circle(const Vec3<float>& o, const float & r, const unsigned int & side, const bool& direction)
 {
-	const float dsize = 2.f * Constantes::PI / (float)side;
-	unsigned int facesSize = side;
-	std::vector<Vec3<float>> points;
-	std::vector<Vec3<unsigned int>> faces;
-	points.resize(side + 1);
-	faces.resize(facesSize);
-	points[0] = o;
+	if (direction == true){
+		const float dsize = 2.f * Constantes::PI / (float)side;
+		unsigned int facesSize = side;
+		std::vector<Vec3<float>> points;
+		std::vector<Vec3<unsigned int>> faces;
+		points.resize(side + 1);
+		faces.resize(facesSize);
+		points[0] = o;
 
-	for (unsigned int i = 1; i <= side; ++i)
-	{
-		const float angle = (float)i * dsize;
-		points[i] = Vec3<float>(o.x + r * cos(angle), o.y + r * sin(angle), o.z);
+		for (unsigned int i = 1; i <= side; ++i)
+		{
+			const float angle = (float)i * dsize;
+			points[i] = Vec3<float>(o.x + r * cos(angle), o.y + r * sin(angle), o.z);
 
+		}
+		for (unsigned int i = 1; i < facesSize; ++i)
+		{
+			const unsigned int tmpi = i;// << 1;
+			faces[i - 1] = Vec3<unsigned int>(1, tmpi + 1, tmpi + 2);
+		}
+		faces[facesSize - 1] = Vec3<unsigned int>(1, facesSize + 1, 2);
+		return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 	}
-	for (unsigned int i = 1; i < facesSize; ++i)
-	{
-		const unsigned int tmpi = i;// << 1;
-		faces[i - 1] = Vec3<unsigned int>(1, tmpi + 1, tmpi + 2);
+	else{
+		const float dsize = 2.f * Constantes::PI / (float)side;
+		unsigned int facesSize = side;
+		std::vector<Vec3<float>> points;
+		std::vector<Vec3<unsigned int>> faces;
+		points.resize(side + 1);
+		faces.resize(facesSize);
+		points[0] = o;
+
+		for (unsigned int i = 1; i <= side; ++i)
+		{
+			const float angle = (float)i * dsize;
+			points[i] = Vec3<float>(o.x + r * cos(angle), o.y + r * sin(angle), o.z);
+
+		}
+		for (unsigned int i = 1; i < facesSize; ++i)
+		{
+			const unsigned int tmpi = i;// << 1;
+			faces[i - 1] = Vec3<unsigned int>(1, tmpi + 2,tmpi + 1);
+		}
+		faces[facesSize - 1] = Vec3<unsigned int>(1, 2, facesSize + 1);
+		return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 	}
-	faces[facesSize - 1] = Vec3<unsigned int>(1, facesSize + 1, 2);
-	return Mesh(points, faces, std::vector<Vec3<unsigned int>>(), std::vector<Vec3<unsigned int>>(), std::vector<Vec3<float>>(), std::vector<Vec3<float>>());
 }
 
-
+/*
+* return : Mesh Cylinder
+* o : origine du cylindre
+* r : rayon du de la base du cylindre
+* h : hauteur du cylindre
+* side : nombre de cote discretises du cercle
+*/
 Mesh Mesh::Cylinder(const Vec3<float>& o, const double& r, const double& h,const unsigned int& side){
 	
-	Mesh CircleBase = Circle(o,r,side);
-	Mesh CircleTop = Circle(o+Vec3<float>(0,0,h),r,side);
+	Mesh CircleBase = Circle(o,r,side,false);
+	Mesh CircleTop = Circle(o+Vec3<float>(0,0,h),r,side,true);
 	
 	std::vector<Vec3<float>> newPointsBase = CircleBase.getPoints();
 	std::vector<Vec3<float>> newPointsTop = CircleTop.getPoints();
@@ -334,6 +366,68 @@ Mesh Mesh::Cylinder(const Vec3<float>& o, const double& r, const double& h,const
 
 	return CircleBase;
 }
+
+/*
+* return : Mesh cone
+* o : origine du cone
+* r : rayon de la base du cone
+* h : hauteur du cone
+* side : nombre de cote discretises du cercle
+*/
+Mesh Mesh::Cone(const Vec3<float>& o, const double& r, const double& h, const unsigned int& side){
+
+	Mesh CircleBase = Circle(o, r, side,false);
+	Vec3<float> pic = o + Vec3<float>(0, 0, h);
+
+	std::vector<Vec3<float>> newPointsBase = CircleBase.getPoints();
+
+	for (unsigned int i = 1; i < side; ++i){
+		Mesh FaceTri = Triangle(newPointsBase[i + 1], newPointsBase[i], pic);
+		CircleBase.merge(FaceTri);
+	}
+
+	Mesh FaceTri = Triangle(newPointsBase[1], newPointsBase[side - 1], pic);
+	CircleBase.merge(FaceTri);
+
+
+	return CircleBase;
+}
+
+
+/*
+* return : Mesh Sphere
+* o : origine de la sphere
+* r : rayon de la sphere
+*/
+Mesh Mesh::Sphere(const Vec3<float>& o, const double& r , const int& nbmeridiens , const int& nbparalleles){
+
+	Mesh sphere;
+
+	float anglemeridiens = (2 * Constantes::PI) / nbmeridiens;
+	float angleparalleles = Constantes::PI / nbparalleles;
+
+	for (float i = 0; i<nbmeridiens; i++){
+		for (float j = 0; j<nbparalleles; j++){
+
+			Vec3<float> p0 = Vec3<float>(r*sin(angleparalleles*j)*cos(anglemeridiens*i), r*sin(angleparalleles*j)*sin(anglemeridiens*i), r*cos(angleparalleles*j));
+			Vec3<float> p1 = Vec3<float>(r*sin(angleparalleles*j)*cos(anglemeridiens*(i + 1)), r*sin(angleparalleles*j)*sin(anglemeridiens*(i + 1)), r*cos(angleparalleles*j));
+			Vec3<float> p2 = Vec3<float>(r*sin(angleparalleles*(j + 1))*cos(anglemeridiens*i), r*sin(angleparalleles*(j + 1))*sin(anglemeridiens*i), r*cos(angleparalleles*(j + 1)));
+
+			Mesh FaceTriangle = Triangle(p0, p1,p2);
+			sphere.merge(FaceTriangle);
+
+			p0 = Vec3<float>(r*sin(angleparalleles*(j + 1))*cos(anglemeridiens*(i + 1)), r*sin(angleparalleles*(j + 1))*sin(anglemeridiens*(i + 1)), r*cos(angleparalleles*(j + 1)));
+
+			FaceTriangle = Triangle(p2, p1, p0);
+			sphere.merge(FaceTriangle);
+
+		}
+	}
+	return sphere;
+	
+}
+
+
 /*
 * return : Mesh route
 * p0, p1, p2, p3 : sommet du quadrangle
