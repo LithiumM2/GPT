@@ -21,9 +21,9 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			t.shrinkByDist ( 10.f );
 			
 			Mesh m = Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] );
-			m.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[0], t.getPoints ( )[1], 3.f, 1.f ) );
 			m.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
-			m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
+			m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[1], t.getPoints ( )[2], 3.f, 1.f ) );
 			mesh.merge ( m );
 		}
 		else {
@@ -41,7 +41,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 	else {
 		int random = rand ( ) % 100;
 
-		random = 40;
+		//random = 40;
 		if ( random < 35 && Triangle ( p1, p2, p3 ).area ( ) > 2500.f ) {
 			// Divise le triangle en 2 triangles
 			float rand;
@@ -153,10 +153,26 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			// Génére des batiments dans le cercle inscri de 1, 2, ou 3 triangles
 			int rng = rand ( ) % 3;
 
-			if ( checkNormal ( Triangle ( p1, p2, p3 ) ) )
+			if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
 				mesh.merge ( Mesh::Triangle ( p2, p1, p3 ) );
-			else
+				
+				Triangle t ( p2, p1, p3 );
+				t.shrinkByDist ( 10.f );
+
+				mesh.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[0], t.getPoints ( )[1], 3.f, 1.f ) );
+				mesh.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
+				mesh.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[1], t.getPoints ( )[2], 3.f, 1.f ) );
+			}
+			else { 
 				mesh.merge ( Mesh::Triangle ( p1, p2, p3 ) );
+
+				Triangle t ( p2, p1, p3 );
+				t.shrinkByDist ( 1.f );
+
+				mesh.merge ( Mesh::RouteL ( p1, p2, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
+				mesh.merge ( Mesh::RouteL ( p2, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
+				mesh.merge ( Mesh::RouteL ( p3, p1, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
+			}
 
 			float dif = 100 - ( ( distance ( mid, p2 ) / distance ( mid, loin ) ) * 100 );
 
