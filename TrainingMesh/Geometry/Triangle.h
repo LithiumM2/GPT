@@ -22,6 +22,9 @@ public:
 	void shrinkByDist ( float distance );
 	void shrinkByDistForQuad ( float distance_ );
 
+	Vec3<float> getMaxPoint ( );
+	Vec3<float> getMinPoint ( );
+
 	bool isIn(Vec3<float>);
 	Vec3<float>* getPoints ( ) { return Points; }
 };

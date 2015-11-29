@@ -20,6 +20,7 @@ float Triangle::area() const{
 	return sqrtf(s*(s-a)*(s-b)*(s-c));
 }
 
+
 float Triangle::perimeter() const{
 	float a = distance(Points[1],Points[2]);
 	float b = distance(Points[0],Points[1]);
@@ -27,6 +28,7 @@ float Triangle::perimeter() const{
 
 	return a+b+c;
 }
+
 	
 void Triangle::shrink(float t){
 
@@ -42,6 +44,7 @@ void Triangle::shrink(float t){
 	Points[i] = matrice*Points[i];
 	
 }
+
 
 void Triangle::shrinkByDist ( float distance_ ) {
 	Vec3<float> Q; // Centre du cercle inscris
@@ -73,6 +76,7 @@ void Triangle::shrinkByDist ( float distance_ ) {
 	Points[1] = B + ( k - 1 ) * ( Q - B );
 	Points[2] = C + ( k - 1 ) * ( Q - C );
 }
+
 
 void Triangle::shrinkByDistForQuad ( float distance_ ) {
 	Vec3<float> Q; // Centre du cercle inscris
@@ -123,6 +127,16 @@ bool Triangle::isIn(Vec3<float> p)
 
 	// Check if point is in triangle
 	return (u >= 0) && (v >= 0) && (u + v < 1);
+}
+
+
+Vec3<float> Triangle::getMinPoint ( ) {
+	return Points[0].min ( Points[1] ).min ( Points[2] );
+}
+
+
+Vec3<float> Triangle::getMaxPoint ( ) {
+	return Points[0].max ( Points[1] ).max ( Points[2] );
 }
 
 

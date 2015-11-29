@@ -111,7 +111,7 @@ Vec3<float> Quadrangle::getMaxPoint()
 }
 
 
-Quadrangle Quadrangle::GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width)
+Quadrangle Quadrangle::GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width, float height)
 {
 	if (Vec3<float>::dotProduct(p1, p1) > Vec3<float>::dotProduct(p0, p0))
 	{
@@ -119,14 +119,12 @@ Quadrangle Quadrangle::GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float w
 		p0 = p1;
 		p1 = p0;
 	}
-	if (p1.x > p0.x)
-	{
-		p0.x = (p1.x - p0.x) * 2;
-	}
 	//Vec3<float> min = p0.min(p1);
 	//Vec3<float> max = p0.max(p1);
 	//return Quadrangle(p0, Vec3<float>(min.x, max.y, 0.f), p1, Vec3<float>(max.x, min.y, 0.f));//, p1 + dirP4 * width, p0 + dirP4 * width);
 	Vec3<float> p0p1 = p1 - p0;
+	p1 = p0 + p0p1.normalized() * height;
+	p0p1 = p1 - p0;
 	/*Vec3<float> tmp2 = tmp;*/
 	Vec3<float> tmp3 = Vec3<float>(p0p1.y,  -p0p1.x, 0.f).normalized() * width;
 	return Quadrangle(p0, p1, tmp3 + p0p1 + p0, tmp3 + p0);

@@ -65,7 +65,7 @@ public:
 	bool hasGoodNormal();
 	/* Genere un Quad rectangle a partir des points de sa diagonale
 	*/
-	static Quadrangle GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width);
+	static Quadrangle GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width, float height);
 	~Quadrangle ( );
 };
 
