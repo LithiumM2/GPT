@@ -7,6 +7,8 @@
 
 class QuadrangleSymbol :
 	public Symbol {
+private :
+	void addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> maxQuad, Mesh & m, std::list<Quadrangle> rdcs, int nbTryTree) const;
 public:
 	Vec3<float> p0, p1, p2, p3,mid ,loin;
 	QuadrangleSymbol(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&);

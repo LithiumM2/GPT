@@ -97,5 +97,6 @@ public:
 	static Mesh Toit(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
 	static Mesh ToitPyramide(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
 	static Mesh Arbre(const Vec3<float>&, const float&);
+	static Mesh Sapin(const Vec3<float>&, const float&);
 	~Mesh();
 };

@@ -9,8 +9,49 @@ QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1
 
 }
 
+void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> maxQuad, Mesh & m, std::list<Quadrangle> rdcs, int nbTryTree) const
+{
+	std::list<Circle> trees;
+	std::list<Quadrangle> qtrees;
+	for (int i = 0; i < nbTryTree; ++i)
+	{
+		bool addTree = true;
+		Vec3<float> center(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f);
+		float rayon = std::abs(Utils::randf(std::min(minQuad.x, minQuad.y), std::min(maxQuad.x, maxQuad.y))) * 0.2f;
+		Circle circle(center, rayon);
+		Quadrangle tmp(TriangleSymbol::randomQuadInCircle(circle));
+		/*Quadrangle tmp(Vec3<float>(center.x - rayon, center.y - rayon, 0.f),
+			Vec3<float>(center.x - rayon, center.y + rayon, 0.f),
+			Vec3<float>(center.x + rayon, center.y + rayon, 0.f),
+			Vec3<float>(center.x + rayon, center.y - rayon, 0.f));*/
+		if (q.isIn(tmp))
+		{
+			for (Quadrangle quad : rdcs)
+			{
+				if (quad.overlap(tmp))
+				{
+					addTree = false; break;
+				}
+			}
+			if (addTree)
+			{
+				for (Quadrangle quad : qtrees)
+				{
+					if (quad.overlap(tmp))
+					{
+						addTree = false; break;
+					}
+				}
+			}
+			if (addTree) qtrees.push_back(tmp); trees.push_back(circle);
+		}
+	}
+	for (Circle tree : trees)
+		m.merge(Mesh::Sapin(tree.center, tree.radius));
+}
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
+	const int nbTry = 1, nbTryTree = 100;
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
 	int random = rand() % 2;
 	if (q.area() <  1000.f)
@@ -34,8 +75,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			Vec3<float> minQuad = q.getMinPoint();
 			Vec3<float> maxQuad = q.getMaxPoint();
 			std::list<Quadrangle> rdcs;
-			const float nbTry = 20000,
-				maxArea = q.area() * 0.2f;
+			const float maxArea = q.area() * 0.2f;
 			for (int i = 0; i < nbTry; ++i)
 			{
 				bool addRdc = true;
@@ -64,11 +104,15 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 					RDC(quad.p1, quad.p2, quad.p3, quad.p4, 5.f, dif, 0).G(m);
 				else
 					RDC(quad.p1, quad.p2, quad.p3, quad.p4, 5.f, dif, 1).G(m);
+				
 			}
+			addTrees(q, minQuad, maxQuad, m, rdcs, nbTryTree );
 			//q.sortPoint();
 			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
 		//	m.merge(m1);
 		}
+		else
+			addTrees(q, q.getMinPoint(), q.getMaxPoint(), m, std::list<Quadrangle>(), nbTryTree);
 		
 	}
 	
@@ -90,17 +134,19 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		m.merge(Mesh::RouteL(q.p4, q.p1, q2.p1, q2.p4, 3.f, 1.f));
 		m.merge(Mesh::RouteL(q.p2, q.p3, q2.p3, q2.p2, 3.f, 1.f));
 		m.merge(Mesh::Quadrangle(q2.p1, q2.p2, q2.p3, q2.p4));
+
+		addTrees(q2, q2.getMinPoint(), q2.getMaxPoint(), m, std::list<Quadrangle>(), nbTryTree);
 		//q.shrinkByDist(10.f);
 		//QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1); // centre du quad
 		
 
 	}
-	else if (random < 2)
-	{
-		TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
+	//else if (random < 2)
+	//{
+	//	TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
 
-		TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
-	}
+	//	TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
+	//}
 	else
 	{
 		float AB = distance(p0, p1);
@@ -129,125 +175,6 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			QuadrangleSymbol(p1, center1, center2, p0, mid,loin).Generate(m, compteur - 1);
 		}
 	}
-
-	//Pour avoir des immeubles carrés
-//void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
-//{
-// Quadrangle q = Quadrangle(p0, p1, p2, p3);
-// int random = rand() % 2;
-// if (q.area() <  1000.f)
-// {
-//  
-//  q.shrinkByDist(10.f);
-//
-//  //*******************Test Centre Ville***************/
-//	float dif = 100 - ((distance(mid, p0) / distance(mid, loin)) * 100);
-//	/************************************************/
-//
-//	Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
-//	m.merge(Mesh::RouteL(p0, p1, q.p2, q.p1, 3.f, 1.F));
-//	m.merge(Mesh::RouteL(p2, p3, q.p4, q.p3, 3.f, 1.f));
-//	m.merge(Mesh::RouteL(p3, p0, q.p1, q.p4, 3.f, 1.f));
-//	m.merge(Mesh::RouteL(p1, p2, q.p3, q.p2, 3.f, 1.f));
-//	m.merge(m1);
-//	int e = rand() % 100;
-//	if (e<70)
-//	{
-//		Vec3<float> minQuad = q.getMinPoint();
-//		Vec3<float> maxQuad = q.getMaxPoint();
-//		std::list<Quadrangle> rdcs;
-//		const float nbTry = 10000,
-//			maxArea = q.area() * 0.2f;
-//		for (int i = 0; i < nbTry; ++i)
-//		{
-//			bool addRdc = true;
-//			Quadrangle tmp(Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-//				Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-//				Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-//				Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f));
-//			tmp.sortPoint();
-//			const float angleDiag = std::acos(Vec3<float>::dotProduct(Vec3<float>(p2 - p0).normalized(), Vec3<float>(p3 - p1).normalized()));
-//			if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal() && std::abs(angleDiag - (Constantes::PI * 0.5f)) <= Constantes::PI * 0.2f && distance(p2, p0) - distance(p3, p1) < 10.f)
-//			{
-//				for (Quadrangle quad : rdcs)
-//				{
-//					if (quad.overlap(tmp))
-//					{
-//						addRdc = false; break;
-//					}
-//				}
-//				if (addRdc) rdcs.push_back(tmp);
-//			}
-//		}
-//		for (Quadrangle quad : rdcs)
-//			RDC(quad.p1, quad.p2, quad.p3, quad.p4, 3.f, dif, 0).G(m);
-//		//q.sortPoint();
-//		//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
-//		// m.merge(m1);
-//	}
-//
-// }
-//
-// else if (random < 1 && q.area() > 5000.f &&  q.area() < 10000.f) // Decoupe en "quartier basique"
-// {
-//
-//	 q.shrinkByDist(1000.f);
-//
-//	 QuadrangleSymbol(p0, p1, q.p2, q.p1, mid, loin).Generate(m, compteur - 1);
-//	 QuadrangleSymbol(p2, p3, q.p4, q.p3, mid, loin).Generate(m, compteur - 1);
-//	 QuadrangleSymbol(p1, p2, q.p3, q.p2, mid, loin).Generate(m, compteur - 1);
-//	 QuadrangleSymbol(p3, p0, q.p1, q.p4, mid, loin).Generate(m, compteur - 1);
-//	 //m.merge(Mesh::Route(q.p1, q.p2, q.p3, q.p4));
-//	 Quadrangle q2 = q;
-//	 q2.shrinkByDist(10.f);
-//	 //Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
-//	 m.merge(Mesh::RouteL(q.p1, q.p2, q2.p2, q2.p1, 3.f, 1.F));
-//	 m.merge(Mesh::RouteL(q.p3, q.p4, q2.p4, q2.p3, 3.f, 1.f));
-//	 m.merge(Mesh::RouteL(q.p4, q.p1, q2.p1, q2.p4, 3.f, 1.f));
-//	 m.merge(Mesh::RouteL(q.p2, q.p3, q2.p3, q2.p2, 3.f, 1.f));
-//	 m.merge(Mesh::Quadrangle(q2.p1, q2.p2, q2.p3, q2.p4));
-//	 //q.shrinkByDist(10.f);
-//	 //QuadrangleSymbol(q.p1, q.p2, q.p3, q.p4, mid, loin).Generate(m, compteur - 1); // centre du quad
-//
-//
-// }
-// //else if (random < 2)
-// //{
-// // TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
-//
-// // TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
-// //}
-// else
-// {
-//	 float AB = distance(p0, p1);
-//	 float BC = distance(p1, p2);
-//	 float CD = distance(p2, p3);
-//	 float DA = distance(p3, p0);
-//	 float fact = 0.5f;
-//	 float shiftCenter1 = (float)((rand() % 2) - 1) * 0.1f;
-//	 float shiftCenter2 = (float)((rand() % 2) - 1) * 0.1F;
-//	 if ((AB >= BC && AB >= DA) || (CD >= BC && CD >= DA))
-//	 {
-//		 Vec3<float> center1 = (p0 + p1) * fact;
-//		 Vec3<float> center2 = (p2 + p3) * fact;
-//		 center1 = ((p1 - p0) * shiftCenter1) + center1;
-//		 center2 = ((p3 - p2) * shiftCenter2) + center2;
-//		 QuadrangleSymbol(center1, p1, p2, center2, mid, loin).Generate(m, compteur - 1);
-//		 QuadrangleSymbol(p0, center1, center2, p3, mid, loin).Generate(m, compteur - 1);
-//	 }
-//	 else
-//	 {
-//		 Vec3<float> center1 = (p1 + p2) * fact;
-//		 Vec3<float> center2 = (p3 + p0) * fact;
-//		 center1 = ((p2 - p1) * shiftCenter1) + center1;
-//		 center2 = ((p3 - p0) * shiftCenter2) + center2;
-//		 QuadrangleSymbol(center1, p2, p3, center2, mid, loin).Generate(m, compteur - 1);
-//		 QuadrangleSymbol(p1, center1, center2, p0, mid, loin).Generate(m, compteur - 1);
-//	 }
-// }
-//}
-
-
 }
 
 /* Genere un quadrangle symbole et un mesh avec une bordure de route
