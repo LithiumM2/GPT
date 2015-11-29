@@ -43,8 +43,10 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
 					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
 					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f));
+
 				tmp.sortPoint();
-				if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal())
+				const float angleDiag = std::acos(Vec3<float>::dotProduct(Vec3<float>(p2 - p0).normalized(), Vec3<float>(p3 - p1).normalized()));
+				if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal() && std::abs(angleDiag - (Constantes::PI * 0.5f)) <= Constantes::PI * 0.2f && distance(p2, p0) - distance(p3, p1) < 10.f)
 				{
 					for (Quadrangle quad : rdcs)
 					{
@@ -55,9 +57,9 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 					}
 					if (addRdc) rdcs.push_back(tmp);
 				}
-			} 
+			}
 			for (Quadrangle quad : rdcs)
-				RDC(quad.p1, quad.p2, quad.p3, quad.p4, 3.f,dif,0).G(m);
+				RDC(quad.p1, quad.p2, quad.p3, quad.p4, 3.f, dif, 0).G(m);
 			//q.sortPoint();
 			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
 		//	m.merge(m1);
@@ -88,12 +90,12 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		
 
 	}
-	//else if (random < 2)
-	//{
-	//	TriangleSymbol(p0, p1, p2, mid, loin).Generate(m, compteur - 1);
+	else if (random < 2)
+	{
+		TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
 
-	//	TriangleSymbol(p0, p3, p2, mid, loin).Generate(m, compteur - 1);
-	//}
+		TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
+	}
 	else
 	{
 		float AB = distance(p0, p1);

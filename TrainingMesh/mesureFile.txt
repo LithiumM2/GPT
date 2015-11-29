@@ -1,2 +1,2 @@
-Generation terrain : 2432.14 ms
-ecriture obj : 2972.17 ms
+Generation terrain : 64.0037 ms
+ecriture obj : 744.043 ms
