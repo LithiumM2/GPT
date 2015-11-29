@@ -119,18 +119,14 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 
 
 			if ( checkNormal ( Triangle ( t1[0], t1[1], t1[2] ) ) )
-				TriangleSymbol ( t1[1], t1[0], t1[2], mid, loin
-				).Generate ( mesh, level - 1 );
+				TriangleSymbol ( t1[1], t1[0], t1[2], mid, loin	).Generate ( mesh, level - 1 );
 			else
-				TriangleSymbol ( t1[0], t1[1], t1[2], mid, loin
-				).Generate ( mesh, level - 1 );
+				TriangleSymbol ( t1[0], t1[1], t1[2], mid, loin	).Generate ( mesh, level - 1 );
 
 			if ( checkNormal ( Triangle ( t2[0], t2[1], t2[2] ) ) )
-				TriangleSymbol ( t2[1], t2[0], t2[2], mid, loin
-				).Generate ( mesh, level - 1 );
+				TriangleSymbol ( t2[1], t2[0], t2[2], mid, loin	).Generate ( mesh, level - 1 );
 			else
-				TriangleSymbol ( t2[0], t2[1], t2[2], mid, loin
-				).Generate ( mesh, level - 1 );
+				TriangleSymbol ( t2[0], t2[1], t2[2], mid, loin ).Generate ( mesh, level - 1 );
 
 			//TriangleSymbol ( 0.5f * ( p[2] + p[1] ), p[1], p[0]
 			//).Generate(mesh, level - 1);
@@ -212,20 +208,20 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			int rng = rand ( ) % 3;
 
 			if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
-				mesh.merge ( Mesh::Triangle ( p2, p1, p3 ) );
-
 				Triangle t ( p2, p1, p3 );
-				t.shrinkByDist ( 1.f );
+				t.shrinkByDist ( 3.f );
+
+				mesh.merge ( Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] ) );
 
 				mesh.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
 				mesh.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
 				mesh.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
 			}
 			else {
-				mesh.merge ( Mesh::Triangle ( p1, p2, p3 ) );
-
 				Triangle t ( p1, p2, p3 );
-				t.shrinkByDist ( 1.f );
+				t.shrinkByDist ( 3.f );
+
+				mesh.merge ( Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] ) );
 
 				mesh.merge ( Mesh::RouteL ( p1, p2, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
 				mesh.merge ( Mesh::RouteL ( p2, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
