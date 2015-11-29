@@ -105,7 +105,7 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			{
 				bool addRdc = true;
 				Quadrangle tmp = Quadrangle::GenerateRectangle(Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f), Utils::randf(0.f, std::abs(maxQuad.x - minQuad.x)), Utils::randf(0.f, std::abs(maxQuad.y - minQuad.y)));
+					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f), Utils::randf(2.f, std::abs(maxQuad.x - minQuad.x)), Utils::randf(2.f, std::abs(maxQuad.y - minQuad.y)));
 
 
 		
