@@ -12,7 +12,7 @@ TriangleSymbol::TriangleSymbol(const Vec3<float> &a, const Vec3<float>
 	loin = loin_;
 }
 
-void TriangleSymbol::addTrees ( Triangle t, Mesh & m, int nbTryTree ) {
+void TriangleSymbol::addTrees ( Triangle t, Mesh & m, const std::list<Quadrangle>& rdcs, int nbTryTree ) {
 	std::list<Circle> trees;
 	std::list<Quadrangle> qtrees;
 
@@ -34,13 +34,22 @@ void TriangleSymbol::addTrees ( Triangle t, Mesh & m, int nbTryTree ) {
 						 Vec3<float> ( center.x + rayon, center.y - rayon, 0.f ) );
 
 		if ( t.isIn ( center ) && tmp.hasGoodNormal ( ) ) {
-			for ( Quadrangle quad : qtrees ) {
+			for ( Quadrangle quad : rdcs ) {
 				if ( quad.overlap ( tmp ) ) {
 					addTree = false; break;
 				}
 			}
-
-			if ( addTree ) { qtrees.push_back ( tmp ); trees.push_back ( circle ); }
+			if ( addTree ) {
+				for ( Quadrangle quad : qtrees ) {
+					if ( quad.overlap ( tmp ) ) {
+						addTree = false; break;
+					}
+				}
+			}
+			if ( addTree ) {
+				qtrees.push_back ( tmp );
+				trees.push_back ( circle );
+			}
 		}
 	}
 
@@ -64,7 +73,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
 			mesh.merge ( m );
 
-			addTrees ( t, mesh, 100 );
+			addTrees ( t, mesh, std::list<Quadrangle> ( ), 100 );
 		}
 		else {
 			Triangle t ( p1, p2, p3 );
@@ -77,7 +86,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			m.merge ( Mesh::RouteL ( p3, p1, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
 			mesh.merge ( m );
 
-			addTrees ( t, mesh, 100 );
+			addTrees ( t, mesh, std::list<Quadrangle> ( ), 100 );
 		}
 	}
 	else {
@@ -207,8 +216,9 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 			// Génére des batiments dans le cercle inscri de 1, 2, ou 3 triangles
 			int rng = rand ( ) % 3;
 
+			Triangle t;
 			if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
-				Triangle t ( p2, p1, p3 );
+				t = Triangle ( p2, p1, p3 );
 				t.shrinkByDist ( 3.f );
 
 				mesh.merge ( Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] ) );
@@ -218,7 +228,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				mesh.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
 			}
 			else {
-				Triangle t ( p1, p2, p3 );
+				t = Triangle ( p1, p2, p3 );
 				t.shrinkByDist ( 3.f );
 
 				mesh.merge ( Mesh::Triangle ( t.getPoints ( )[0], t.getPoints ( )[1], t.getPoints ( )[2] ) );
@@ -230,6 +240,8 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 
 			float dif;
 
+			std::list<Quadrangle> rdcs = std::list<Quadrangle> ( );
+
 			//rng = 0;
 			if ( rng == 0 ) {
 				Circle c = incircle ( Triangle ( p2, p1, p3 ) );
@@ -237,6 +249,8 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Quadrangle q = randomQuadInCircle ( c );
 				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif, 0 ).G ( mesh );
+
+				rdcs.push_back ( q );
 			}
 
 			if ( rng == 1 ) {
@@ -277,6 +291,9 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Quadrangle q1 = randomQuadInCircle ( c1 );
 				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif, 0 ).G ( mesh );
+
+				rdcs.push_back ( q );
+				rdcs.push_back ( q1 );
 			}
 
 			if ( rng == 2 ) {
@@ -303,7 +320,13 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Quadrangle q2 = randomQuadInCircle ( c2 );
 				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q2.p2, q2.p1, q2.p4, q2.p3, 3.0f, dif, 0 ).G ( mesh );
+
+				rdcs.push_back ( q );
+				rdcs.push_back ( q1 );
+				rdcs.push_back ( q2 );
 			}
+
+			addTrees ( t, mesh, rdcs, 100 );
 		}
 		/*else {
 			TriangleSymbol ( p1, p2, p3, mid, loin ).Generate ( mesh, level - 1 );

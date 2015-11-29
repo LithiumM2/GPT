@@ -42,7 +42,7 @@ void QuadrangleSymbol::addTrees(Quadrangle q, const Vec3<float>& minQuad, const 
 			Vec3<float>(center.x + rayon / DeltaQuad, center.y + rayon / DeltaQuad, 0.f),
 			Vec3<float>(center.x + rayon / DeltaQuad, center.y - rayon / DeltaQuad, 0.f));
 
-		if (q.isIn(tmp) && tmp.hasGoodNormal())
+		if (q.isIn(tmp))
 		{
 			for (Quadrangle quad : rdcs)
 			{

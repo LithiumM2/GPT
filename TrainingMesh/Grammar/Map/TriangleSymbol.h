@@ -7,6 +7,7 @@
 #include "..\..\Geometry\Triangle.h"
 #include "..\..\Geometry\Circle.h"
 #include "..\..\Utils.h"
+#include <list>
 
 class TriangleSymbol :
 	public Symbol {
@@ -18,7 +19,7 @@ public:
 	
 	void Generate ( Mesh &mesh, int compteur ) const;
 
-	static void addTrees ( Triangle q, Mesh & m, int nbTryTree );
+	static void addTrees ( Triangle q, Mesh & m, const std::list<Quadrangle>& rdcs, int nbTryTree );
 	static TriangleSymbol genBorder ( const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>&p3, const float& borderSize, const float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>& _mid, const Vec3<float> & _loin );
 	static bool checkNormal ( Triangle t );
 	static Circle incircle ( Triangle t );
