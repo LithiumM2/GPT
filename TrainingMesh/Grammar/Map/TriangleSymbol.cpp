@@ -13,13 +13,44 @@ TriangleSymbol::TriangleSymbol(const Vec3<float> &a, const Vec3<float>
 }
 
 void TriangleSymbol::addTrees ( Triangle t, Mesh & m, int nbTryTree ) {
+	std::list<Circle> trees;
+	std::list<Quadrangle> qtrees;
 
+	t.shrink ( .9f );
+
+	for ( int i = 0; i < nbTryTree; ++i ) {
+		bool addTree = true;
+		Vec3<float> minTri = t.getMinPoint ( );
+		Vec3<float> maxTri = t.getMaxPoint ( );
+		Vec3<float> center ( Utils::randf ( minTri.x, maxTri.x ), Utils::randf ( minTri.y, maxTri.y ), 0.f );
+		
+		float rayon = Utils::randf ( distance ( maxTri, center ) * .5f, distance ( maxTri, center ) ) * .7f;
+		
+		Circle circle ( center, rayon );
+		
+		Quadrangle tmp ( Vec3<float> ( center.x - rayon, center.y - rayon, 0.f ),
+						 Vec3<float> ( center.x - rayon, center.y + rayon, 0.f ),
+						 Vec3<float> ( center.x + rayon, center.y + rayon, 0.f ),
+						 Vec3<float> ( center.x + rayon, center.y - rayon, 0.f ) );
+
+		if ( t.isIn ( center ) && tmp.hasGoodNormal ( ) ) {
+			for ( Quadrangle quad : qtrees ) {
+				if ( quad.overlap ( tmp ) ) {
+					addTree = false; break;
+				}
+			}
+
+			if ( addTree ) { qtrees.push_back ( tmp ); trees.push_back ( circle ); }
+		}
+	}
+
+	for ( Circle tree : trees )
+		m.merge ( Mesh::Sapin ( tree.center, tree.radius ) );
 }
 
 void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 	if ((level == 0)) {
-		// Création d'un zone plate : un parc ?
-		// TODO : ajouter arbres
+		// Création d'un parc		
 		Triangle t ( p1, p2, p3 );
 		
 		if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
@@ -32,6 +63,8 @@ void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 			m.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
 			m.merge ( Mesh::RouteL ( p3, p2, t.getPoints ( )[1], t.getPoints ( )[2], 3.f, 1.f ) );
 			mesh.merge ( m );
+
+			addTrees ( t, mesh, 100 );
 		}
 		else {
 			Triangle t(p1, p2, p3);
@@ -47,6 +80,8 @@ void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 			m.merge(Mesh::RouteL(p3, p1, t.getPoints()[0],
 				t.getPoints()[2], 3.f, 1.f));
 			mesh.merge(m);
+
+			addTrees ( t, mesh, 100 );
 		}
 	}
 	else {
