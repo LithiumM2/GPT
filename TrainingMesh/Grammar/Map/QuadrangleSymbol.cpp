@@ -16,14 +16,14 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 	for (int i = 0; i < nbTryTree; ++i)
 	{
 		bool addTree = true;
-		Vec3<float> center(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f);
-		float rayon = std::abs(Utils::randf(std::min(minQuad.x, minQuad.y), std::min(maxQuad.x, maxQuad.y))) * 0.2f;
+		Vec3<float> center(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f) ;
+		float rayon = Utils::randf(0.f, distance(maxQuad, center));
 		Circle circle(center, rayon);
-		Quadrangle tmp(TriangleSymbol::randomQuadInCircle(circle));
-		/*Quadrangle tmp(Vec3<float>(center.x - rayon, center.y - rayon, 0.f),
-			Vec3<float>(center.x - rayon, center.y + rayon, 0.f),
+		Quadrangle tmp(Vec3<float>(center.x + rayon, center.y - rayon, 0.f),
 			Vec3<float>(center.x + rayon, center.y + rayon, 0.f),
-			Vec3<float>(center.x + rayon, center.y - rayon, 0.f));*/
+			Vec3<float>(center.x - rayon, center.y + rayon, 0.f),
+			
+			Vec3<float>(center.x - rayon, center.y - rayon, 0.f));
 		if (q.isIn(tmp))
 		{
 			for (Quadrangle quad : rdcs)
@@ -43,7 +43,11 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 					}
 				}
 			}
-			if (addTree) qtrees.push_back(tmp); trees.push_back(circle);
+			if (addTree)
+			{
+				qtrees.push_back(tmp);
+				trees.push_back(circle); 
+			}
 		}
 	}
 	for (Circle tree : trees)
@@ -51,9 +55,10 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 }
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
-	const int nbTry = 1, nbTryTree = 100;
+	const int nbTry = 1000, nbTryTree = 5;
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
 	int random = rand() % 2;
+	const float epsilon = 1.f;
 	if (q.area() <  1000.f)
 	{
 		
@@ -79,14 +84,15 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 			for (int i = 0; i < nbTry; ++i)
 			{
 				bool addRdc = true;
-				Quadrangle tmp(Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
-					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f));
+				Quadrangle tmp = Quadrangle::GenerateRectangle(Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f),
+					Vec3<float>(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f), Utils::randf(0.f, std::min(std::abs(maxQuad.x - minQuad.x), std::abs(maxQuad.y - minQuad.y))));
 
-				tmp.sortPoint();
+
+		
+
+				//tmp.sortPoint();
 				const float angleDiag = std::acos(Vec3<float>::dotProduct(Vec3<float>(p2 - p0).normalized(), Vec3<float>(p3 - p1).normalized()));
-				if (q.isIn(tmp) && tmp.area() >= maxArea && tmp.hasGoodNormal() && std::abs(angleDiag - (Constantes::PI * 0.5f)) <= Constantes::PI * 0.2f && distance(p2, p0) - distance(p3, p1) < 10.f)
+				if (q.isIn(tmp) && tmp.area() >= maxArea )
 				{
 					for (Quadrangle quad : rdcs)
 					{
@@ -107,9 +113,6 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 				
 			}
 			addTrees(q, minQuad, maxQuad, m, rdcs, nbTryTree );
-			//q.sortPoint();
-			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
-		//	m.merge(m1);
 		}
 		else
 			addTrees(q, q.getMinPoint(), q.getMaxPoint(), m, std::list<Quadrangle>(), nbTryTree);

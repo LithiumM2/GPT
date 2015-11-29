@@ -63,10 +63,9 @@ public:
 	* renvoi vrai si le normale est correcte
 	*/
 	bool hasGoodNormal();
-	/* Trie les points du quad de sorte a ce que la normale soit bonne
-	*
+	/* Genere un Quad rectangle a partir des points de sa diagonale
 	*/
-	void sortPoint();
+	static Quadrangle GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width);
 	~Quadrangle ( );
 };
 

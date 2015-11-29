@@ -98,7 +98,7 @@ bool Quadrangle::isIn(Quadrangle q)
 
 bool Quadrangle::overlap(Quadrangle q)
 {
-	return isIn(q) || intersect(q) || q.isIn(*this);
+	return isIn(q) || intersect(q) || q.isIn(*this) || q.intersect(*this);
 }
 
 Vec3<float> Quadrangle::getMinPoint()
@@ -110,90 +110,28 @@ Vec3<float> Quadrangle::getMaxPoint()
 	return p1.max(p2).max(p3).max(p4);
 }
 
-void Quadrangle::sortPoint()
+
+Quadrangle Quadrangle::GenerateRectangle(Vec3<float> p0, Vec3<float> p1, float width)
 {
-	if (p1.x == p2.x || p1.x == p3.x || p1.x == p4.x) p1.x += 0.1f;
-	if (p2.x == p3.x || p2.x == p4.x) p2.x -= 0.1f;
-	if (p3.x == p4.x) p3.x += 0.1f;
+	if (Vec3<float>::dotProduct(p1, p1) > Vec3<float>::dotProduct(p0, p0))
+	{
+		Vec3<float> tmp(p0);
+		p0 = p1;
+		p1 = p0;
+	}
+	if (p1.x > p0.x)
+	{
+		p0.x = (p1.x - p0.x) * 2;
+	}
+	//Vec3<float> min = p0.min(p1);
+	//Vec3<float> max = p0.max(p1);
+	//return Quadrangle(p0, Vec3<float>(min.x, max.y, 0.f), p1, Vec3<float>(max.x, min.y, 0.f));//, p1 + dirP4 * width, p0 + dirP4 * width);
+	Vec3<float> p0p1 = p1 - p0;
+	/*Vec3<float> tmp2 = tmp;*/
+	Vec3<float> tmp3 = Vec3<float>(p0p1.y,  -p0p1.x, 0.f).normalized() * width;
+	return Quadrangle(p0, p1, tmp3 + p0p1 + p0, tmp3 + p0);
 
-	if (p1.y == p2.y || p1.y == p3.y || p1.y == p4.y) p1.y += 0.1f;
-	if (p2.y == p3.y || p2.y == p4.y) p2.y -= 0.1f;
-	if (p3.y == p4.y) p3.y += 0.1f;
-	int cmp = 0;
-	Vec3<float> up1(0.f), up2(0.f), down1(0.f), down2(0.f), tmp(0.f);
-	if (p1.y > p2.y) ++cmp;
-	if (p1.y > p3.y) ++cmp;
-	if (p1.y > p4.y) ++cmp;
-	if (cmp >= 2) up1 = p1;
-	else down1 = p1;
-	cmp = 0;
-	if (p2.y > p1.y) ++cmp;
-	if (p2.y > p3.y) ++cmp;
-	if (p2.y > p4.y) ++cmp;
-	if (cmp >= 2)
-	{
-		if (up1 == Vec3<float>(0.f))
-			up1 = p2;
-		else
-			up2 = p2;
-	}
-	else
-	{
-		if (down1 == Vec3<float>(0.f))
-			down1 = p2;
-		else
-			down2 = p2;
-	}
-
-	cmp = 0;
-	if (p3.y > p1.y) ++cmp;
-	if (p3.y > p2.y) ++cmp;
-	if (p3.y > p4.y) ++cmp;
-	if (cmp >= 2)
-	{
-		if (up1 == Vec3<float>(0.f))
-			up1 = p3;
-		else
-			up2 = p3;
-	}
-	else
-	{
-		if (down1 == Vec3<float>(0.f))
-			down1 = p3;
-		else
-			down2 = p3;
-	}
-
-	if (up1 == Vec3<float>(0.f))
-		up1 = p4;
-	else if (up2 == Vec3<float>(0.f))
-		up2 = p4;
-	else if (down1 == Vec3<float>(0.f))
-		down1 = p4;
-	else if (down2 == Vec3<float>(0.f))
-		down2 = p4;
-
-	if (down1.x > down2.x)
-	{
-		tmp = down1;
-		down1 = down2;
-		down2 = tmp;
-	}
-
-	if (up1.x > up2.x)
-	{
-		tmp = up1;
-		up1 = up2;
-		up2 = tmp;
-	}
-	p1 = down1;
-	p2 = up1;
-	p3 = up2;
-	p4 = down2;
-	
-	//p2 =
 }
-
 bool Quadrangle::hasGoodNormal()
 {
 	return Vec3<float>::crossProduct(p4 - p1, p2 - p1).z > 0.f && Vec3<float>::crossProduct(p1 - p2, p3 - p2).z > 0.f  && Vec3<float>::crossProduct(p2 - p3, p4 - p3).z > 0.f && Vec3<float>::crossProduct(p3 - p4, p1 - p4).z > 0.f;
