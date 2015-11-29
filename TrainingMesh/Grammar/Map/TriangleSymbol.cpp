@@ -215,7 +215,7 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				mesh.merge ( Mesh::Triangle ( p2, p1, p3 ) );
 
 				Triangle t ( p2, p1, p3 );
-				t.shrinkByDist ( 10.f );
+				t.shrinkByDist ( 1.f );
 
 				mesh.merge ( Mesh::RouteL ( p2, p1, t.getPoints ( )[1], t.getPoints ( )[0], 3.f, 1.f ) );
 				mesh.merge ( Mesh::RouteL ( p1, p3, t.getPoints ( )[2], t.getPoints ( )[1], 3.f, 1.f ) );
@@ -303,9 +303,9 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				RDC ( q2.p2, q2.p1, q2.p4, q2.p3, 3.0f, dif, 0 ).G ( mesh );
 			}
 		}
-		else {
+		/*else {
 			TriangleSymbol ( p1, p2, p3, mid, loin ).Generate ( mesh, level - 1 );
-		}
+		}*/
 	}
 }
 
