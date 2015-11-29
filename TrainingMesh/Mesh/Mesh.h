@@ -87,8 +87,10 @@ public:
 	static Mesh Hexagone(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, const Vec3<float>& p5);
 	//static Mesh Box ( );
 	static Mesh Box(const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const Vec3<float>&, const float&);
-	static Mesh Cylinder(const Vec3<float>&, const double&, const double&);
-	static Mesh Circle(const Vec3<float>& o, const float&, const unsigned int&);
+	static Mesh Cylinder(const Vec3<float>&, const double&, const double&, const unsigned int&);
+	static Mesh Circle(const Vec3<float>&, const float&, const unsigned int&, const bool&);
+	static Mesh Cone(const Vec3<float>&, const double&, const double&, const unsigned int&);
+	static Mesh Sphere(const Vec3<float>&, const double& , const int&, const int&);
 	static Mesh Route(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	static Mesh RouteL(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	static Mesh RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);

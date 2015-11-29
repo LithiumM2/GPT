@@ -20,8 +20,16 @@ void RDC::G(Mesh& m) const
 	int e = rand()%100;
 	if (e < dif)
 	{
-		float window_size = 1.5f + (float)(rand() % 100) / 100.f;
-		Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, dif, type, 0.f, false, 0, window_size).G(m);
+		int e = rand() % 100;
+		if (e < 95){
+			float window_size = 1.5f + (float)(rand() % 100) / 100.f;
+			Etage(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, dif, type, 0.f, false, 0, window_size).G(m);
+		}
+		else{
+			EtageCircle(q.p1 + Vec3<float>(0.0, 0.0, h), q.p2 + Vec3<float>(0.0, 0.0, h), q.p3 + Vec3<float>(0.0, 0.0, h), q.p4 + Vec3<float>(0.0, 0.0, h), h, dif+20, 0).G(m);
+		}
+		
+		
 	}
 	else
 	{

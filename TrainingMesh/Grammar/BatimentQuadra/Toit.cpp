@@ -19,14 +19,20 @@ void Toit::G(Mesh& m) const{
 		else
 			m2 = Mesh(Mesh::ToitPyramide(q.p1, q.p2, q.p3, q.p4, h));
 	}
-	else if (etages>1 && etages<5){
+	else if (etages>1 && etages < 5){
 		int e = rand() % 100;
-		if (e > 75)
+		if (e > 75){
 			m2 = Mesh(Mesh::ToitPyramide(q.p1, q.p2, q.p3, q.p4, h));
-		else if (e<75 && e>35)
+		}
+		else if (e < 75 && e>35){
 			m2 = Mesh(Mesh::Toit(q.p1, q.p2, q.p3, q.p4, h));
-		else
-			m2 = Mesh(Mesh::Box(q.p1, q.p2, q.p3, q.p4, h));
+		}
+		else{
+
+			Quadrangle q2 = q;
+			q2.shrinkByDist(1.f);
+			m2 = Mesh(Mesh::Box(q2.p1, q2.p2, q2.p3, q2.p4, h));
+		}
 	}
 	else{
 		Quadrangle q2 = q;
