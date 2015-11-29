@@ -12,9 +12,14 @@ TriangleSymbol::TriangleSymbol(const Vec3<float> &a, const Vec3<float>
 	loin = loin_;
 }
 
+void TriangleSymbol::addTrees ( Triangle t, Mesh & m, int nbTryTree ) {
+
+}
+
 void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 	if ((level == 0)) {
 		// Création d'un zone plate : un parc ?
+		// TODO : ajouter arbres
 		Triangle t ( p1, p2, p3 );
 		
 		if ( checkNormal ( Triangle ( p1, p2, p3 ) ) ) {
@@ -342,33 +347,33 @@ void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 	}
 
 
-	TriangleSymbol TriangleSymbol::genBorder(const Vec3<float>& p1_, const
-		Vec3<float>& p2_, const Vec3<float>& p3_, const float& borderSize, const
-		float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>&
-		_mid, const Vec3<float> & _loin) {
-		Triangle t(p2_, p1_, p3_);
-		Triangle t2(t);
+	TriangleSymbol TriangleSymbol::genBorder ( const Vec3<float>& p1_, const
+											   Vec3<float>& p2_, const Vec3<float>& p3_, const float& borderSize, const
+											   float& sizePavement, const float& hPavement, Mesh& m, const Vec3<float>&
+											   _mid, const Vec3<float> & _loin ) {
+		Triangle t ( p2_, p1_, p3_ );
+		Triangle t2 ( t );
 
-		t.shrinkByDist(borderSize);
-
-		Vec3<float>
-			p11 = t.getPoints()[0],
-			p12 = t.getPoints()[1],
-			p13 = t.getPoints()[2];
+		t.shrinkByDist ( borderSize );
 
 		Vec3<float>
-			p21 = t2.getPoints()[0],
-			p22 = t2.getPoints()[1],
-			p23 = t2.getPoints()[2];
+			p11 = t.getPoints ( )[0],
+			p12 = t.getPoints ( )[1],
+			p13 = t.getPoints ( )[2];
 
-		TriangleSymbol ts(p12, p11, p13, _mid, _loin);
+		Vec3<float>
+			p21 = t2.getPoints ( )[0],
+			p22 = t2.getPoints ( )[1],
+			p23 = t2.getPoints ( )[2];
 
-		m.merge(Mesh::RouteR(p21, p22, p12, p11, sizePavement,
-			hPavement));
-		m.merge(Mesh::RouteR(p23, p21, p11, p13, sizePavement,
-			hPavement));
-		m.merge(Mesh::RouteR(p22, p23, p13, p12, sizePavement,
-			hPavement));
+		TriangleSymbol ts ( p12, p11, p13, _mid, _loin );
+
+		m.merge ( Mesh::RouteR ( p21, p22, p12, p11, sizePavement,
+			hPavement ) );
+		m.merge ( Mesh::RouteR ( p23, p21, p11, p13, sizePavement,
+			hPavement ) );
+		m.merge ( Mesh::RouteR ( p22, p23, p13, p12, sizePavement,
+			hPavement ) );
 
 		return ts;
 	}
