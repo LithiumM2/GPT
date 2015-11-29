@@ -184,42 +184,6 @@ void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 				}
 			}
 		}
-<<<<<<< HEAD
-		else if (Triangle(p1, p2, p3).area() < 10000.0f) {
-			// Génére des batiments dans le cercle inscri de 1, 2, ou 3
-		//	triangles
-				int rng = rand() % 3;
-
-			if (checkNormal(Triangle(p1, p2, p3))) {
-				mesh.merge(Mesh::Triangle(p2, p1, p3));
-
-				Triangle t(p2, p1, p3);
-				t.shrinkByDist(10.f);
-
-				mesh.merge(Mesh::RouteL(p2, p1, t.getPoints()[0],
-					t.getPoints()[1], 3.f, 1.f));
-				mesh.merge(Mesh::RouteL(p1, p3, t.getPoints()[2],
-					t.getPoints()[1], 3.f, 1.f));
-				mesh.merge(Mesh::RouteL(p3, p2, t.getPoints()[1],
-					t.getPoints()[2], 3.f, 1.f));
-			}
-			else {
-				mesh.merge(Mesh::Triangle(p1, p2, p3));
-
-				Triangle t(p2, p1, p3);
-				t.shrinkByDist(1.f);
-
-				mesh.merge(Mesh::RouteL(p1, p2, t.getPoints()[1],
-					t.getPoints()[0], 3.f, 1.f));
-				mesh.merge(Mesh::RouteL(p2, p3, t.getPoints()[2],
-					t.getPoints()[1], 3.f, 1.f));
-				mesh.merge(Mesh::RouteL(p3, p1, t.getPoints()[0],
-					t.getPoints()[2], 3.f, 1.f));
-			}
-
-			float dif = 100 - ((distance(mid, p2) / distance(
-				mid, loin)) * 100);
-=======
 		else if ( Triangle ( p1, p2, p3 ).area ( ) < 10000.0f ) {
 			// Génére des batiments dans le cercle inscri de 1, 2, ou 3 triangles
 			int rng = rand ( ) % 3;
@@ -246,7 +210,6 @@ void TriangleSymbol::Generate(Mesh &mesh, int level) const {
 			}
 
 			float dif = 100 - ( ( distance ( mid, p2 ) / distance ( mid, loin ) ) * 100 );
->>>>>>> origin/master
 
 			//rng = 0;
 			if (rng == 0) {
