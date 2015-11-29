@@ -228,13 +228,14 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				mesh.merge ( Mesh::RouteL ( p3, p1, t.getPoints ( )[0], t.getPoints ( )[2], 3.f, 1.f ) );
 			}
 
-			float dif = 100 - ( ( distance ( mid, p2 ) / distance ( mid, loin ) ) * 100 );
+			float dif;
 
 			//rng = 0;
 			if ( rng == 0 ) {
 				Circle c = incircle ( Triangle ( p2, p1, p3 ) );
 				c.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q = randomQuadInCircle ( c );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif, 0 ).G ( mesh );
 			}
 
@@ -268,11 +269,13 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Circle c0 = incircle ( Triangle ( t1[1], t1[0], t1[2] ) );
 				c0.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q = randomQuadInCircle ( c0 );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif, 0 ).G ( mesh );
 
 				Circle c1 = incircle ( Triangle ( t2[1], t2[0], t2[2] ) );
 				c1.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q1 = randomQuadInCircle ( c1 );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif, 0 ).G ( mesh );
 			}
 
@@ -286,16 +289,19 @@ void TriangleSymbol::Generate ( Mesh &mesh, int level ) const {
 				Circle c0 = incircle ( Triangle ( p2, p1, pivot ) );
 				c0.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q = randomQuadInCircle ( c0 );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q.p2, q.p1, q.p4, q.p3, 3.0f, dif, 0 ).G ( mesh );
 
 				Circle c1 = incircle ( Triangle ( p3, p2, pivot ) );
 				c1.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q1 = randomQuadInCircle ( c1 );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q1.p2, q1.p1, q1.p4, q1.p3, 3.0f, dif, 0 ).G ( mesh );
 
 				Circle c2 = incircle ( Triangle ( p1, p3, pivot ) );
 				c2.radius *= Utils::randf ( .6f, .9f );
 				Quadrangle q2 = randomQuadInCircle ( c2 );
+				dif = 100 - ((distance(mid, p2) / distance(mid, loin)) * 100);
 				RDC ( q2.p2, q2.p1, q2.p4, q2.p3, 3.0f, dif, 0 ).G ( mesh );
 			}
 		}

@@ -75,7 +75,7 @@ void QuadrangleSymbol::addTrees(Quadrangle q, const Vec3<float>& minQuad, const 
 
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
-	const int nbTry = 1, nbTryTree = 50;
+	const int nbTry = 10000, nbTryTree = 50;
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
 	int random = rand() % 2;
 
