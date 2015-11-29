@@ -24,7 +24,7 @@ void TriangleSymbol::addTrees ( Triangle t, Mesh & m, const std::list<Quadrangle
 		Vec3<float> maxTri = t.getMaxPoint ( );
 		Vec3<float> center ( Utils::randf ( minTri.x, maxTri.x ), Utils::randf ( minTri.y, maxTri.y ), 0.f );
 		
-		float rayon = Utils::randf ( distance ( maxTri, center ) * .5f, distance ( maxTri, center ) ) * .7f;
+		float rayon = Utils::randf ( 1.0f, 4.0f );
 		
 		Circle circle ( center, rayon );
 		
@@ -33,7 +33,7 @@ void TriangleSymbol::addTrees ( Triangle t, Mesh & m, const std::list<Quadrangle
 						 Vec3<float> ( center.x + rayon, center.y + rayon, 0.f ),
 						 Vec3<float> ( center.x + rayon, center.y - rayon, 0.f ) );
 
-		if ( t.isIn ( center ) && tmp.hasGoodNormal ( ) ) {
+		if ( t.isIn ( center ) ) {
 			for ( Quadrangle quad : rdcs ) {
 				if ( quad.overlap ( tmp ) ) {
 					addTree = false; break;

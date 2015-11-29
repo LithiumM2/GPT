@@ -29,11 +29,11 @@ void QuadrangleSymbol::addTrees(Quadrangle q, const Vec3<float>& minQuad, const 
 	{
 		bool addTree = true;
 		Vec3<float> center(Utils::randf(minQuad.x + MinRadius, maxQuad.x - MinRadius), Utils::randf(minQuad.y + MinRadius, maxQuad.y - MinRadius), 0.f);
-	    float rayon = Utils::randf(MinRadius, distance(maxQuad, center)) * 0.7f;
+	    float rayon = Utils::randf(1.0f, 4.0f);
 
 		// Limite max de la largeur d'un arbre
-		if (rayon > MaxRadius)
-			rayon = Utils::randf(MinRadius, MaxRadius - 2.f);
+		/*if (rayon > MaxRadius)
+			rayon = Utils::randf(MinRadius, MaxRadius - 2.f);*/
 
 		Circle circle(center, rayon);
 
