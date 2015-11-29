@@ -559,6 +559,17 @@ Mesh Mesh::ToitPyramide(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3
 	return m;
 }
 
+Mesh Mesh::Arbre(const Vec3<float>& o, const float& r){
+	float h = r * 2;
+	Mesh m;
+	m = Mesh::Cylinder(o, r / 2, h, 50);
+	Mesh m2;
+	Vec3<float> c_sph = o + Vec3<float>{ 0, 0, h };
+	m2 = Mesh::Sphere(c_sph, r , 50,50);
+	m.merge(m2);
+	return m;
+}
+
 Mesh::~Mesh()
 {
 }

@@ -96,5 +96,6 @@ public:
 	static Mesh RouteR(const Vec3<float>& p0, const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const float& sizePavement, const float& hPavement);
 	static Mesh Toit(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
 	static Mesh ToitPyramide(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& p4, float h);
+	static Mesh Arbre(const Vec3<float>&, const float&);
 	~Mesh();
 };

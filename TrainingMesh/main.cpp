@@ -119,7 +119,7 @@ int main(int argc, char ** argv)
 	MeshWriter::exportObj ( m1, "test_shrink_dist2.obj" );*/
 
 
-	Mesh m = Mesh::Sphere(Vec3<float>(0.f),10,100,100);
+	Mesh m = Mesh::Arbre(Vec3<float>(0.f),10);
 	MeshWriter::exportObj ( m, "Cone.obj" );
 
 	/************************  *****************************/
