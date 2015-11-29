@@ -570,19 +570,28 @@ Mesh Mesh::Arbre(const Vec3<float>& o, const float& r){
 	return m;
 }
 
-Mesh Mesh::Sapin(const Vec3<float>& o, const float& r){
-	float h = r * 2;
+Mesh Mesh::Sapin(const Vec3<float>& o, const float& r)
+{
+	const float MinHeight = 0.8f;
+	float radius = r;
+
+	// Hauteur min d'un arbre
+	if (radius < MinHeight)
+		radius = MinHeight;
+
+	float h = radius * 2.f;
+
 	Mesh m;
-	m = Mesh::Cylinder(o, r / 2.5, h / 2, 50);
+	m = Mesh::Cylinder(o, radius / 2.5, h / 2, 50);
 	Mesh m2;
 	Vec3<float> c_cone = o + Vec3<float>{ 0, 0, h / 2 };
-	m2 = Mesh::Cone(c_cone, r, h / 2, 50);
+	m2 = Mesh::Cone(c_cone, radius, h / 2, 50);
 	m.merge(m2);
 	c_cone = o + Vec3<float>{ 0, 0, h / 1.4f};
-	m2 = Mesh::Cone(c_cone, r / 1.3, h / 1.8, 50);
+	m2 = Mesh::Cone(c_cone, radius / 1.3, h / 1.8, 50);
 	m.merge(m2);
 	c_cone = o + Vec3<float>{ 0, 0, h };
-	m2 = Mesh::Cone(c_cone, r / 2, h / 1.5, 50);
+	m2 = Mesh::Cone(c_cone, radius / 2, h / 1.5, 50);
 	m.merge(m2);
 	return m;
 }

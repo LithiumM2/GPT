@@ -9,21 +9,38 @@ QuadrangleSymbol::QuadrangleSymbol(const Vec3<float>& p0_, const Vec3<float>& p1
 
 }
 
-void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> maxQuad, Mesh & m, std::list<Quadrangle> rdcs, int nbTryTree) const
+void QuadrangleSymbol::addTrees(Quadrangle q, const Vec3<float>& minQuad, const Vec3<float>& maxQuad, Mesh & m, const std::list<Quadrangle>& rdcs, const int& nbTryTree, const float& dist = 1.f) const
 {
 	std::list<Circle> trees;
 	std::list<Quadrangle> qtrees;
-	for (int i = 0; i < nbTryTree; ++i)
+	const float MinRadius = 0.5f; // Rayon minimum pour un arbre
+	const float MaxRadius = 6.f; // Rayon maximum pour un arbre
+	const float DeltaQuad = 2.f; // Delta box englobante
+	
+	float Delta = dist; // Nombre d'essais d'ajout d'abres
+
+	// Si on est en centre ville on fait moins de tentatives d'ajout
+	if(Delta > 1.f)
+		Delta = Utils::randf(dist * 0.008f, dist * 0.01f);
+
+	const int NbTry = (int)(nbTryTree * Delta);
+
+	for (int i = 0; i < NbTry; ++i)
 	{
 		bool addTree = true;
-		Vec3<float> center(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f);
-		float rayon = Utils::randf(0.f, distance(maxQuad, center))*0.7f;
+		Vec3<float> center(Utils::randf(minQuad.x + MinRadius, maxQuad.x - MinRadius), Utils::randf(minQuad.y + MinRadius, maxQuad.y - MinRadius), 0.f);
+	    float rayon = Utils::randf(MinRadius, distance(maxQuad, center)) * 0.7f;
+
+		// Limite max de la largeur d'un arbre
+		if (rayon > MaxRadius)
+			rayon = Utils::randf(MinRadius, MaxRadius - 2.f);
+
 		Circle circle(center, rayon);
-		//Quadrangle tmp(TriangleSymbol::randomQuadInCircle(circle));
-		Quadrangle tmp(Vec3<float>(center.x - rayon, center.y - rayon, 0.f),
-			Vec3<float>(center.x - rayon, center.y + rayon, 0.f),
-			Vec3<float>(center.x + rayon, center.y + rayon, 0.f),
-			Vec3<float>(center.x + rayon, center.y - rayon, 0.f));
+
+		Quadrangle tmp(Vec3<float>(center.x - rayon / DeltaQuad, center.y - rayon / DeltaQuad, 0.f),
+			Vec3<float>(center.x - rayon / DeltaQuad, center.y + rayon / DeltaQuad, 0.f),
+			Vec3<float>(center.x + rayon / DeltaQuad, center.y + rayon / DeltaQuad, 0.f),
+			Vec3<float>(center.x + rayon / DeltaQuad, center.y - rayon / DeltaQuad, 0.f));
 
 		tmp.sortPoint();
 		if (q.isIn(tmp) && tmp.hasGoodNormal())
@@ -45,7 +62,11 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 					}
 				}
 			}
-			if (addTree) qtrees.push_back(tmp); trees.push_back(circle);
+			if (addTree)
+			{
+				qtrees.push_back(tmp); 
+				trees.push_back(circle);
+			}
 		}
 	}
 	for (Circle tree : trees)
@@ -55,16 +76,17 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
-	const int nbTry = 1, nbTryTree = 100;
+	const int nbTry = 1, nbTryTree = 50;
 	Quadrangle q = Quadrangle(p0, p1, p2, p3);
 	int random = rand() % 2;
+
 	if (q.area() <  1000.f)
 	{
 		
 		q.shrinkByDist(10.f);
 
 		//*******************Test Centre Ville***************/
-		float dif = 100 - ((distance(mid, p0)/distance(mid,loin) )*100);
+		float dif = 100 - ((distance(mid, p0) / distance(mid, loin)) * 100);
 		/************************************************/
 
 		Mesh m1 = Mesh::Quadrangle(q.p1, q.p2, q.p3, q.p4);
