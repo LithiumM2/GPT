@@ -17,14 +17,16 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 	{
 		bool addTree = true;
 		Vec3<float> center(Utils::randf(minQuad.x, maxQuad.x), Utils::randf(minQuad.y, maxQuad.y), 0.f);
-		float rayon = std::abs(Utils::randf(std::min(minQuad.x, minQuad.y), std::min(maxQuad.x, maxQuad.y))) * 0.2f;
+		float rayon = Utils::randf(0.f, distance(maxQuad, center))*0.7f;
 		Circle circle(center, rayon);
-		Quadrangle tmp(TriangleSymbol::randomQuadInCircle(circle));
-		/*Quadrangle tmp(Vec3<float>(center.x - rayon, center.y - rayon, 0.f),
+		//Quadrangle tmp(TriangleSymbol::randomQuadInCircle(circle));
+		Quadrangle tmp(Vec3<float>(center.x - rayon, center.y - rayon, 0.f),
 			Vec3<float>(center.x - rayon, center.y + rayon, 0.f),
 			Vec3<float>(center.x + rayon, center.y + rayon, 0.f),
-			Vec3<float>(center.x + rayon, center.y - rayon, 0.f));*/
-		if (q.isIn(tmp))
+			Vec3<float>(center.x + rayon, center.y - rayon, 0.f));
+
+		tmp.sortPoint();
+		if (q.isIn(tmp) && tmp.hasGoodNormal())
 		{
 			for (Quadrangle quad : rdcs)
 			{
@@ -49,6 +51,8 @@ void QuadrangleSymbol::addTrees(Quadrangle q, Vec3<float> minQuad, Vec3<float> m
 	for (Circle tree : trees)
 		m.merge(Mesh::Sapin(tree.center, tree.radius));
 }
+
+
 void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 {
 	const int nbTry = 1, nbTryTree = 100;
@@ -106,13 +110,16 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 					RDC(quad.p1, quad.p2, quad.p3, quad.p4, 5.f, dif, 1).G(m);
 				
 			}
-			addTrees(q, minQuad, maxQuad, m, rdcs, nbTryTree );
+			//addTrees(q, minQuad, maxQuad, m, rdcs, nbTryTree );
 			//q.sortPoint();
 			//RDC(q.p1, q.p2, q.p3, q.p4, 3.f, dif, 0).G(m);
 		//	m.merge(m1);
 		}
-		else
+		else{
+			/*Vec3<float> o = (q.p1 + q.p2 + q.p3 + q.p4)*Vec3<float>(0.25);
+			m.merge(Mesh::Sapin(o, 10));*/
 			addTrees(q, q.getMinPoint(), q.getMaxPoint(), m, std::list<Quadrangle>(), nbTryTree);
+		}
 		
 	}
 	
