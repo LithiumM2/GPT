@@ -170,12 +170,11 @@ void QuadrangleSymbol::Generate(Mesh & m, int compteur) const
 		
 
 	}
-	//else if (random < 2)
-	//{
-	//	TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
-
-	//	TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
-	//}
+	else if ( random < 2 && q.area ( ) > 4000.f && q.area ( ) < 8000.f )
+	{
+		TriangleSymbol(p0, p2, p1, mid, loin).Generate(m, compteur - 1);
+		TriangleSymbol(p0, p2, p3, mid, loin).Generate(m, compteur - 1);
+	}
 	else
 	{
 		float AB = distance(p0, p1);
